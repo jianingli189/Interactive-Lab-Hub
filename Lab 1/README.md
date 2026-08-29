@@ -4,7 +4,7 @@ _This project is to be done in teams of 2._
 
 **COLLABORATORS: Jianing Li & Jessica Chon**
 
-**The Glow-in-the-dark Stars**
+**THE MASTERWORK YOU DREW FROM THE HAT: The Glow-in-the-dark Stars**
 
 ---
 
