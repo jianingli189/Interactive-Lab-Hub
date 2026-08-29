@@ -2,7 +2,7 @@
 
 _This project is to be done in teams of 2._
 
-**Jianing Li & Jessica Chon**
+**COLLABORATORS: Jianing Li & Jessica Chon**
 
 **The Glow-in-the-dark Stars**
 
