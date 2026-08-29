@@ -114,10 +114,12 @@ For your masterwork, reconstruct the interaction as a scene: For our recreation,
    - A parent or caregiver is also present at the beginning of the scene. The parent helps the child get ready for bed, turns off the light, briefly shares the experience of watching the stars, and then leaves the room.
    - The glow-in-the-dark stars are the central interactive element. They respond to the transition from light to darkness by becoming visible and glowing.
 - **Activity:** What is happening between the players and the light?
-   - The parent and child complete their bedtime routine. The parent then turns off the bedroom light. As the room becomes dark, the stars on the ceiling gradually become visible and glow. The child looks up at the stars, imagining that they are lying beneath a real night sky. The parent and child briefly share this moment before the parent leaves. The child continues watching the stars as their glow gradually fades and eventually falls asleep.
+   - Child make wishes to the stars to charge them.
 - **Goals:** What is each player trying to do?
-   - The child's goal is to feel safe and comfortable while falling asleep. The glowing stars make the dark room feel more familiar, comforting, and imaginative.
-   - The parent's goal is to help the child settle down and transition to sleep. By making the stars part of a predictable bedtime ritual, the parent can provide reassurance while gradually allowing the child to fall asleep independently.
+   - Visualize children's wishes
+   - Encourage engagement
+   - Joy
+   - 
 
 **Describe your setting, players, activity, and goals here.**
 
