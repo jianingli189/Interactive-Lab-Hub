@@ -108,10 +108,17 @@ For your masterwork, reconstruct the interaction as a scene:
 
 - **Setting:** Where and when does this interaction happen? (a jungle, a kitchen,
   a spaceship corridor, a nightclub, a harbor at night)
+   - A child's bedroom at bedtime, usually at night when the child is getting ready to sleep. 
 - **Players:** Who is involved? Who else is present? Think through everyone in
   the setting, not just the primary user.
+   - The primary user is the child, who interacts with the stars mainly through looking at and experiencing their glow.
+   - A parent or caregiver is also present, especially at the beginning of the interaction.
+   - The parent may help the child get ready for bed, turn off the lights, and stay for a short time before leaving the room. The stars themselves act as the central interactive element, responding to the change from light to darkness through their changing visibility and brightness.
 - **Activity:** What is happening between the players and the light?
+   - The parent and child go through their usual bedtime routine. When it is time to sleep, the parent turns off the room light. As the room becomes dark, the stars on the ceiling gradually emerge and begin to glow. The child looks up at the stars and may imagine that they are lying beneath a real night sky. The parent and child may briefly observe the glowing stars together before the parent leaves. As time passes, the stars gradually fade, while the child settles down and falls asleep.
 - **Goals:** What is each player trying to do?
+   - The child's goal is to feel comfortable and safe while falling asleep. The glowing stars provide a familiar and calming presence that can make the darkness feel less frightening and make bedtime more enjoyable.
+   - The parent's goal is to help the child transition to sleep and eventually become comfortable falling asleep independently. The stars can become part of a predictable bedtime ritual, allowing the parent to gradually reduce their presence while the child still has a familiar source of comfort in the room.
 
 **Describe your setting, players, activity, and goals here.**
 
@@ -120,7 +127,7 @@ don't need to be beautiful, but they must capture and communicate not only the b
 and the people around it. If you're new to storyboarding, read
 [this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
 
-**Include pictures of your storyboards here.**
+**Include pictures of your storyboards [here]().**
 
 Use the storyboards to decide what interaction to prototype.
 
