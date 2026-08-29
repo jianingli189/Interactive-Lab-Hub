@@ -4,7 +4,7 @@ _This project is to be done in teams of 2._
 
 **Jianing Li & Jessica Chon**
 
-**THE MASTERWORK YOU DREW FROM THE HAT:**
+**The Glow-in-the-dark Stars**
 
 ---
 
@@ -83,14 +83,21 @@ Before you prototype anything, get intimately acquainted with the piece you
 drew. Do real research. You are looking less for trivia than for the *shape of
 the interaction*:
 
-- What inputs are available to the user? What responses does the work give?
-- Who is present, and how does the piece color the relationships between them?
-- What is the piece famous for? What are its strengths and its weaknesses?
+- *What inputs are available to the user? What responses does the work give?*
+     - Primary input: Light exposer including sunlight, lamplight and other room lights.
+     - User interaction: Turn on or turn off room lights, open or close curtains, install the stars on ceilings and walls, look at the stars.
+     - Responses: Glow and become visible in the darkness, fade gradually, appear brighter after stronger or longer light exposure.
+- *Who is present, and how does the piece color the relationships between them?*
+     -  The primary users are children, while parents often play an important supporting role in the interaction. At bedtime, a parent may turn off the room lights, allowing the glow-in-the-dark stars on the ceiling to gradually become visible. The child can then look at the glowing stars while falling asleep, creating the feeling of resting beneath a night sky filled with stars. The stars can also create a shared bedtime moment between parents and children. Parents and children may watch together as the stars emerge in the darkness, turning a simple bedtime routine into a moment of connection and shared imagination. For children who are afraid of the dark, the glowing stars can make darkness feel less threatening and more comforting. Over time, the stars may become a familiar and reassuring presence at bedtime, helping children look forward to going to sleep and gradually feel more comfortable falling asleep without their parents' presence.
+- *What is the piece famous for? What are its strengths and its weaknesses?*
+     - The famous for transforming an ordinary bedroom into a miniature night sky after the lights are turned off. Their most recognizable feature is their ability to absorb light during the day and produce a soft glow in the darkness, creating a simple but magical visual experience. For many children, the stars can turn bedtime into an imaginative experience, making the dark room feel less empty or frightening.
 
   Sometimes the details of how the interaction worked are lost in history. Try filling it in with your imagination!
 
 **Describe your masterwork here, in your own words. What is the core interaction
 someone would recognize it by?**
+
+
 
 ## Part A. Plan
 
