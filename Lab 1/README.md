@@ -75,7 +75,7 @@ page.
 
 ---
 
-# The Report
+# **The Report**
 
 ## Part 0. Know Your Master
 
@@ -94,8 +94,6 @@ the interaction*:
      - *Strengths*: Simplicity and accessibility. They require no complicated controls, batteries, or active input from the user. The interaction is largely created by the transition between light and darkness: light charges the stars, while darkness reveals their glow. They are also inexpensive, easy to install, and can transform a familiar environment with very little effort. Their passive nature can also make them a comforting and unobtrusive presence at bedtime.
      - *Weakness*: The stars provide very limited interactivity and cannot actively respond to the user's behavior or environment. Their brightness also gradually fades, so the experience is relatively passive and temporary. In addition, the stars depend on sufficient exposure to light beforehand, which means that their effectiveness can vary depending on the environment. Most importantly, while they can create a comforting atmosphere, they do not actively adapt to a child's individual needs or respond to changes in the child's emotional state.
 
-  Sometimes the details of how the interaction worked are lost in history. Try filling it in with your imagination!
-
 **Describe your masterwork here, in your own words. What is the core interaction
 someone would recognize it by?**
 - Glow-in-the-dark stars transform a familiar bedroom into a small glowing night sky. During the day, they absorb ambient light. When the room becomes dark, the stored energy is released as a soft glow, which gradually fades over time.
@@ -104,7 +102,10 @@ someone would recognize it by?**
 
 ## Part A. Plan
 
-For your masterwork, reconstruct the interaction as a scene: For our recreation, we started from the original bedtime experience of glow-in-the-dark stars and reinterpreted the way the stars become "charged".
+
+**Our setting, players, activity, and goals**
+
+For our recreation, we started from the original bedtime experience of glow-in-the-dark stars and reinterpreted the way the stars become "charged".
 
 - **Setting:** Where and when does this interaction happen? 
    - A child's bedroom at bedtime. The room is initially illuminated by a normal bedroom light. As the child prepares to sleep, the room becomes darker and the glow-in-the-dark stars on the wall or ceiling become the focus of attention.
@@ -123,85 +124,84 @@ For your masterwork, reconstruct the interaction as a scene: For our recreation,
    - Create joy and imagination. Make bedtime feel playful, magical, and emotionally meaningful.
    - Create a sense of companionship: Make the stars feel as if they are listening and responding to the child.
 
-**Describe your setting, players, activity, and goals here.**
 
-Now **sketch a 3 storyboards** of the interaction you are recreating. (The number may depend on the thing you drew, but stretch your thinking!) They
-don't need to be beautiful, but they must capture and communicate not only the behavior of the light, but how it affects
-and the people around it. If you're new to storyboarding, read
-[this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
+**Storyboards**
 
-**Include pictures of your storyboards [here]().**
+**Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Storyboards.jpg) to see our storyboards.**
 Our three-scene storyboard explores the interaction as a bedtime ritual:
 1. Notice: The child notices that the stars have become dim and wonders why they are no longer glowing.
 2. Wish: The child is encouraged to make a wish and says "I wish..." toward the stars.
 3. Response: The stars acknowledge the wish by becoming brighter, creating a visible and joyful response for the child.
 The storyboard helped us shift the stars from a passive decorative object into an interactive bedtime companion while preserving their original association with darkness, bedtime, and imagination.
 
-**Summarize the feedback you got here.**
+**Feedback and Iteration**
+Our initial concept was relatively simple: the child would make a wish, and the stars would become brighter as if the wish had charged them.
+When we acted out and prototyped the interaction, however, we noticed a communication problem. If the stars simply became brighter after the child spoke, it was difficult to tell whether the stars had actually heard the child's wish or whether the change in brightness was simply a programmed response.
+We therefore introduced an intermediate feedback state. When the system detects the phrase "I wish", the stars change from a dim yellow to a bright green. This acts as an acknowledgment cue: the stars have heard the child. After the child finishes expressing the wish, the stars transition from green to a brighter warm yellow, representing the stars being "charged" by the wish. They then gradually fade when there is no new interaction.
+This iteration made the interaction more legible by giving the child a clear cause-and-effect sequence:
+*Wish → Stars listen → Stars acknowledge → Stars become charged → Stars gradually fade*.
+
 
 ## Part B. Act out the Interaction
 
-Physically act out the interaction you planned. For now, just pretend the light
-is doing what you've scripted — a person can wave a flashlight, or you can narrate
-it aloud.
+Acting out the storyboard helped us realize that the interaction needed a clearer moment of acknowledgment.
+On paper, the sequence of "child makes a wish → stars light up" seemed intuitive. However, when we physically acted it out, we noticed that the child had no clear indication that the stars had actually heard the wish. The transition from speaking to the stars becoming brighter happened too abruptly.
+This led us to introduce an intermediate response from the stars. The stars briefly change color to signal that the wish has been heard before becoming fully charged.
+Acting also helped us recognize that the interaction is not strictly sequential. After the stars become bright, the child can make another wish, wait and watch the stars fade, or interact with the stars again later. The system therefore needs to support a repeating interaction loop rather than a single fixed sequence.
+Key interaction loop:
+Stars dim → Child notices → Child makes a wish → Stars acknowledge → Stars glow → Stars fade → Child can wish again.
 
-**Are there things that seemed better on paper than when acted out?**
-
-**Did new ideas about the piece surface once you were on your feet?**
-
-**Are there key moments in the interaction where things could go in a different direction?**
-Iterate your storyboards to capture key non-sequential aspects of the interaction. 
 
 ## Part C. Prototype the Light (light first!)
 
-Use your smartphone as the light of your device. Open the browser on your phone
-to act as the "light," and use the remote control interface on your computer to
-change that light. Code and setup instructions for the *Tinkerbelle* tool are
-[here](https://github.com/IRL-CT/tinkerbelle) (we invented this tool for
-this lab). If you hit technical trouble, a manually or remotely controlled light
-switch, dimmer, or lamp is a fine substitute.
+**Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Light%20prototype.jpg) to see our light prototype.**
+We used a smartphone as the stand-in light for the stars and controlled its visual output through the prototype setup in a laptop.
+Our main focus was not on reproducing the physical appearance of the original glow-in-the-dark stars, but on reproducing their recognizable light behavior and our reinterpretation of the charging interaction.
+We prototyped several light states:
+1. Dim yellow: The stars are waiting for interaction.
+2. Green: The stars have detected "I wish" and are acknowledging the child's wish.
+3. Bright yellow: The stars have been "charged" by the wish.
+4. Gradual fading: The stars slowly lose their brightness when there is no new wish.
+This allowed us to test whether the light itself could communicate the interaction before adding additional modalities.
 
-**Get the light interaction working before anything else.** Your grade this week
-rides on the *light* being recognizable — the color, the rhythm, the timing, the
-way it answers a person. Only once your light interaction genuinely reads as your
-masterwork should you consider layering in a second modality (sound, vibration,
-motion). If in doubt, keep polishing the light. The other modalities are next
-week's business.
 
 ## Part D. Wizard the Device
 
-Set up a "wizard" arrangement so one person can secretly drive the light while
-another acts with it — this is how you make the device feel alive without
-building any real electronics. (Zoom works well for recording; you can pin the
-video feed of whichever scene you want to capture.)
+We used a wizarded setup to simulate the behavior of the interactive stars without implementing the complete sensing and control system.
+One person acted as the child and interacted with the stars, while another person secretly controlled the light states from the computer. The hidden "wizard" changed the stars between dim yellow, green, and bright yellow based on the child's speech and actions.
+This allowed us to test the interaction from the user's perspective without requiring the final speech-recognition system to be fully implemented.
 
-**Include your first attempts at recording the wizarded set-up here.**
 
 ## Part E. (optional) Costume the Device
 
-Only now should you worry about what the device looks like. Costume your phone so it reads
-as the object from your masterwork — HAL's eye, a Simon shell, a paper-lantern
-Tinker Bell, an Ambient Orb, a lighthouse, a jack-o'-lantern, whatever you drew.
+For the physical prototype, we wanted the phone to visually read as a glowing star rather than as a smartphone. We covered most of the phone's surface with sticky notes and left a small star-shaped opening in the center. The light from the screen could therefore shine through the star-shaped opening, making the phone appear like a single glowing star.
+We also drew and attached several additional paper stars around the phone to create the feeling of a larger starry sky rather than a single isolated light. This helped us recreate the original context of glow-in-the-dark stars, which are typically installed together across a child's bedroom wall or ceiling.
+The costume also helped separate the device itself from the technology behind it. Although the smartphone was controlling the light, the visual prototype encouraged the viewer to perceive the light as a star that could listen and respond to the child.
+**Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Costumed%20device.jpg) to see our Costumed device.**
 
-Think about the world your device lives in: could that environment overheat it?
-Is water a danger? Does it need to be loud and bright for an emergency, or quiet
-and calm for a bedroom?
-
-**Include sketches/photos of what your device might look like here.**
-
-**What concerns or opportunities shaped the way you designed its look?**
 
 ## Part F. Record
 
-**Record your prototyped interaction as a video sketch.** Aim for the bar from
-the top of this lab: a viewer who knows the piece should recognize it; a viewer
-who doesn't should come away understanding what it's famous for. How might you illustrate the non-sequential aspects of the interaction in the sketch?
+**Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Prototyping%20Process.jpg) to see our whole prototyping process.**
 
-**Include your video here.**
+Our video sketch demonstrates the core interaction between the child and the stars.
+The child notices that the stars are dim, makes a wish by saying "I wish...", and receives a visible response from the stars. The stars first acknowledge the wish with a green light and then become brighter to represent being charged by the child's wish.
+The video focuses on the interaction sequence rather than the final physical appearance of the device. We wanted the viewer to understand that the child's wish is what causes the stars to become charged and glow.
 
-**Please indicate who you collaborated with on this lab.** Be generous in
-acknowledging their contributions, and credit any other influences (YouTube,
-Github, Twitter, a friend who lent you a lamp) that informed your recreation.
+We preserved the original stars' core metaphor of "charging and glowing," but changed what provides the energy: from ambient light to a child's imagination.
+| Original                        | Our Recreation                   |
+| ------------------------------- | -------------------------------- |
+| Ambient light charges the stars | A child's wish charges the stars |
+| Invisible charging              | Visible interaction              |
+| Passive                         | Intentional                      |
+| Light → glow                    | Wish → response → glow           |
+| Quiet companionship             | Interactive companionship        |
+| Gradual fading                  | Gradual fading                   |
+
+**Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Interaction%20Demo%20Video.mp4) to see our video.**
+
+**Collaborators:** Jianing Li & Jessica Chon
+Both collaborators contributed to the research, interaction concept, storyboard development, prototyping, acting, and iteration of the project.
 
 ---
 
