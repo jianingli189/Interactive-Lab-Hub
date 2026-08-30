@@ -84,11 +84,11 @@ drew. Do real research. You are looking less for trivia than for the *shape of
 the interaction*:
 
 - **What inputs are available to the user? What responses does the work give?**
-     - *Primary input*: Light exposer including sunlight, lamplight and other room lights.
+     - *Primary input*: Surrounding light, including sunlight, lamplight, and room lighting.
      - *User interaction*: Turn on or turn off room lights, open or close curtains, install the stars on ceilings and walls, look at the stars.
      - *Responses*: Glow and become visible in the darkness just like real stars. Fade gradually. Appear brighter after stronger or longer light exposure.
 - **Who is present, and how does the piece color the relationships between them?**
-     -  The primary users are children, while parents often play an important supporting role in the interaction. At bedtime, a parent may turn off the room lights, allowing the glow-in-the-dark stars on the ceiling to gradually become visible. The child can then look at the glowing stars while falling asleep, creating the feeling of resting beneath a night sky filled with stars. The stars can also create a shared bedtime moment between parents and children. Parents and children may watch together as the stars emerge in the darkness, turning a simple bedtime routine into a moment of connection and shared imagination. For children who are afraid of the dark, the glowing stars can make darkness feel less threatening and more comforting. Over time, the stars may become a familiar and reassuring presence at bedtime, helping children look forward to going to sleep and gradually feel more comfortable falling asleep without their parents' presence.
+     - The primary users are children, particularly in a bedtime setting, while parents or caregivers often play a supporting role. A parent may turn off the bedroom light and leave the child with the glowing stars, creating a familiar transition from the daytime environment to bedtime. For children who are uncomfortable with darkness, the stars can make the room feel less empty or threatening and provide a familiar visual presence while they fall asleep. They can also create a shared moment of imagination between children and caregivers.
 - **What is the piece famous for? What are its strengths and its weaknesses?**
      - The piece is famous for transforming an ordinary bedroom into a miniature night sky after the lights are turned off. Their most recognizable feature is their ability to absorb light during the day and produce a soft glow in the darkness, creating a simple but magical visual experience. For many children, the stars can turn bedtime into an imaginative experience, making the dark room feel less empty or frightening.
      - *Strengths*: Simplicity and accessibility. They require no complicated controls, batteries, or active input from the user. The interaction is largely created by the transition between light and darkness: light charges the stars, while darkness reveals their glow. They are also inexpensive, easy to install, and can transform a familiar environment with very little effort. Their passive nature can also make them a comforting and unobtrusive presence at bedtime.
@@ -98,28 +98,30 @@ the interaction*:
 
 **Describe your masterwork here, in your own words. What is the core interaction
 someone would recognize it by?**
-- Glow-in-the-dark stars are simple decorative stars that transform a dark room into a small, glowing night sky. They are typically placed on ceilings or walls, especially in children's bedrooms. During the day, the stars absorb light from the sun or room lights. When the lights are turned off, they begin to glow, making the stars suddenly visible in the darkness. Their glow gradually fades over time.
-- The core interaction is the transition from light to darkness to glow. A user does not need to press a button or actively control the stars. Instead, turning off the lights reveals an unexpected glowing night sky that was almost invisible before. For a child at bedtime, this can turn an ordinary dark bedroom into a comforting and imaginative space, creating the feeling of falling asleep under a starry sky. Therefore, the interaction someone should immediately recognize is: the room becomes dark, the stars emerge and glow, and their light gradually fades as the child watches them.
+- Glow-in-the-dark stars transform a familiar bedroom into a small glowing night sky. During the day, they absorb ambient light. When the room becomes dark, the stored energy is released as a soft glow, which gradually fades over time.
+- The core interaction is therefore *light → darkness → glow → gradual fading*. The user does not directly command the stars. Instead, an ordinary environmental change causes the stars to become visible. This passive interaction is what makes the stars feel magical: something that appeared ordinary during the day suddenly becomes visible and meaningful at bedtime.
 
 
 ## Part A. Plan
 
-For your masterwork, reconstruct the interaction as a scene: For our recreation, we will stage a bedtime scene in which a parent helps a child transition from a normal, illuminated bedroom into a dark room filled with glowing stars.
+For your masterwork, reconstruct the interaction as a scene: For our recreation, we started from the original bedtime experience of glow-in-the-dark stars and reinterpreted the way the stars become "charged".
 
 - **Setting:** Where and when does this interaction happen? 
-   - A child's bedroom at bedtime, at night when the child is getting ready to sleep. The room is initially illuminated by a regular bedroom light. After the bedtime routine, the light is turned off, revealing the glow-in-the-dark stars on the ceiling.
+   - A child's bedroom at bedtime. The room is initially illuminated by a normal bedroom light. As the child prepares to sleep, the room becomes darker and the glow-in-the-dark stars on the wall or ceiling become the focus of attention.
 - **Players:** Who is involved? Who else is present? Think through everyone in
   the setting, not just the primary user.
-   - The primary user is the child, who is getting ready to sleep and experiences the stars as they begin to glow.
-   - A parent or caregiver is also present at the beginning of the scene. The parent helps the child get ready for bed, turns off the light, briefly shares the experience of watching the stars, and then leaves the room.
-   - The glow-in-the-dark stars are the central interactive element. They respond to the transition from light to darkness by becoming visible and glowing.
+   - Child: The primary user. The child notices the stars, speaks to them, and makes a wish.
+   - Parent/caregiver: A supporting character who helps establish the bedtime context and may introduce the idea of wishing to the stars.
+   - Stars: The interactive element. They respond to the child's wish through changes in brightness and color.
 - **Activity:** What is happening between the players and the light?
-   - Child make wishes to the stars to charge them.
+   - Instead of being charged passively by everyday exposure to light, the stars in our recreation are "charged" by a child's wishes.
+   - The child notices that the stars have become dim and asks why they are no longer glowing. The child is encouraged to make a wish by saying "I wish..." toward the stars. A speech-recognition mechanism detects the phrase and triggers the stars to respond. The stars first become bright green to indicate that they have heard the child's wish, and then transition into a warm, bright yellow glow to represent the wish charging the stars. When no new wish is detected, the stars gradually become dimmer over time.
+   - In this way, we reinterpret the original charging mechanism as an intentional interaction between the child and the stars.
 - **Goals:** What is each player trying to do?
-   - Visualize children's wishes
-   - Encourage engagement
-   - Joy
-   - 
+   - Visualize children's wishes. Turn an abstract and invisible wish into a visible response from the stars.
+   - Encourage engagement. Transform a passive bedtime object into something children can actively interact with.
+   - Create joy and imagination. Make bedtime feel playful, magical, and emotionally meaningful.
+   - Create a sense of companionship: Make the stars feel as if they are listening and responding to the child.
 
 **Describe your setting, players, activity, and goals here.**
 
@@ -129,8 +131,11 @@ and the people around it. If you're new to storyboarding, read
 [this explanation](https://www.nngroup.com/articles/storyboards-visualize-ideas/).
 
 **Include pictures of your storyboards [here]().**
-
-Use the storyboards to decide what interaction to prototype.
+Our three-scene storyboard explores the interaction as a bedtime ritual:
+1. Notice: The child notices that the stars have become dim and wonders why they are no longer glowing.
+2. Wish: The child is encouraged to make a wish and says "I wish..." toward the stars.
+3. Response: The stars acknowledge the wish by becoming brighter, creating a visible and joyful response for the child.
+The storyboard helped us shift the stars from a passive decorative object into an interactive bedtime companion while preserving their original association with darkness, bedtime, and imagination.
 
 **Summarize the feedback you got here.**
 
