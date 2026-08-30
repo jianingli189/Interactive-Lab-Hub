@@ -135,6 +135,7 @@ Our three-scene storyboard explores the interaction as a bedtime ritual:
 The storyboard helped us shift the stars from a passive decorative object into an interactive bedtime companion while preserving their original association with darkness, bedtime, and imagination.
 
 **Feedback and Iteration**
+
 Our initial concept was relatively simple: the child would make a wish, and the stars would become brighter as if the wish had charged them.
 When we acted out and prototyped the interaction, however, we noticed a communication problem. If the stars simply became brighter after the child spoke, it was difficult to tell whether the stars had actually heard the child's wish or whether the change in brightness was simply a programmed response.
 We therefore introduced an intermediate feedback state. When the system detects the phrase "I wish", the stars change from a dim yellow to a bright green. This acts as an acknowledgment cue: the stars have heard the child. After the child finishes expressing the wish, the stars transition from green to a brighter warm yellow, representing the stars being "charged" by the wish. They then gradually fade when there is no new interaction.
