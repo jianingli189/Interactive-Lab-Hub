@@ -155,6 +155,7 @@ Stars dim → Child notices → Child makes a wish → Stars acknowledge → Sta
 ## Part C. Prototype the Light (light first!)
 
 **Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Light%20prototype.jpg) to see our light prototype.**
+
 We used a smartphone as the stand-in light for the stars and controlled its visual output through the prototype setup in a laptop.
 Our main focus was not on reproducing the physical appearance of the original glow-in-the-dark stars, but on reproducing their recognizable light behavior and our reinterpretation of the charging interaction.
 We prototyped several light states:
@@ -174,15 +175,18 @@ This allowed us to test the interaction from the user's perspective without requ
 
 ## Part E. (optional) Costume the Device
 
+**Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Costumed%20device.jpg) to see our Costumed device.**
+
 For the physical prototype, we wanted the phone to visually read as a glowing star rather than as a smartphone. We covered most of the phone's surface with sticky notes and left a small star-shaped opening in the center. The light from the screen could therefore shine through the star-shaped opening, making the phone appear like a single glowing star.
 We also drew and attached several additional paper stars around the phone to create the feeling of a larger starry sky rather than a single isolated light. This helped us recreate the original context of glow-in-the-dark stars, which are typically installed together across a child's bedroom wall or ceiling.
 The costume also helped separate the device itself from the technology behind it. Although the smartphone was controlling the light, the visual prototype encouraged the viewer to perceive the light as a star that could listen and respond to the child.
-**Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Costumed%20device.jpg) to see our Costumed device.**
 
 
 ## Part F. Record
 
 **Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Prototyping%20Process.jpg) to see our whole prototyping process.**
+
+**Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Interaction%20Demo%20Video.mp4) to see our video.**
 
 Our video sketch demonstrates the core interaction between the child and the stars.
 The child notices that the stars are dim, makes a wish by saying "I wish...", and receives a visible response from the stars. The stars first acknowledge the wish with a green light and then become brighter to represent being charged by the child's wish.
@@ -197,8 +201,6 @@ We preserved the original stars' core metaphor of "charging and glowing," but ch
 | Light → glow                    | Wish → response → glow           |
 | Quiet companionship             | Interactive companionship        |
 | Gradual fading                  | Gradual fading                   |
-
-**Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Interaction%20Demo%20Video.mp4) to see our video.**
 
 **Collaborators:** Jianing Li & Jessica Chon
 Both collaborators contributed to the research, interaction concept, storyboard development, prototyping, acting, and iteration of the project.
