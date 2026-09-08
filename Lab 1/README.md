@@ -227,6 +227,7 @@ We visited 4 other groups' Lab Hub pages and reviewed their interaction videos. 
    "The video in part D highlights the movement and changes of light accurately. The star shaped cut out on the phone also clearly shows what the device looks like. I really like how you guys added the interaction part between the kids and the stars. Compared to the regular glow in the dark star stickers, it is more interactive and fun for the users (kid)! I think the new device you guys ideated could potentially become a great project for this class as you can use voice recognition/AI tools to make the stars react to the user's voice -> charge."
 
 
+
 **Feedback Summary**
 The feedback helped us reflect on how the child understands and experiences the interaction, rather than only on how the stars look or change color.
 1. Instruction and context: The child needs to understand how to interact with the stars, especially when using them independently at bedtime. In our first version, the parent verbally explained what the child should do, but the interaction did not clearly show how this instruction would carry into the child's own bedtime routine. In response, we set up a bed to simulate the child sleeping alone and developed a two-part scenario: the parent first introduces the stars and explains how to make a wish, and the child later remembers and uses the interaction independently.
@@ -234,6 +235,7 @@ The feedback helped us reflect on how the child understands and experiences the 
 3. Continuation: The interaction should not end immediately after one wish. The stars gradually become dim again after responding, preserving the fading quality of the original glow-in-the-dark stars while allowing the child to make another wish later. This also makes the interaction feel more like part of a bedtime routine rather than a single isolated action.
 These reflections led us to rethink the stars not simply as a light that responds to a command, but as a bedtime companion that is introduced by the parent, listens to the child’s wish, acknowledges it, and responds through light and sound.
 **Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Iteration%20Sketch.jpg) to see our iteration sketch.** The sketch documents how we translated the feedback into changes to the interaction, including the two-scene structure, clearer acknowledgment through sound and color, and a repeatable bedtime interaction.
+
 
 
 ## Remix, Update, or Critique the Master
@@ -245,14 +247,18 @@ The original glow-in-the-dark stars are passive: ambient light charges them, dar
 Our redesigned experience takes place in two connected scenes.
 
 **Scene 1: Introducing the stars**
+
 In the first scene, a parent helps the child put up the stars and introduces the interaction. Instead of explaining the stars only as decorations, the parent tells the child that they can make a wish to charge the stars. This gives the child a simple mental model for understanding how the new interaction works.
 The parent therefore acts as an onboarding guide, helping the child understand that their voice can affect the stars.
 **Scene 2: The bedtime interaction**
+
 In the second scene, the child is lying in bed at night and looking at the stars on the wall. As the stars become dim, the child remembers the parent's earlier instruction and says, "I wish..." followed by a wish.
 The stars first respond with a "ding" sound and a blue light. This is an acknowledgment state that communicates: the stars are listening. After the child finishes the wish, the stars respond with a series of "bing bing bing~" sounds while becoming brighter and changing to a warm yellow. This represents the child's wish charging the stars.
 After the interaction, the stars gradually become dim again. This creates an interaction loop rather than a one-time response:
 Stars dim → Child notices → Child makes a wish → Stars acknowledge → Child finishes the wish → Stars become charged → Stars gradually fade → Child can make another wish.
+
 **Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Lab1b_video.mp4) to see our updated interaction demo.** The updated video demonstrates both scenes: the parent's introduction of the interaction and the child's later independent bedtime interaction. 
+
 
 
 ### How our redesign responds to the original masterwork
@@ -268,11 +274,13 @@ We wanted to preserve the most recognizable aspect of the original masterwork: t
 | Decorative object | Interactive bedtime companion |
 
 
+
 ### Why we made these changes
 Our goal was not to replace the original interaction completely, but to extend the meaning of "charging". In the original masterwork, the stars absorb physical light. In our version, they metaphorically absorb a child's wishes.
 This change addresses one of the main weaknesses we identified in the original object: its limited interactivity. The original stars respond automatically to environmental light but do not acknowledge or respond to the person using them. Our version gives the child a clearer sense of agency: the child says something, the stars acknowledge it, and then the stars visibly respond.
 We also added sound because light alone did not always make the interaction sufficiently explicit. The "ding" provides an immediate acknowledgment that the stars have heard the child, while the "bing bing bing~" sound accompanies the charging process. The combination of speech, sound, color, and brightness makes the cause-and-effect relationship more legible.
 At the same time, we intentionally kept the gradual fading behavior from the original masterwork. This preserves the temporal quality of glow-in-the-dark stars and creates an opportunity for repeated wishes rather than making the interaction a single one-time event.
+
 
 
 ## Reflection on the ReMastering
