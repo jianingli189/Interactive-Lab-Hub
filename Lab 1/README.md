@@ -229,11 +229,12 @@ We visited 4 other groups' Lab Hub pages and reviewed their interaction videos. 
 
 
 **Feedback Summary**
-The feedback helped us reflect on how the child understands and experiences the interaction, rather than only on how the stars look or change color.
-1. Instruction and context: The child needs to understand how to interact with the stars, especially when using them independently at bedtime. In our first version, the parent verbally explained what the child should do, but the interaction did not clearly show how this instruction would carry into the child's own bedtime routine. In response, we set up a bed to simulate the child sleeping alone and developed a two-part scenario: the parent first introduces the stars and explains how to make a wish, and the child later remembers and uses the interaction independently.
-2. Acknowledgment: The child needs to know that the stars have heard the wish. Based on the feedback, we made this moment more explicit through both sound and color. When the child says “I wish,” the stars respond with a “ding” and turn blue, signaling that they are listening. After the child finishes the wish, the stars respond with “bing bing bing~” and become brighter and warmer yellow, showing that the wish has charged them. In our first version, green was used as the acknowledgment state. In the second iteration, we changed this state to blue to create a clearer distinction between "listening" and "charged" states, with warm yellow reserved for the final charged glow.
-3. Continuation: The interaction should not end immediately after one wish. The stars gradually become dim again after responding, preserving the fading quality of the original glow-in-the-dark stars while allowing the child to make another wish later. This also makes the interaction feel more like part of a bedtime routine rather than a single isolated action.
+
+1. **Instruction and context**: The child needs to understand how to interact with the stars, especially when using them independently at bedtime. In our first version, the parent verbally explained what the child should do, but the interaction did not clearly show how this instruction would carry into the child's own bedtime routine. In response, we set up a bed to simulate the child sleeping alone and developed a two-part scenario: the parent first introduces the stars and explains how to make a wish, and the child later remembers and uses the interaction independently.
+2. **Acknowledgment**: The child needs to know that the stars have heard the wish. Based on the feedback, we made this moment more explicit through both sound and color. When the child says “I wish,” the stars respond with a “ding” and turn blue, signaling that they are listening. After the child finishes the wish, the stars respond with “bing bing bing~” and become brighter and warmer yellow, showing that the wish has charged them. In our first version, green was used as the acknowledgment state. In the second iteration, we changed this state to blue to create a clearer distinction between "listening" and "charged" states, with warm yellow reserved for the final charged glow.
+3. **Continuation**: The interaction should not end immediately after one wish. The stars gradually become dim again after responding, preserving the fading quality of the original glow-in-the-dark stars while allowing the child to make another wish later. This also makes the interaction feel more like part of a bedtime routine rather than a single isolated action.
 These reflections led us to rethink the stars not simply as a light that responds to a command, but as a bedtime companion that is introduced by the parent, listens to the child’s wish, acknowledges it, and responds through light and sound.
+
 **Click [here](https://github.com/jianingli189/Interactive-Lab-Hub/blob/Fall2026/Lab%201/Iteration%20Sketch.jpg) to see our iteration sketch.** The sketch documents how we translated the feedback into changes to the interaction, including the two-scene structure, clearer acknowledgment through sound and color, and a repeatable bedtime interaction.
 
 
@@ -250,6 +251,7 @@ Our redesigned experience takes place in two connected scenes.
 
 In the first scene, a parent helps the child put up the stars and introduces the interaction. Instead of explaining the stars only as decorations, the parent tells the child that they can make a wish to charge the stars. This gives the child a simple mental model for understanding how the new interaction works.
 The parent therefore acts as an onboarding guide, helping the child understand that their voice can affect the stars.
+
 **Scene 2: The bedtime interaction**
 
 In the second scene, the child is lying in bed at night and looking at the stars on the wall. As the stars become dim, the child remembers the parent's earlier instruction and says, "I wish..." followed by a wish.
