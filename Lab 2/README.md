@@ -157,10 +157,11 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
 
 \*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
+1. Pi showing MAC address:
 ![Pi showing MAC address](my_image/piscreen_mac.jpg)
 
-![Successful screen test](my_image/screen_test.jpg)
-![Successful screen test with codes](my_image/screen_test2.jpg)
+2. Successful screen test:
+![Successful screen test](my_image/screen_test.jpg)![Successful screen test with codes](my_image/screen_test2.jpg)
 
 
 
@@ -187,6 +188,11 @@ Now you should be able to edit python scripts with Thonny on your Pi.
 Option 3. A nowadays often preferred method is to use Microsoft [VS code to remote connect to the Pi](https://www.raspberrypi.com/news/coding-on-raspberry-pi-remotely-with-visual-studio-code/). This gives you access to a fullly equipped and responsive code editor with terminal and file browser.  
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
+
+Clock demo:
+![Clock demo](my_image/screen_clock.jpg)![Clock demo](my_image/screen_clock2.jpg)
+
+
 
 ## Part E. Read Part 2. Sketch and brainstorm further interactions and features you would like for your clock.
 
