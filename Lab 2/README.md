@@ -191,6 +191,7 @@ Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/lates
 
 **I modified the `while` loop in `screen_clock.py` by combining the time-display logic from `cli_clock.py` with the MiniPiTFT drawing methods demonstrated in `stats.py`.
 The clock now displays the current date and time on the MiniPiTFT and updates once every second.**
+
 **Clock demo:**
 ![Clock demo](my_image/screen_clock.jpg)![Clock demo](my_image/screen_clock2.jpg)
 
@@ -211,15 +212,21 @@ We strongly discourage literal digital or analog clock display: Be creative.
 ![Brainstorm mind map](my_image/brainstorm_mindmap.jpg)
 
 **2. Ideas storyboards**: I picked 3 directions from my mind map and drew 3 idea storyboards.
+
 Idea 1: Sky clock
+
 The clock represents the passage of a day through changing sky colors and the movement of the sun, moon, and stars.
 ![Idea 1: Sky clock](my_image/idea1.jpg)
 
+
 Idea 2: Flower clock
+
 The clock uses flowers that naturally bloom or open at different times as living markers of time, turning the rhythms of nature into an alternative way of experiencing a day.
 ![Idea 2: Flower clock](my_image/idea2.jpg)
 
+
 Idea 3: Focus/break clock
+
 Instead of showing clock time, this concept visualizes how time is spent: a growing visual represents accumulated focus, while switching to break mode transforms the display into a calmer resting state.
 ![Idea 3: Focus/break clock](my_image/idea3.jpg)
 
