@@ -157,10 +157,10 @@ You can look in `screen_boot_script.py` for how to display text on the screen!
 You can look in `image.py` for an example of how to display an image on the screen. Can you make it switch to another image when you push one of the buttons?
 
 \*\*\***Include a picture of your own Raspberry Pi displaying the piscreen.service with your unique MAC address. Additionally, please provide another picture showing the successful completion of the screen test.**\*\*\*
-1. Pi showing MAC address:
+**1. Pi showing MAC address:**
 ![Pi showing MAC address](my_image/piscreen_mac.jpg)
 
-2. Successful screen test:
+**2. Successful screen test:**
 ![Successful screen test](my_image/screen_test.jpg)![Successful screen test with codes](my_image/screen_test2.jpg)
 
 
@@ -189,7 +189,9 @@ Option 3. A nowadays often preferred method is to use Microsoft [VS code to remo
 
 Pro Tip: Using tools like [code-server](https://coder.com/docs/code-server/latest) you can even setup a VS Code coding environment hosted on your raspberry pi and code through a web browser on your tablet or smartphone! 
 
-Clock demo:
+**I modified the `while` loop in `screen_clock.py` by combining the time-display logic from `cli_clock.py` with the MiniPiTFT drawing methods demonstrated in `stats.py`.
+The clock now displays the current date and time on the MiniPiTFT and updates once every second.**
+**Clock demo:**
 ![Clock demo](my_image/screen_clock.jpg)![Clock demo](my_image/screen_clock2.jpg)
 
 
@@ -205,9 +207,25 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 ** Insert ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf)), storyboards for your ideas **
 
+**1. Brainstorm mind map**: I brainstormed several ways of representing time beyond a conventional digital or analog clock. Here is my brainstorming mind map:
+![Brainstorm mind map](my_image/brainstorm_mindmap.jpg)
+
+**2. Ideas storyboards**: I picked 3 directions from my mind map and drew 3 idea storyboards.
+Idea 1: Sky clock
+The clock represents the passage of a day through changing sky colors and the movement of the sun, moon, and stars.
+![Idea 1: Sky clock](my_image/idea1.jpg)
+
+Idea 2: Flower clock
+The clock uses flowers that naturally bloom or open at different times as living markers of time, turning the rhythms of nature into an alternative way of experiencing a day.
+![Idea 2: Flower clock](my_image/idea2.jpg)
+
+Idea 3: Focus/break clock
+Instead of showing clock time, this concept visualizes how time is spent: a growing visual represents accumulated focus, while switching to break mode transforms the display into a calmer resting state.
+![Idea 3: Focus/break clock](my_image/idea3.jpg)
 
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
+
 
 # Lab 2 Part 2
 
