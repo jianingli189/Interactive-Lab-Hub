@@ -249,15 +249,20 @@ Lamiah Khan, Shifeng Hong, Jessica Chon, Aurora Jiaxin Shen
 **Original Feedback**:
 
 (1) Lamiah Khan:"the drawings are super cool and unique. My favorite concept is the sky one because it will look very pretty graphically, and it is also a very common way people measure time. I think it's also a cool way to also measure seasons (daylight savings, etc.). One thing you can focus on is how you are going to transition between the four times of day (automatic switch, sun gradually setting, etc.)"
+
 (2) Shifeng Hong:"Love the idea of blurring boundary of time and replacing digits with more natrual expression. For Idea 1, you can add a window framework to the clock because it's similar to looking up at the sky from inside a window. Idea 2, using flower to represent time could be a relatively obscure topic, so you might need to consider the audience base. The third idea might require explanation because of the complex mechanism, but thoughtful hinting might reduce affordance gap."
+
 (3) Jessica Chon:"I love all 3 of your ideas and they have great potential. I love the sky idea because it's natural, easy to read. For your flower one specifically, I believe it'd be great to include the name's of the flowers so that users who aren't familiar with botany can better understand the time related significance of each flower."
+
 (4) Aurora Jiaxin Shen:"I really like the brainstorm mind map that you did to map out different ways of representing time beyond conventional ways. And I like how you try to link the visualization and representations of time to nature, especially the flower clock, I would wonder how you break down to more specific times in the day if the user wants to see a detailed chunk of time. The idea of a focus break clock is also impressive; one thing I’d be curious about is how the dots map to different times of focus sessions."
+
 
 **Feedback Summary**:
 
 Overall, the feedback suggests that representing time through natural changes is an intuitive and visually engaging direction. The Sky Clock was especially well received because the changing sky provides a familiar way to perceive the passage of time without relying on numbers. One important suggestion was to think beyond four discrete states—morning, afternoon, evening, and night—and explore how the sky, sun, and moon could transition gradually over time.
 
 The feedback also revealed some challenges with the other two concepts. For the Flower Clock, users may not know when different flowers naturally bloom, so flower names or other contextual cues would be needed to make the representation understandable, which might be too complex. And the image of different kinds of flowers is hard to capture on small screen too. For the Focus/Break Clock, the relationship between the visual elements and accumulated focus time needs to be clearer so that users can understand the system without additional explanation.
+
 
 **Direction to Explore**:
 
