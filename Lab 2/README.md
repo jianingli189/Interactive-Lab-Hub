@@ -214,19 +214,19 @@ We strongly discourage literal digital or analog clock display: Be creative.
 
 **2. Ideas storyboards**: I picked 3 directions from my mind map and drew 3 idea storyboards.
 
-Idea 1: Sky clock
+**Idea 1: Sky clock**
 
 The clock represents the passage of a day through changing sky colors and the movement of the sun, moon, and stars.
 ![Idea 1: Sky clock](my_image/idea1.jpg)
 
 
-Idea 2: Flower clock
+**Idea 2: Flower clock**
 
 The clock uses flowers that naturally bloom or open at different times as living markers of time, turning the rhythms of nature into an alternative way of experiencing a day.
 ![Idea 2: Flower clock](my_image/idea2.jpg)
 
 
-Idea 3: Focus/break clock
+**Idea 3: Focus/break clock**
 
 Instead of showing clock time, this concept visualizes how time is spent: a growing visual represents accumulated focus, while switching to break mode transforms the display into a calmer resting state.
 ![Idea 3: Focus/break clock](my_image/idea3.jpg)
@@ -246,10 +246,33 @@ Lamiah Khan, Shifeng Hong, Jessica Chon, Aurora Jiaxin Shen
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
 **Put the feedback for your ideas here.**
 
+**Original Feedback**:
+
 (1) Lamiah Khan:"the drawings are super cool and unique. My favorite concept is the sky one because it will look very pretty graphically, and it is also a very common way people measure time. I think it's also a cool way to also measure seasons (daylight savings, etc.). One thing you can focus on is how you are going to transition between the four times of day (automatic switch, sun gradually setting, etc.)"
-(2) Shifeng Hong:"Love the idea of blurring boundary of time and replacing digits with more natrual expression. Idea 2, using flower to represent time could be a relatively obscure topic, so you might need to consider the audience base. The third idea might require explanation because of the complex mechanism, but thoughtful hinting might reduce affordance gap."
+(2) Shifeng Hong:"Love the idea of blurring boundary of time and replacing digits with more natrual expression. For Idea 1, you can add a window framework to the clock because it's similar to looking up at the sky from inside a window. Idea 2, using flower to represent time could be a relatively obscure topic, so you might need to consider the audience base. The third idea might require explanation because of the complex mechanism, but thoughtful hinting might reduce affordance gap."
 (3) Jessica Chon:"I love all 3 of your ideas and they have great potential. I love the sky idea because it's natural, easy to read. For your flower one specifically, I believe it'd be great to include the name's of the flowers so that users who aren't familiar with botany can better understand the time related significance of each flower."
 (4) Aurora Jiaxin Shen:"I really like the brainstorm mind map that you did to map out different ways of representing time beyond conventional ways. And I like how you try to link the visualization and representations of time to nature, especially the flower clock, I would wonder how you break down to more specific times in the day if the user wants to see a detailed chunk of time. The idea of a focus break clock is also impressive; one thing I’d be curious about is how the dots map to different times of focus sessions."
+
+**Feedback Summary**:
+
+Overall, the feedback suggests that representing time through natural changes is an intuitive and visually engaging direction. The Sky Clock was especially well received because the changing sky provides a familiar way to perceive the passage of time without relying on numbers. One important suggestion was to think beyond four discrete states—morning, afternoon, evening, and night—and explore how the sky, sun, and moon could transition gradually over time.
+
+The feedback also revealed some challenges with the other two concepts. For the Flower Clock, users may not know when different flowers naturally bloom, so flower names or other contextual cues would be needed to make the representation understandable, which might be too complex. And the image of different kinds of flowers is hard to capture on small screen too. For the Focus/Break Clock, the relationship between the visual elements and accumulated focus time needs to be clearer so that users can understand the system without additional explanation.
+
+**Direction to Explore**:
+
+Based on the feedback, I decided to continue developing the **Sky Clock**. I want the clock to communicate the passage of time through gradual environmental changes rather than simply switching between several fixed illustrations.
+
+For the first prototype, I will start small by modifying one element of the barebones clock: the background color will change based on the time of day. This will allow me to test the basic time-to-visual mapping before adding more complex elements.
+
+For the next iteration, I plan to gradually refine the Sky Clock by exploring:
+
+- smoother color transitions throughout the day;
+- the movement of the sun across the screen based on time;
+- a transition from the sun to the moon and stars at night;
+- subtle visual cues that make approximate time understandable without displaying numerical time.
+
+
 
 ## Update your Lab Hub
 
@@ -260,6 +283,9 @@ Lamiah Khan, Shifeng Hong, Jessica Chon, Aurora Jiaxin Shen
 Start small, pick just one element of your overall idea, just to show you have a handle on the code and components.
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
+
+
+
 
 ## Make a short video of your modified barebones PiClock
 
@@ -281,6 +307,9 @@ Do take advantage of having done the previous iteration to refine and simplify y
 
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
+![Updated Idea Sketch](my_image/updated idea.jpg)
+
+**Other ideas for the future (probably)**: The current output of the clock is all about visual image and animation. As I made the visual prototype, I began to think if there are any other modality I can add to make the clock even more interesting. I thought about the sound in the nature, such as morning bird songs, and evening insects chirping. Maybe in the future I can add this kind of sound for on time alarm, like, at 8 a.m. in the morning, there will be a 10 seconds of bird songs, and, at 8 p.m. in the evening, there will be 10 seconds of insects chirping.
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
