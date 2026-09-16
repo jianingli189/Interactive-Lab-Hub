@@ -277,15 +277,25 @@ while True:
         # 1. GET CURRENT TIME
         # ----------------------------------------------
     
-        now = time.localtime()
-    
-        # Decimal hour:
-        # e.g. 6:30 -> 6.5
-        hour = (
-            now.tm_hour
-            + now.tm_min / 60
-            + now.tm_sec / 3600
-        )
+        if DEMO_MODE:
+        
+            elapsed = time.time() - demo_start_time
+        
+            # Convert elapsed real seconds into simulated hours
+            hour = (
+                DEMO_START_HOUR
+                + elapsed * 24 / DEMO_SECONDS_PER_DAY
+            ) % 24
+        
+        else:
+        
+            now = time.localtime()
+        
+            hour = (
+                now.tm_hour
+                + now.tm_min / 60
+                + now.tm_sec / 3600
+            )
     
     
         # ----------------------------------------------
@@ -332,5 +342,7 @@ while True:
     
         disp.image(image, rotation)
     
-        time.sleep(1)
-
+        if DEMO_MODE:
+            time.sleep(0.05)
+        else:
+            time.sleep(1)
