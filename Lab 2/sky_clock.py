@@ -60,6 +60,20 @@ backlight = digitalio.DigitalInOut(board.D22)
 backlight.switch_to_output()
 backlight.value = True
 
+# --------------------------------------------------
+# DEMO MODE
+# --------------------------------------------------
+
+DEMO_MODE = True
+
+# 1 real second = 1 simulated hour
+DEMO_SECONDS_PER_DAY = 24
+
+# Start the demo at 6:00 AM
+DEMO_START_HOUR = 6.0
+
+demo_start_time = time.time()
+
 while True:
     # --------------------------------------------------
     # SKY CLOCK
