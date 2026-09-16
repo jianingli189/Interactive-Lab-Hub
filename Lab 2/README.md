@@ -234,6 +234,8 @@ Instead of showing clock time, this concept visualizes how time is spent: a grow
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
 
+Lamiah Khan, Shifeng Hong, Jessica Chon, Aurora Jiaxin Shen
+
 
 # Lab 2 Part 2
 
@@ -243,6 +245,11 @@ Instead of showing clock time, this concept visualizes how time is spent: a grow
 
 2. Look at and give feedback on the Part E. for at least 3 other people in the class and get 3 people to comment on your Part E!)
 **Put the feedback for your ideas here.**
+
+1. Lamiah Khan:"the drawings are super cool and unique. My favorite concept is the sky one because it will look very pretty graphically, and it is also a very common way people measure time. I think its also a cool way to also measure seasons (daylight savings, etc.). One thing you can focus on is how you are going to transition between the four times of day (automatic switch, sun gradually setting, etc.)"
+2. Shifeng Hong:"Love the idea of blurring boundary of time and replacing digits with more natrual expression. Idea 2, using flower to represent time could be a relatively obscure topic, so you might need to consider the audience base. The third idea might require explanation because of the complex mechanism, but thoughtful hinting might reduce affordance gap."
+3. Jessica Chon:"I love all 3 of your ideas and they have great potential. I love the sky idea because it's natural, easy to read. For your flower one specifically, I believe it'd be great to include the name's of the flowers so that users who aren't familiar with botany can better understand the time related significance of each flower."
+4. Aurora Jiaxin Shen:""
 
 ## Update your Lab Hub
 
