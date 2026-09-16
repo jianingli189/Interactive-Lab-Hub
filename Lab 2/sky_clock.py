@@ -1,3 +1,4 @@
+import math
 import time
 import subprocess
 import digitalio
@@ -209,30 +210,66 @@ while True:
             return 0.0
     
     
-    def draw_moon(draw, sky_color, visibility):
+    def draw_moon(draw, sky_color, hour, visibility):
+        """
+        Moon travels in an arc from 18:00 to 06:00.
+    
+        18:00 -> rises from left/bottom
+        00:00 -> highest point in center
+        06:00 -> sets at right/bottom
+        """
     
         if visibility <= 0:
             return
     
         moon_color = (255, 245, 180)
     
-        # Blend moon with sky to create fade effect
+        # Blend moon color with sky for fade in / fade out
         visible_color = lerp_color(
             sky_color,
             moon_color,
             visibility
         )
     
-        # Main moon circle
+        # Convert night time into progress from 0 to 1
+        # 18:00 = 0
+        # 00:00 = 0.5
+        # 06:00 = 1
+        if hour >= 18:
+            night_hour = hour - 18
+        else:
+            night_hour = hour + 6
+    
+        progress = night_hour / 12
+    
+        # Horizontal movement
+        x = 15 + progress * 210
+    
+        # Arc movement
+        y = 140 - 95 * (4 * progress * (1 - progress))
+    
+        radius = 16
+    
+        # Draw main moon circle
         draw.ellipse(
-            (105, 28, 137, 60),
+            (
+                int(x - radius),
+                int(y - radius),
+                int(x + radius),
+                int(y + radius)
+            ),
             fill=visible_color
         )
     
-        # Cover part of the circle with sky color
+        # Draw sky-colored circle over moon
         # to create crescent shape
         draw.ellipse(
-            (116, 22, 143, 55),
+            (
+                int(x - 3),
+                int(y - radius - 5),
+                int(x + radius + 8),
+                int(y + radius - 5)
+            ),
             fill=sky_color
         )
     
@@ -244,12 +281,6 @@ while True:
     
         star_color = (255, 245, 180)
     
-        visible_color = lerp_color(
-            sky_color,
-            star_color,
-            visibility
-        )
-    
         stars = [
             (45, 30),
             (75, 65),
@@ -259,7 +290,24 @@ while True:
     
         radius = 3
     
-        for sx, sy in stars:
+        current_time = time.time()
+    
+        for i, (sx, sy) in enumerate(stars):
+    
+            # Each star twinkles at a slightly different phase
+            twinkle = 0.75 + 0.25 * math.sin(
+                current_time * 2 + i * 1.7
+            )
+    
+            # Combine night fade with twinkle
+            brightness = visibility * twinkle
+    
+            visible_color = lerp_color(
+                sky_color,
+                star_color,
+                brightness
+            )
+    
             draw.ellipse(
                 (
                     sx - radius,
@@ -269,33 +317,33 @@ while True:
                 ),
                 fill=visible_color
             )
-    
-    
-    while True:
-    
-        # ----------------------------------------------
-        # 1. GET CURRENT TIME
-        # ----------------------------------------------
-    
-        if DEMO_MODE:
         
-            elapsed = time.time() - demo_start_time
         
-            # Convert elapsed real seconds into simulated hours
-            hour = (
-                DEMO_START_HOUR
-                + elapsed * 24 / DEMO_SECONDS_PER_DAY
-            ) % 24
+        while True:
         
-        else:
+            # ----------------------------------------------
+            # 1. GET CURRENT TIME
+            # ----------------------------------------------
         
-            now = time.localtime()
-        
-            hour = (
-                now.tm_hour
-                + now.tm_min / 60
-                + now.tm_sec / 3600
-            )
+            if DEMO_MODE:
+            
+                elapsed = time.time() - demo_start_time
+            
+                # Convert elapsed real seconds into simulated hours
+                hour = (
+                    DEMO_START_HOUR
+                    + elapsed * 24 / DEMO_SECONDS_PER_DAY
+                ) % 24
+            
+            else:
+            
+                now = time.localtime()
+            
+                hour = (
+                    now.tm_hour
+                    + now.tm_min / 60
+                    + now.tm_sec / 3600
+                )
     
     
         # ----------------------------------------------
@@ -326,6 +374,7 @@ while True:
         draw_moon(
             draw,
             sky_color,
+            hour,
             visibility
         )
     
