@@ -287,9 +287,12 @@ For the next iteration, I plan to gradually refine the Sky Clock by exploring:
 
 Start small, pick just one element of your overall idea, just to show you have a handle on the code and components.
 
+For my first prototype, I focused on one core element of the Sky Clock: using the background color to represent the passage of time. I defined four key sky colors for midnight, morning, noon, and sunset, then used linear interpolation (RGB) to create smooth color transitions between them throughout the day. For demonstration, I accelerated the clock so that a full 24-hour cycle runs in 24 seconds. This simple prototype allowed me to test the basic idea of communicating time through environmental visual changes before adding more complex elements such as the sun, moon, and stars.
+
+
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
-[Click here to view my Sky Clock code](sky_clock_prototype.py)
+[Click here to view my Sky Clock Prototype code](sky_clock_prototype.py)
 
 
 ## Make a short video of your modified barebones PiClock
