@@ -289,12 +289,15 @@ Start small, pick just one element of your overall idea, just to show you have a
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
-
+[Click here to view my Sky Clock code](sky_clock_prototype.py)
 
 
 ## Make a short video of your modified barebones PiClock
 
 \*\*\***Take a video of your barely modified PiClock.**\*\*\*
+
+
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
@@ -312,13 +315,19 @@ Do take advantage of having done the previous iteration to refine and simplify y
 
 ** Insert any updates ideas, sketches, [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf))!, storyboards for your ideas **
 
-![Updated Idea Sketch](my_image/updated idea.jpg)
+![Updated Idea Sketch](my_image/updated_idea.jpg)
 
-**Other ideas for the future (probably)**: The current output of the clock is all about visual image and animation. As I made the visual prototype, I began to think if there are any other modality I can add to make the clock even more interesting. I thought about the sound in the nature, such as morning bird songs, and evening insects chirping. Maybe in the future I can add this kind of sound for on time alarm, like, at 8 a.m. in the morning, there will be a 10 seconds of bird songs, and, at 8 p.m. in the evening, there will be 10 seconds of insects chirping.
 
 \*\*\***Put a copy of your code in your Lab 2 Github repo.**\*\*\*
 
+[Click here to view my Sky Clock code](sky_clock.py)
+
 \*\*\***Take a video of your PiClock.**\*\*\*
+
+https://github.com/user-attachments/assets/c0c31fad-8455-44e0-877b-7f4a418a3d18
+
+**Other ideas for the future (probably)**: The current output of the clock is all about visual image and animation. As I made the visual prototype, I began to think if there are any other modality I can add to make the clock even more interesting. I thought about the sound in the nature, such as morning bird songs, and evening insects chirping. Maybe in the future I can add this kind of sound for on time alarm, like, at 8 a.m. in the morning, there will be a 10 seconds of bird songs, and, at 8 p.m. in the evening, there will be 10 seconds of insects chirping.
+
 
 
 As always, make sure you document contributions and ideas from others (and AI) explicitly in your writeup.
