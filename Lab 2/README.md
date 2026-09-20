@@ -301,6 +301,10 @@ For my first prototype, I focused on one core element of the Sky Clock: using th
 
 
 
+https://github.com/user-attachments/assets/1fecf5ad-1208-493a-baff-a02b4b97af91
+
+
+
 
 After you edit and work on the scripts for Lab 2, the files should be upload back to your own GitHub repo! You can push to your personal github repo by adding the files here, commiting and pushing.
 
