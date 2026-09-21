@@ -234,7 +234,10 @@ Instead of showing clock time, this concept visualizes how time is spent: a grow
 
 **Put the names of the people you gave feedback to here. (Even better, add links to their repos here!)**
 
-Lamiah Khan, Shifeng Hong, Jessica Chon, Aurora Jiaxin Shen
+Lamiah Khan (https://github.com/Afrozaktar/Interactive-Lab-Hub/tree/Fall2026/Lab%202)
+Shifeng Hong (https://github.com/mado0512/Interactive-Lab-Hub/edit/Fall2026/Lab%202/README.md)
+Jessica Chon (https://github.com/chonjessica23/Interactive-Lab-Hub/tree/Fall2026/Lab%202)
+Aurora Jiaxin Shen (https://github.com/aurorajxshen/Interactive-Lab-Hub/tree/Fall2026/Lab%202)
 
 
 # Lab 2 Part 2
