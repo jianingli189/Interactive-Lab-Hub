@@ -136,6 +136,37 @@ Available sizes, smallest first: `tiny.en`, `base.en`, `small.en`, `medium.en`. 
 
 \*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
 
+### Comparing Whisper Model Sizes
+
+I first tested different Whisper model sizes using the provided `lookdave.wav` file.
+
+| Model | Audio Duration | Transcription Time | Real-Time Factor | Transcription |
+| --- | ---: | ---: | ---: | --- |
+| `base.en` | 3.72s | 2.17s | 0.58x | "Look Dave, I can see you're really upset about this." |
+| `small.en` | 3.72s | 6.03s | 1.62x | "Look Dave, I can see you're really upset about this." |
+
+Both models produced the same transcription, but `small.en` took much longer. In this example, increasing the model size did not produce an observable improvement in accuracy.
+
+### Testing My Own Recording
+
+I then recorded a 5-second sentence:
+
+> "Hello, how are you today? Are you good?"
+
+I tested the recording with `tiny.en` and `base.en`.
+
+| Model | Audio Duration | Transcription Time | Real-Time Factor | Result |
+| --- | ---: | ---: | ---: | --- |
+| `tiny.en` | 5.00s | 1.03s | 0.21x | Correct words, less punctuation |
+| `base.en` | 5.00s | 1.93s | 0.39x | Correct words and punctuation |
+
+For my recording, both models recognized the spoken content correctly. `base.en` produced slightly better punctuation, but took almost twice as long to transcribe the same audio.
+
+### Accuracy vs. Delay
+
+For a conversational system that needs to answer quickly, I would not automatically choose the larger model. In my tests, `small.en` introduced a substantial delay compared with `base.en` without improving the transcription of `lookdave.wav`. For my own simple recording, even `tiny.en` captured all the spoken words correctly. This suggests that the best model depends on whether the additional accuracy of a larger model is noticeable enough to justify the extra response time.
+
+
 ## C. Turn-taking: knowing when someone has stopped talking
 
 Everything so far has worked on fixed audio files. A real conversational device does not get told when to start and stop recording — it has to decide. This is the problem that makes speech interfaces hard, and it is mostly not a speech recognition problem.
