@@ -111,7 +111,21 @@ The demo script also shows `--output-raw`, which streams audio to the speaker as
 
 \*\***Then answer: Is the same greeting, in these different voices, the same greeting? Describe one concrete way the voice changed what the utterance seemed to mean or who seemed to be speaking.**\*\*
 
-Although the words were identical, the greeting did not feel identical across voices. eSpeak sounded mechanical and device-like, which made the greeting feel more functional than social. Festival sounded slightly more human, but the stitched-together quality was still noticeable. Piper sounded much more natural and conversational, so the same sentence felt more like it was coming from a social agent rather than a machine. This showed me that voice quality changes not only intelligibility, but also the perceived personality and role of the device.
+### My Personalized TTS Greeting
+
+For my personalized greeting, I chose **Piper** because its neural voice sounded more natural and conversational to me than eSpeak and Festival.
+
+My Pi greets me with:
+
+> "Hello Jianing! Welcome back. It's nice to see you again."
+
+[View my greeting shell script](speech-scripts/greet_jianing.sh)
+
+### Reflection on Different Voices
+
+Although the words were identical, the greeting did not feel identical across the different voices. eSpeak sounded robotic and device-like, so the greeting felt more functional than social. Festival sounded slightly more human, but I could still notice the stitched-together quality of the speech. Piper sounded much more natural and conversational.
+
+One concrete difference was the perceived personality of the device. With eSpeak, I interpreted the speaker more like a machine giving me information, while with Piper, the same words felt more like a friendly social agent greeting me. This showed me that voice can change the perceived role and personality of a speech interface even when the semantic content stays the same.
 
 
 ## B. Speech to Text
@@ -166,6 +180,22 @@ For my recording, both models recognized the spoken content correctly. `base.en`
 
 For a conversational system that needs to answer quickly, I would not automatically choose the larger model. In my tests, `small.en` introduced a substantial delay compared with `base.en` without improving the transcription of `lookdave.wav`. For my own simple recording, even `tiny.en` captured all the spoken words correctly. This suggests that the best model depends on whether the additional accuracy of a larger model is noticeable enough to justify the extra response time.
 
+### Numerical Input Interaction
+
+I created a shell script that verbally asks the user for a five-digit ZIP code, records the user's response for five seconds, and transcribes the response using the `base.en` Whisper model.
+
+[View my numerical input script](speech-scripts/ask_zipcode.sh)
+
+For my test, I responded:
+
+> "One, two, three, four, five."
+
+The system transcribed the response as:
+
+> "One, two, three, four, five."
+
+The transcription was correct. The 5-second recording took 1.92 seconds to transcribe, with a real-time factor of **0.38x**.
+
 
 ## C. Turn-taking: knowing when someone has stopped talking
 
@@ -187,6 +217,18 @@ Speak, pause, and watch it transcribe. Now change the endpointing threshold — 
 
 \*\***Try both extremes, and something in between. Describe what each one feels like to talk to. Note specifically: at 0.2s, what kinds of normal speech get cut off? At 1.5s, what does the delay make the system seem like?**\*\*
 
+I tested `listen.py` with three different silence thresholds to understand how the system decides when I have finished speaking.
+
+| Minimum Silence | Observation |
+| --- | --- |
+| `0.2s` | Very responsive, but short pauses could easily trigger the endpoint too early. For example, "Today I want..." was detected as a complete utterance before I finished my sentence. |
+| `0.4s` (default) | More balanced, but it could still split natural pauses. For example, "Can you hear me?" was once divided into "Can you hear?" and "me." |
+| `1.5s` | Allowed much longer pauses and was less likely to cut off a sentence, but the system felt slower because it waited longer after I had actually finished speaking. |
+
+The experiment showed me that there is no single perfect silence threshold. A shorter threshold makes the system feel more responsive, but it can mistake hesitation or thinking pauses for the end of a turn. A longer threshold gives the user more time to think, but makes the system feel less responsive.
+
+For this type of conversational interaction, I would start with a middle value around **0.4–0.8 seconds** and adjust it based on the interaction context. A system designed for short commands could use a shorter threshold, while a system that expects longer or more thoughtful answers may need a longer one.
+
 There is no correct value. A system that takes drink orders and a system that listens to someone think out loud want very different thresholds, and the right one depends on what your users are doing with their pauses.
 
 ### The complete loop
@@ -196,6 +238,19 @@ There is no correct value. A system that takes drink orders and a system that li
 ```
 (.venv) $ python echo_bot.py
 ```
+
+I also tested the complete speech interaction using `echo_bot.py`, which combines endpoint detection, speech recognition, and text-to-speech.
+
+| Test | ASR Time | TTS First Audio | Total Gap |
+| --- | ---: | ---: | ---: |
+| "Can you hear me?" | 1.02s | 0.24s | 1.25s |
+| Longer sentence about my Interactive Devices lab | 1.19s | 0.75s | 1.95s |
+| Long sentence about our TA Q&A session | 1.59s | 1.32s | 2.91s |
+
+The latency became more noticeable with longer utterances. For the short sentence, the 1.25-second gap still felt relatively responsive. For the longest sentence, however, the gap increased to 2.91 seconds, which felt much more noticeable in a conversation.
+
+This experiment showed me that conversational latency is not caused by only one component. The user experiences the combined delay of endpoint detection, speech recognition, TTS generation, and playback. Even when the transcription is accurate, a long gap before the device responds can make the interaction feel less natural.
+
 
 ## D. Storyboard
 
