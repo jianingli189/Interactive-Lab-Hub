@@ -258,6 +258,10 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 \*\***Post your storyboard and diagram here.**\*\*
 
+I designed a Cook Assistant, a hands-free voice assistant that helps users while cooking, especially when their hands are occupied or dirty.
+
+
+
 Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
 
 \*\***Please describe and document your process.**\*\*
