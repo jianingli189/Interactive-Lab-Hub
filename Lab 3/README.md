@@ -1,6 +1,6 @@
 # Chatterboxes
 
-**NAMES OF COLLABORATORS HERE**
+**Collaborators: Jianing Li (jl4837), Aurora Jiaxin Shen (js3996)
 
 [![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://youtu.be/LZ0VJClIlRI?si=Yy84mcyVYuVV19mn)
 
@@ -258,13 +258,109 @@ Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stu
 
 \*\***Post your storyboard and diagram here.**\*\*
 
-I designed a Cook Assistant, a hands-free voice assistant that helps users while cooking, especially when their hands are occupied or dirty.
+**EchoShell — A Shell That Remembers**
 
+Inspired by the act of speaking into a seashell and listening to the sounds within, we designed a memory medium called "EchoShell." You can confide your current experiences and feelings to the shell; it quietly stores them away, only to remind you later—perhaps when you are experiencing similar emotions—of what happened at that earlier moment in time.
 
+<img width="1307" height="1080" alt="Storyboard_1" src="https://github.com/user-attachments/assets/6c69aacf-b321-459a-abe3-261595676f82" />
 
-Write out what you imagine the dialogue to be. Use cards, post-its, or whatever method helps you develop alternatives or group responses.
 
 \*\***Please describe and document your process.**\*\*
+
+### Design Process
+
+We started by thinking about speech not only as a way to give commands to a device, but also as a way to preserve personal moments. This led us to the idea of a physical object that could hold fragments of a user's experiences, emotions, and memories over time.
+
+We chose a seashell as the form of the device because its physical interaction already suggests both speaking and listening. A user can speak into the shell to leave a memory, and later bring the shell close to their ear to receive a memory from the past. Rather than making the shell feel like a conventional voice assistant, we want the interaction to feel more like confiding in an object that quietly remembers.
+
+For this initial storyboard, I focused on one core interaction: a user shares an emotional experience with the shell, the shell stores that moment, and at some point in the future, a related experience brings the earlier memory back. The returned memory could include the user's original recording as well as a short reconstructed introduction that connects the past moment to the present.
+
+At this stage, the interaction is intentionally still open-ended. Questions such as how the shell decides when to return a memory, how much control the user should have over retrieval, and how the physical form distinguishes between speaking and listening will be explored through role-playing, prototyping, and further discussion with my teammate.
+
+
+### Initial Interaction Flow
+
+For the first version of the concept, I imagined the interaction as:
+
+**Speak → Listen → Store → Time passes → Recall → Listen again**
+
+1. The user picks up the EchoShell and speaks about a current experience or feeling.
+2. The shell listens without immediately responding, allowing the user to speak naturally.
+3. After detecting that the user has finished, the shell gives subtle feedback that the memory has been stored.
+4. The memory remains in the shell over time.
+5. During a future interaction, the shell may recognize a connection between the user's present experience and a past memory.
+6. When the user brings the shell close to their ear, the shell recalls that earlier moment, potentially introducing it with a short reconstructed message before replaying the user's past voice.
+
+
+### Imagined Dialogue
+
+#### Moment 1 — Leaving a Memory
+
+**User:**  
+"I'm really nervous about my presentation tomorrow. I know I've prepared for it, but..."
+
+*[1.2-second thinking pause — EchoShell continues listening]*
+
+**User:**  
+"...I still feel like something is going to go wrong."
+
+*[EchoShell waits approximately 1.5 seconds after the user stops speaking before deciding that the turn has ended.]*
+
+**EchoShell:**  
+*[A soft sound confirms that the memory has been stored.]*
+
+
+#### Several Months Later
+
+**User:**  
+"I have an interview tomorrow. I don't know why, but I'm getting really nervous again."
+
+*[1.0-second pause]*
+
+**User:**  
+"I just keep thinking I'm going to mess it up."
+
+*[EchoShell waits approximately 1.5 seconds after silence.]*
+
+**EchoShell:**  
+"I've heard this feeling before."
+
+*[Pause]*
+
+**EchoShell:**  
+"Last fall, you left this with me..."
+
+*[The shell plays the user's original recording from the earlier moment.]*
+
+**Past User:**  
+"I'm really nervous about my presentation tomorrow..."
+
+*[The user listens to their past self through the shell.]*
+
+
+### Pause and Turn-Taking
+
+The timing of the interaction is especially important for EchoShell because users may pause while recalling an experience or thinking about how to describe an emotion.
+
+In Part C, I found that a short silence threshold such as 0.2 seconds could easily cut off natural pauses, while a much longer threshold such as 1.5 seconds gave the speaker more room to think but made the interaction feel slower. For EchoShell, I currently prefer a relatively longer endpoint threshold of around **1.5 seconds** when the user is leaving a memory.
+
+Unlike a system designed for short commands, EchoShell is intended to listen to reflective and potentially fragmented speech. A pause may therefore indicate that the user is thinking rather than that they have finished speaking.
+
+This timing is still an initial design decision. I plan to observe how people naturally pause and signal the end of their turn during the acted-out dialogue in Part E and adjust the interaction accordingly.
+
+
+### Questions for the Next Iteration
+
+This initial storyboard also raised several questions that I want to explore in the next iteration:
+
+- How should the user indicate that they want to leave a memory versus hear one?
+- Should memories return automatically based on the current conversation, or should the user explicitly ask for them?
+- How much of the original recording should be preserved versus reconstructed?
+- What kind of feedback should tell the user that a memory has been successfully stored?
+- How should EchoShell handle very long pauses, interruptions, or a user changing their mind?
+- Should recalled memories be selected based on emotional similarity, time, topic, or some degree of randomness?
+
+  
 
 Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
 
