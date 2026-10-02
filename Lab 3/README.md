@@ -286,7 +286,7 @@ For the first version of the concept, I imagined the interaction as:
 
 1. The user picks up the EchoShell and speaks about a current experience or feeling.
 2. The shell listens without immediately responding, allowing the user to speak naturally.
-3. After detecting that the user has finished, the shell gives subtle feedback that the memory has been stored.
+3. After detecting that the user has finished, the shell gives subtle feedback (the sound of wave) that the memory has been stored.
 4. The memory remains in the shell over time.
 5. During a future interaction, the shell may recognize a connection between the user's present experience and a past memory.
 6. When the user brings the shell close to their ear, the shell recalls that earlier moment, potentially introducing it with a short reconstructed message before replaying the user's past voice.
