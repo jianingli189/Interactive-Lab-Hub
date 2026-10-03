@@ -347,19 +347,6 @@ In Part C, I found that a short silence threshold such as 0.2 seconds could easi
 Unlike a system designed for short commands, EchoShell is intended to listen to reflective and potentially fragmented speech. A pause may therefore indicate that the user is thinking rather than that they have finished speaking.
 
 This timing is still an initial design decision. I plan to observe how people naturally pause and signal the end of their turn during the acted-out dialogue in Part E and adjust the interaction accordingly.
-
-
-### Questions for the Next Iteration
-
-This initial storyboard also raised several questions that I want to explore in the next iteration:
-
-- How should the user indicate that they want to leave a memory versus hear one?
-- Should memories return automatically based on the current conversation, or should the user explicitly ask for them?
-- How much of the original recording should be preserved versus reconstructed?
-- What kind of feedback should tell the user that a memory has been successfully stored?
-- How should EchoShell handle very long pauses, interruptions, or a user changing their mind?
-- Should recalled memories be selected based on emotional similarity, time, topic, or some degree of randomness?
-
   
 
 Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
@@ -371,6 +358,15 @@ Find a partner, and *without sharing the script with your partner* try out the d
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
 
+This initial storyboard and dialogue acting also raised several questions that I want to explore in the next iteration:
+
+- How should the user indicate that they want to leave a memory versus hear one?
+- Should memories return automatically based on the current conversation, or should the user explicitly ask for them?
+- How much of the original recording should be preserved versus reconstructed?
+- What kind of feedback should tell the user that a memory has been successfully stored?
+- How should EchoShell handle very long pauses, interruptions, or a user changing their mind?
+- Should recalled memories be selected based on emotional similarity, time, topic, or some degree of randomness?
+
 ---
 
 # Lab 3 Part 2
@@ -379,10 +375,47 @@ For Part 2, you will redesign the interaction with the speech-enabled device usi
 
 ## Prep for Part 2
 
-1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.
-2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.
-3. Make a new storyboard, diagram and/or script based on these reflections.
-4. (optional) Integrate [input devices](inputs.md) in the system
+**1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.**
+
+Our initial storyboard established the basic idea of speaking to EchoShell and later hearing a past memory, but several parts of the interaction needed to be made more explicit.
+
+First, the original design relied heavily on speech and did not clearly communicate when EchoShell was awake, listening, remembering, or finished. We therefore introduced the sound of ocean waves as a continuous ambient feedback mechanism. The waves appear when the shell wakes up, remain quietly in the background while the interaction continues, briefly swell when a memory is stored or retrieved, and gradually fade when the interaction ends.
+
+Second, we reconsidered the endpoint timing. In Part C, very short silence thresholds such as 0.2 seconds frequently interrupted natural pauses, while a 1.5-second threshold allowed more time for hesitation at the cost of responsiveness. EchoShell is different from a command-based voice assistant: users may pause for relatively long periods while recalling or describing an experience. We therefore increased the initial endpoint threshold to **3 seconds**, intentionally prioritizing space for reflection over immediate responsiveness.
+
+Finally, we added a clearer way to end the overall interaction. After a recalled memory finishes playing, EchoShell enters a **10-second listening window**. This gives the user time to reflect on what they have just heard and decide whether they want to continue speaking. If no speech is detected, the ocean sound gradually fades and the interaction ends. The user can also explicitly end the interaction at any time by putting the shell down.
+
+These timings are design hypotheses rather than fixed optimal values, and we plan to evaluate them through the Wizard-of-Oz interactions.
+
+**2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.**
+
+We wanted EchoShell to communicate its state without requiring explicit spoken instructions or a conventional graphical interface. We therefore designed the interaction around a combination of **physical movement, ambient sound, and subtle visual feedback**.
+
+In the intended interaction, gently rubbing the shell wakes it and brings up the sound of the ocean. Because our current sensing setup cannot reliably distinguish rubbing from other hand movements, the prototype uses an **IMU to detect when the shell is picked up** as a proxy for this gesture. During the demonstration, the user can still perform the rubbing gesture while picking up the shell to communicate the intended interaction.
+
+The ocean sound acts as the primary continuous feedback channel:
+
+- **Silence:** EchoShell is asleep.
+- **Soft continuous waves:** EchoShell is awake and available to listen.
+- **A brief swell in the waves:** EchoShell has stored or retrieved something.
+- **Fading waves:** The interaction is ending and EchoShell is returning to sleep.
+
+The Mini PiTFT provides an additional visual representation of system state during prototyping. For example, a subtle animated ripple can indicate listening or remembering. In a more refined physical prototype, we would explore replacing the visible screen with a more integrated light source inside the shell so that the feedback feels like part of the object rather than a separate display.
+
+**3. Make a new storyboard, diagram and/or script based on these reflections.**
+
+The redesigned interaction follows seven main stages:
+
+**Sleep → Wake → Confide → Remember → Recall → Reflect → Sleep**
+
+1. **Sleep:** EchoShell rests silently on the table.
+2. **Wake:** The user picks up and gently rubs the shell. The IMU detects the pickup, and soft ocean waves begin to play.
+3. **Confide:** The user speaks naturally about a current experience or feeling. EchoShell records the voice while the ocean remains quietly in the background.
+4. **Remember:** After approximately 3 seconds of silence, EchoShell interprets the current turn as complete. The waves briefly swell to acknowledge that the memory has been heard and stored.
+5. **Recall:** A related past memory is selected. EchoShell gently introduces it — for example, "I remember an echo like this... You left it with me last week." The waves swell briefly before the original past recording is played with a subtle echo effect.
+6. **Reflect:** After the memory ends, the waves swell and then return to the quiet background level. EchoShell waits for up to 10 seconds, allowing the user to reflect and optionally continue speaking. New speech returns the system to the Confide state.
+7. **Sleep:** If no speech is detected during the waiting window, the waves gradually fade. Putting the shell down at any point also ends the interaction and returns EchoShell to sleep.
+
 
 ## Prototype your system
 
@@ -392,6 +425,21 @@ The system should:
 * require participants to speak to it
 
 *Document how the system works.*
+
+EchoShell behaves like the sea: receptive, gentle, and slightly distant. It does not judge, advise, or tell the user what their memories mean. It listens, holds fragments of the past, and occasionally lets an old echo return—leaving the interpretation to the user.
+
+Our prototype uses a Raspberry Pi 5 as the central controller for EchoShell.
+
+### Components
+
+- **Raspberry Pi 5:** controls the interaction state, audio recording, playback, and feedback.
+- **LSM6DS3TR-C IMU:** detects when the shell is picked up, moved, or returned to its resting position.
+- **Bluetooth microphone:** captures the participant's speech.
+- **Bluetooth speaker:** plays the ambient ocean sound, EchoShell's voice, and recalled recordings.
+- **Mini PiTFT:** provides additional visual state feedback during the prototype.
+- **3D-printed shell enclosure:** gives the interaction its intended physical form.
+
+The system therefore satisfies the prototype requirements by using the Raspberry Pi, sensor input, and spoken participant interaction.
 
 *Include videos or screencaptures of both the system and the controller.*
 
