@@ -118,38 +118,34 @@ def timestamp_string():
 # ============================================================
 
 def start_ocean():
-    """
-    Keep ocean ambience looping for the whole interaction.
-    """
-
     global ocean_process
 
-    if ocean_process is not None:
-        if ocean_process.poll() is None:
-            return
+    if ocean_process is not None and ocean_process.poll() is None:
+        return
 
-    log("[OCEAN] Background ocean begins.")
+    ocean_file = SOUNDS_DIR / "ocean.wav"
 
-    # Loop the WAV forever.
+    if not ocean_file.exists():
+        log("[OCEAN] ocean.wav missing.")
+        return
+
+    log("[OCEAN] Background ocean fades in.")
+
     ocean_process = subprocess.Popen(
         [
             "ffmpeg",
             "-loglevel", "quiet",
             "-stream_loop", "-1",
-            "-i", str(OCEAN_FILE),
+            "-i", str(ocean_file),
+            "-af", "afade=t=in:st=0:d=2,volume=0.32",
             "-f", "wav",
             "-"
         ],
         stdout=subprocess.PIPE
     )
 
-    # Feed looped ocean into aplay.
-    ocean_process.aplay = subprocess.Popen(
-        [
-            "aplay",
-            "-D", SPEAKER_DEVICE,
-            "--quiet"
-        ],
+    ocean_process.player = subprocess.Popen(
+        ["pw-play", "-"],
         stdin=ocean_process.stdout,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL
@@ -165,11 +161,9 @@ def stop_ocean():
     log("[OCEAN] Ocean fades.")
 
     try:
-        if hasattr(ocean_process, "aplay"):
-            ocean_process.aplay.terminate()
-
+        if hasattr(ocean_process, "player"):
+            ocean_process.player.terminate()
         ocean_process.terminate()
-
     except Exception:
         pass
 
@@ -177,18 +171,10 @@ def stop_ocean():
 
 
 def ocean_swell():
-    """
-    Prototype swell.
-
-    For v2 we represent the swell as a short interaction event.
-    The continuous ocean remains underneath.
-
-    We will replace this with actual volume automation after
-    the state machine is stable.
-    """
-
+    # For now, preserve the transition timing without stopping
+    # or restarting the continuous background ocean.
     log("[OCEAN] ~~~ swell ~~~")
-    time.sleep(SWELL_DURATION)
+    time.sleep(1.0)
 
 
 # ============================================================
@@ -463,98 +449,99 @@ def archive_memory(recording_path):
 
 def choose_old_memory(current_filename):
     """
-    Temporary retrieval strategy.
-
-    IMPORTANT:
-    This is NOT semantic retrieval.
-
-    It chooses an earlier recording so we can prototype
-    the experience. In the WoZ version, the Wizard will
-    explicitly choose the appropriate past memory.
+    Wait for the Wizard to select a past memory
+    using wizard.py in a separate Terminal.
     """
 
-    memories = load_memory_index()
+    memory_map = {
+        "joy": RECORDINGS_DIR / "joy.wav",
+        "angry": RECORDINGS_DIR / "angry.wav",
+        "homesick": RECORDINGS_DIR / "homesick.wav",
+        "nervous": RECORDINGS_DIR / "nervous.wav",
+        "presentation_nervous":
+            RECORDINGS_DIR / "presentation_nervous.wav",
+        "overwhelmed":
+            RECORDINGS_DIR / "overwhelmed.wav",
+    }
 
-    candidates = [
-        m for m in memories
-        if m["file"] != current_filename
-    ]
+    choice_file = BASE_DIR / "wizard_choice.txt"
 
-    if not candidates:
-        return None
+    # Clear any previous command.
+    choice_file.write_text("")
 
-    chosen = random.choice(candidates)
+    print()
+    print("[WIZARD] Waiting for memory selection...")
 
-    path = RECORDINGS_DIR / chosen["file"]
+    while running:
 
-    if not path.exists():
-        return None
+        try:
+            choice = choice_file.read_text().strip().lower()
+        except Exception:
+            choice = ""
 
-    return path
+        if choice == "":
+            time.sleep(0.1)
+            continue
+
+        # Consume command.
+        choice_file.write_text("")
+
+        if choice in ["none", "0"]:
+            print("[WIZARD] No memory selected.")
+            return None
+
+        if choice not in memory_map:
+            print("[WIZARD] Unknown selection.")
+            continue
+
+        path = memory_map[choice]
+
+        if not path.exists():
+            print(f"[WIZARD] Missing file: {path.name}")
+            continue
+
+        print(f"[WIZARD] Selected: {choice}")
+
+        return path
+
+    return None
+
+
 
 
 # ============================================================
 # Playback
 # ============================================================
 
-def stop_ocean_temporarily():
-
-    global ocean_process
-
-    if ocean_process is not None:
-        stop_ocean()
-        time.sleep(0.2)
-
-
 def play_memory_with_echo(path):
-    """
-    Play old memory with a subtle delayed echo.
+    print("[MEMORY] Playing an old echo.")
 
-    The original voice remains dominant.
-    """
+    temp_file = Path("/tmp/echoshell_memory.wav")
 
-    log("[MEMORY] Playing an old echo.")
-
-    # Stop ocean only during this first implementation because
-    # direct ALSA playback may not allow two simultaneous streams.
-    #
-    # Later we can mix ocean + memory into one audio stream.
-    stop_ocean_temporarily()
-
-    command = [
-        "ffmpeg",
-        "-loglevel", "quiet",
-        "-i", str(path),
-
-        "-af",
-        "aecho=0.8:0.22:90:0.16",
-
-        "-f", "wav",
-        "-"
-    ]
-
-    ffmpeg = subprocess.Popen(
-        command,
-        stdout=subprocess.PIPE
-    )
-
-    player = subprocess.Popen(
+    subprocess.run(
         [
-            "aplay",
-            "-D", SPEAKER_DEVICE,
-            "--quiet"
+            "ffmpeg",
+            "-y",
+            "-loglevel", "quiet",
+            "-i", str(path),
+            "-af", "aecho=0.8:0.25:120:0.10",
+            "-ar", "44100",
+            "-ac", "1",
+            str(temp_file)
         ],
-        stdin=ffmpeg.stdout
+        check=True
     )
 
-    player.wait()
+    subprocess.run(
+        ["pw-play", str(temp_file)],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
+    )
 
     try:
-        ffmpeg.terminate()
+        temp_file.unlink()
     except Exception:
         pass
-
-    start_ocean()
 
 
 # ============================================================
@@ -562,20 +549,27 @@ def play_memory_with_echo(path):
 # ============================================================
 
 def shell_intro():
-    """
-    For now this is shown in Terminal.
+    voice_file = SOUNDS_DIR / "shell_recall.wav"
 
-    Next step:
-    replace it with the shell's actual spoken voice.
-    """
+    print(
+        "[SHELL] I see. Remember last week "
+        "you had a similar feeling?"
+    )
 
-    log("")
-    log("[SHELL] I remember an echo like this...")
-    time.sleep(1.2)
+    if not voice_file.exists():
+        print(f"[ERROR] Shell voice missing: {voice_file}")
+        return
 
-    log("[SHELL] You left it with me before.")
-    time.sleep(1.2)
+    subprocess.run(
+        [
+            "pw-play",
+            str(voice_file)
+        ],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
+    )
 
+    time.sleep(0.5)
 
 # ============================================================
 # Reflection window
