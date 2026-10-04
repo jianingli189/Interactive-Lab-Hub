@@ -217,7 +217,10 @@ This timing is still an initial design decision. we plan to observe how people n
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
 Video: Part 1 acted-out interaction using the early physical prototype.
-！！！！！！！！！！！！！！！！！！！！！！视频！！！！！！！！！！！！！！！！
+
+
+https://github.com/user-attachments/assets/8e378d40-d626-4c7b-ad66-61c5c52099c4
+
 
 Acting out the interaction revealed that the conversational flow was less self-explanatory than it appeared in the storyboard. In particular, the user did not always know when EchoShell had finished listening, when it was processing a memory, or when it was ready to respond. The original design depended too heavily on speech and pauses to communicate these state transitions.
 
@@ -236,26 +239,31 @@ Finally, the physical form of the shell suggested an opportunity that was not fu
 
 Our initial storyboard established the basic idea of speaking to EchoShell and later hearing a past memory, but several parts of the interaction needed to be made more explicit. 
 
-First, the original design relied heavily on speech and did not clearly communicate when EchoShell was awake, listening, remembering, or finished. We therefore introduced the sound of ocean waves as a continuous ambient feedback mechanism. The waves appear when the shell wakes up, remain quietly in the background while the interaction continues, briefly swell when a memory is stored or retrieved, and gradually fade when the interaction ends.
+First, we simplified the physical initiation of the interaction. Earlier iterations considered an additional rubbing gesture, but we ultimately removed it because the shell's physical form already provides strong interaction cues. Instead, the final prototype uses two sequential physical signals: picking up the shell and bringing it close to the user. The IMU first detects that the shell has been picked up, waking the system, while the proximity sensor detects that it has been brought close enough for a more intentional interaction. This reduces the number of gestures the user has to learn while still preventing incidental movement from immediately starting a recording.
 
-Second, we reconsidered the endpoint timing. In Part C, very short silence thresholds such as 0.2 seconds frequently interrupted natural pauses, while a 1.5-second threshold allowed more time for hesitation at the cost of responsiveness. EchoShell is different from a command-based voice assistant: users may pause for relatively long periods while recalling or describing an experience. We therefore increased the initial endpoint threshold to **3 seconds**, intentionally prioritizing space for reflection over immediate responsiveness.
+Second, the original design relied heavily on speech and did not clearly communicate when EchoShell was awake, listening, remembering, or finished. We therefore introduced the sound of ocean waves as a continuous ambient feedback mechanism. The waves appear when the shell wakes up, remain quietly in the background while the interaction continues, briefly swell when a memory is stored or retrieved, and gradually fade when the interaction ends.
+
+Third, we reconsidered the endpoint timing. In Part C, very short silence thresholds such as 0.2 seconds frequently interrupted natural pauses, while a 1.5-second threshold allowed more time for hesitation at the cost of responsiveness. EchoShell is different from a command-based voice assistant: users may pause for relatively long periods while recalling or describing an experience. We therefore increased the initial endpoint threshold to **3 seconds**, intentionally prioritizing space for reflection over immediate responsiveness.
 
 Finally, we added a clearer way to end the overall interaction. After a recalled memory finishes playing, EchoShell enters a **10-second listening window**. This gives the user time to reflect on what they have just heard and decide whether they want to continue speaking. If no speech is detected, the ocean sound gradually fades and the interaction ends. The user can also explicitly end the interaction at any time by putting the shell down.
 
 These timings are design hypotheses rather than fixed optimal values, and we plan to evaluate them through the Wizard-of-Oz interactions.
-
-We also simplified the physical initiation of the interaction. Earlier iterations considered an additional rubbing gesture, but we ultimately removed it because the shell's physical form already provides strong interaction cues. Instead, the final prototype uses two sequential physical signals: picking up the shell and bringing it close to the user. The IMU first detects that the shell has been picked up, waking the system, while the proximity sensor detects that it has been brought close enough for a more intentional interaction. This reduces the number of gestures the user has to learn while still preventing incidental movement from immediately starting a recording.
 
 
 **2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.**
 
 We wanted EchoShell to communicate its state without requiring explicit spoken instructions or a conventional graphical interface. We therefore designed the interaction around a combination of **physical movement, proximity, and ambient sound**.
 
+The ocean ambience serves as the primary state-feedback channel:
+- Silence: EchoShell is asleep.
+- Soft continuous waves: EchoShell is awake and listening.
+- A stronger swell: EchoShell has completed a turn and is storing or retrieving a memory.
+- EchoShell's voice: the system has completed retrieval and is beginning its response.
+- Fading waves: the interaction is ending.
+
 In an earlier iteration, we considered asking the user to rub the shell as an explicit wake-up gesture. However, we eventually removed this interaction. The seashell itself already has strong physical affordances: when people encounter it, they naturally tend to pick it up, bring it closer to their face or ear, listen to it, or speak into it. Adding a separate rubbing gesture therefore introduced an unnecessary learned action.
 
 The final prototype instead uses **two physical cues in sequence**. First, an IMU detects when the shell is picked up, indicating initial engagement and waking EchoShell. Second, an APDS9960 proximity sensor detects when the shell has been brought close to the user, indicating stronger intent to interact. Only then does the system transition toward the listening interaction. This allows the physical behavior of the user to communicate intent without requiring a button, wake word, or explicit instruction.
-
-We intentionally used changes in the ocean sound rather than conventional beeps so that feedback would remain consistent with the metaphor of the shell. However, this also created a potential ambiguity: because the background and transition signals share the same sound source, the difference between system states may not always be perceptually obvious. We later evaluated this during user testing.
 
 
 **3. Make a new storyboard, diagram and/or script based on these reflections.**
@@ -279,7 +287,7 @@ The redesigned interaction follows seven main stages:
 
 EchoShell behaves like the sea: receptive, gentle, and slightly distant. It does not judge, advise, or tell the user what their memories mean. It listens, holds fragments of the past, and occasionally lets an old echo return—leaving the interpretation to the user.
 
-Our final prototype implements EchoShell as a state-based interactive system running on a Raspberry Pi 5. Rather than treating speech as the only input, the system combines physical sensing, proximity, voice activity, audio feedback, and Wizard-of-Oz memory retrieval.
+Our final prototype implements EchoShell as a state-based interactive system running on a Raspberry Pi 5. It combines physical sensing, proximity, voice activity, audio feedback, and Wizard-of-Oz memory retrieval.
 
 The interaction begins when the IMU detects that the shell has been picked up. This wakes EchoShell and starts the continuous ocean ambience. The proximity sensor then detects when the user brings the shell close, providing a second indication that the user intends to interact rather than having simply moved the object.
 
@@ -306,30 +314,56 @@ Our prototype uses a Raspberry Pi 5 as the central controller for EchoShell.
 The system therefore satisfies the prototype requirements by using the Raspberry Pi, sensor input, and spoken participant interaction.
 
 
+### Implementation files
+
+- [EchoShell main interaction code](echoshell/echoshell.py)
+- [Wizard-of-Oz controller](echoshell/wizard.py)
+- [IMU movement detection test](echoshell/detect_movement.py)
+- [IMU sensor test](echoshell/test_imu.py)
+
+
 ### Prototype Development
 
-<img width="1707" height="1280" alt="2935bdc7eb2f481e53e0500d0509fbca" src="https://github.com/user-attachments/assets/c81b646d-46d7-43e0-8699-35f7479d3bac" />
-<img width="1707" height="1280" alt="87bbc0c170c2ae89f860cd694bab99f2" src="https://github.com/user-attachments/assets/c0592254-28ce-4736-a165-26079ee70dd0" />
-<img width="1707" height="1280" alt="e4a7a4c05e2cd2f95b0dbc3452a124d7" src="https://github.com/user-attachments/assets/05bd62c3-6a12-4196-8040-31beff362775" />
-<img width="960" height="1280" alt="917683e70cceee0c3d6e0fd71cb67be8" src="https://github.com/user-attachments/assets/ead56039-b0a3-4914-a5ae-f5611740c91b" />
-<img width="1707" height="1280" alt="a91a7aaab7f087430062510167d974ed" src="https://github.com/user-attachments/assets/3ed97309-7a9b-4656-aa14-1472d8658d60" />
-<img width="1702" height="1276" alt="2be709a170c875ca1fdb895408c2344d" src="https://github.com/user-attachments/assets/7d557089-fb96-45e2-9f50-c76b70bab0df" />
-<img width="1707" height="1280" alt="dc1a692dd6212e054396c679afa82da1" src="https://github.com/user-attachments/assets/12be3464-a1e8-4b4a-bfb9-c511800d3c96" />
+1. Setting up and testing the sensors
+<img width="1707" height="1280" alt="af0a8f9b7f54ed8073a84a14ee0ac1ee" src="https://github.com/user-attachments/assets/ecf86fd0-2c24-4454-b1fa-cae36a367fa0" />
+<img width="1707" height="1280" alt="b4884875ffbf8a14967dcef9609ab2cc" src="https://github.com/user-attachments/assets/fd4d31b0-d90b-4786-bcdb-de022bcb36c1" />
+<img width="1707" height="1280" alt="102cbec89dfe7715aef569d746e6cae1" src="https://github.com/user-attachments/assets/e8fa2ab9-5690-40df-8ddf-50bc20257e3a" />
 
 
-Video: Final interactive EchoShell prototype and Wizard-of-Oz controller.
-!!!!!!!!!!!!!!!!!!视频！！！！！！！！！！！！！！！
+2. Modeling and printing the shell
+<img width="1707" height="1280" alt="65920c8779f2f06dc764f1797da0b651" src="https://github.com/user-attachments/assets/c0792be1-91f3-491b-a2e0-6c39e1d17ae3" />
+<img width="1707" height="1280" alt="e4a7a4c05e2cd2f95b0dbc3452a124d7" src="https://github.com/user-attachments/assets/daf52a90-8c04-4df3-9d27-07efd57f4b29" />
+<img width="960" height="1280" alt="917683e70cceee0c3d6e0fd71cb67be8" src="https://github.com/user-attachments/assets/103a9b60-faa1-49a4-a103-ea9edd1fd1c2" />
 
+
+3. Assembling components and the shell
+<img width="1707" height="1280" alt="315bcf10a352dab7e45b345107677d53" src="https://github.com/user-attachments/assets/9f1fbbc3-3da7-451d-a633-cae5ecaf6174" />
+<img width="1702" height="1276" alt="2be709a170c875ca1fdb895408c2344d" src="https://github.com/user-attachments/assets/0edcc84f-e9c7-4620-b3f7-82c6e2780aa0" />
+
+
+**Video: Final interactive EchoShell prototype working scene.**
+
+
+https://github.com/user-attachments/assets/59690d21-19e4-4a92-bd39-3c379c0cfc5e
+
+
+**Wizard-of-Oz controller**
+
+<img width="1709" height="765" alt="截屏2026-10-04 17 41 43" src="https://github.com/user-attachments/assets/39f6ee5a-dcb1-414b-8f62-59743ec16c7d" />
 
 
 ## Test the system
+
+We tested the interactive prototype with two participants. During each session, one team member observed the participant's physical interaction and conversational behavior while the other operated the Wizard-of-Oz memory retrieval controller. We paid particular attention to whether participants understood when to pick up and approach the shell, when the system was listening, when their speaking turn had ended, how they interpreted the ocean-wave feedback, and how they responded to hearing a recalled memory.
+
+After the interaction, we asked participants about the physical form, audio feedback, timing, recalled memories, and moments of confusion. We also asked how they would want EchoShell to respond in different emotional situations rather than assuming that recalling a similar memory would always be desirable.
 
 <img width="1707" height="1280" alt="af85b5ad773566ae8caf1c0275e66803" src="https://github.com/user-attachments/assets/ca63ab7b-7087-4ea3-9e93-0fe7a5387e19" />
 
 
 ### What worked well about the system and what didn't?
 
-Overall, participants responded positively to the physical and emotional qualities of EchoShell. Several users described the idea of a physical "memory recorder" as compelling and felt that the seashell form made the interaction unusually intuitive. The shape itself provided a strong affordance: when participants saw the shell, they naturally wanted to pick it up, bring it close, listen to it, or speak into it. This supported our decision to remove the previously considered rubbing gesture and rely instead on pickup and proximity as the primary physical signals.
+Overall, participants responded positively to the physical and emotional qualities of EchoShell. They described the idea of a physical "memory recorder" as compelling and felt that the seashell form made the interaction unusually intuitive. The shape itself provided a strong affordance: when participants saw the shell, they naturally wanted to pick it up, bring it close, listen to it, or speak into it. 
 
 The ocean ambience was also received positively. Participants felt that the continuous wave sound matched the physical form of the shell and helped create a calm atmosphere in which they could pay attention to their current emotional state. The ambience therefore worked not only as system feedback but also as part of the emotional experience of the product.
 
