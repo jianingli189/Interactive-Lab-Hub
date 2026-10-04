@@ -337,8 +337,8 @@ The system therefore satisfies the prototype requirements by using the Raspberry
 
 
 3. Assembling components and the shell
-<img width="1707" height="1280" alt="315bcf10a352dab7e45b345107677d53" src="https://github.com/user-attachments/assets/9f1fbbc3-3da7-451d-a633-cae5ecaf6174" />
 <img width="1702" height="1276" alt="2be709a170c875ca1fdb895408c2344d" src="https://github.com/user-attachments/assets/0edcc84f-e9c7-4620-b3f7-82c6e2780aa0" />
+<img width="1707" height="1280" alt="315bcf10a352dab7e45b345107677d53" src="https://github.com/user-attachments/assets/9f1fbbc3-3da7-451d-a633-cae5ecaf6174" />
 
 
 **Video: Final interactive EchoShell prototype working scene.**
