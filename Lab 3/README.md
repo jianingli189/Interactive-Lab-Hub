@@ -2,116 +2,17 @@
 
 **Collaborators: Jianing Li (jl4837), Aurora Jiaxin Shen (js3996)
 
-[![Watch the video](https://user-images.githubusercontent.com/1128669/135009222-111fe522-e6ba-46ad-b6dc-d1633d21129c.png)](https://youtu.be/LZ0VJClIlRI?si=Yy84mcyVYuVV19mn)
-
-In this lab, we want you to design interaction with a speech-enabled device — something that listens and talks to you. This device can do anything *but* control lights (since we already did that in Lab 1). First, we want you to storyboard what you imagine the conversational interaction to be like. Then you will use wizarding techniques to elicit examples of what people might say, ask, or respond. We then want you to use the examples collected from at least two other people to inform the redesign of the device.
-
-We will focus on **audio** as the main modality for interaction to start; these general techniques can be extended to **video**, **haptics** or other interactive mechanisms in the second part of the Lab.
-
-A note on what you are building with. Speech interfaces are usually taught as two boxes — speech-in, speech-out — and that framing hides the part that actually determines whether an interaction works. Between listening and speaking sits the question of **whose turn it is**: when does the device decide you have finished talking, and how long does it make you wait before it answers? This lab gives you direct control over both, and we will ask you to notice what changes when you move them.
-
-## Prep for Part 1: Get the Latest Content and Pick up Additional Parts
-
-Please check instructions in [prep.md](prep.md) and complete the setup.
-
-### Pick up Web Camera If You Don't Have One
-
-Students who have not already received a web camera will receive their Webcam and at the beginning of lab. If you cannot make it to class this week, please contact the TAs to ensure you get these.
-
-### Get the Latest Content
-
-As always, pull updates from the class Interactive-Lab-Hub to both your Pi and your own GitHub repo.
-
-**\[recommended\]** Option 1: On the Pi, `cd` to your `Interactive-Lab-Hub`, pull the updates from upstream (class lab-hub) and push the updates back to your own GitHub repo. You will need the *personal access token* for this.
-
-```
-pi@ixe00:~$ cd Interactive-Lab-Hub
-pi@ixe00:~/Interactive-Lab-Hub $ git pull upstream Fall2026
-pi@ixe00:~/Interactive-Lab-Hub $ git add .
-pi@ixe00:~/Interactive-Lab-Hub $ git commit -m "get lab3 updates"
-pi@ixe00:~/Interactive-Lab-Hub $ git push
-```
-
-Option 2: On your own GitHub repo, create a pull request to get updates from the class Interactive-Lab-Hub. After you have the latest updates online, go to your Pi, `cd` to your `Interactive-Lab-Hub` and use `git pull`.
-
----
 
 # Part 1
 
-## Setup
-
-Create and activate a virtual environment for this lab:
-
-```
-pi@ixe00:~$ cd Interactive-Lab-Hub/Lab\ 3
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ python3 -m venv .venv
-pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $ source .venv/bin/activate
-(.venv) pi@ixe00:~/Interactive-Lab-Hub/Lab 3 $
-```
-
-Install the Python dependencies:
-
-```
-(.venv) $ pip install -r requirements.txt
-```
-
-This takes a few minutes. If you would like it to take considerably less time, [`uv`](https://docs.astral.sh/uv/) is a drop-in replacement for `pip` that is dramatically faster on the Pi:
-
-```
-(.venv) $ pip install uv && uv pip install -r requirements.txt
-```
-
-Then run the setup script, which installs the classic speech synthesizers, downloads the voice activity detection model, and pre-fetches a neural voice and a speech recognition model so you are not waiting on downloads during lab:
-
-```
-(.venv):~$ cd speech-scripts
-(.venv) $ ./setup.sh
-```
-
-Check your audio devices before going further. `arecord -l` lists capture devices and `aplay -l` lists playback devices; if your webcam microphone or Bluetooth speaker does not appear, fix that first — every script below assumes the system defaults are the ones you want.
-
 ## A. Text to Speech
 
-Your Pi can speak in several quite different ways, and the differences are audible in a way that matters for design. In `speech-scripts/` there are shell scripts for each.
-
-### The classic engines
-
-```
-(.venv) $ cd speech-scripts
-
-(.venv) $ sudo apt update
-(.venv) $ sudo apt install -y espeak festival festvox-kallpc16k
-
-(.venv) $ ./espeak_demo.sh
-(.venv) $ ./festival_demo.sh
-```
-
-You can run these `.sh` files by typing `./filename`, and read one with `cat filename`. You can also play audio files directly with `aplay filename` — try `aplay lookdave.wav`.
-
-These are all decades-old technology and they sound like it. `espeak-ng` is a *formant synthesizer*: it generates speech from an acoustic model of the vocal tract, which is why it sounds robotic but also why the whole thing fits in a couple of megabytes and responds instantly. `festival` is *concatenative*: they stitch together recorded fragments of a real speaker, which sounds more human but breaks audibly at the seams.
-
-### Neural TTS with Piper
-
-Note that the Piper command line changed in version 1.x — voices are now downloaded explicitly with `python3 -m piper.download_voices`, and you invoke it as `python3 -m piper`. Tutorials you find online may show the old `echo ... | piper --model ...` form, which no longer works. Browse the [voice samples](https://rhasspy.github.io/piper-samples) and download a different one if you'd like:
-
-```
-(.venv) $ python3 -m piper.download_voices en_US-lessac-medium
-```
-
-[Piper](https://github.com/OHF-Voice/piper1-gpl) synthesizes speech with a small neural network, runs comfortably on the Pi 5, and sounds markedly better than the above.
-
-```
-(.venv) $ ./piper_demo.sh
-```
-
-The demo script also shows `--output-raw`, which streams audio to the speaker as it is generated rather than writing a file first. Listen for the difference in how quickly speech begins. In a conversational system this gap is the thing your user experiences as responsiveness.
-
 \*\***Write your own shell file to use your favorite of these TTS engines to have your Pi greet you by name.**\*\*
-(This shell file should be saved to your own repo for this lab.)
+
+[View my greeting shell script](speech-scripts/greet_jianing.sh)
+
 
 \*\***Then answer: Is the same greeting, in these different voices, the same greeting? Describe one concrete way the voice changed what the utterance seemed to mean or who seemed to be speaking.**\*\*
-
-### My Personalized TTS Greeting
 
 For my personalized greeting, I chose **Piper** because its neural voice sounded more natural and conversational to me than eSpeak and Festival.
 
@@ -119,7 +20,6 @@ My Pi greets me with:
 
 > "Hello Jianing! Welcome back. It's nice to see you again."
 
-[View my greeting shell script](speech-scripts/greet_jianing.sh)
 
 ### Reflection on Different Voices
 
@@ -130,25 +30,8 @@ One concrete difference was the perceived personality of the device. With eSpeak
 
 ## B. Speech to Text
 
-We use [faster-whisper](https://github.com/SYSTRAN/faster-whisper), a reimplementation of OpenAI's Whisper model that runs several times faster on CPU and does not require PyTorch. All processing happens on the Pi; nothing is sent to a server.
-
-```
-(.venv) $ python transcribe.py lookdave.wav
-```
-
-The transcript is not the interesting output here — the timings are. Run it again with a larger model and compare:
-
-```
-(.venv) $ python transcribe.py lookdave.wav --model base.en
-(.venv) $ python transcribe.py lookdave.wav --model small.en
-#  noted that the first run may take longer because the model is downloaded, and that the HF unauthenticated-request warning is expected and not an error.
-```
-
-Available sizes, smallest first: `tiny.en`, `base.en`, `small.en`, `medium.en`. The `.en` variants are English-only and faster than their multilingual counterparts at the same size.
 
 \*\***Record a few seconds of your own speech (`arecord -d 5 -f cd -c 1 -r 16000 test.wav`) and transcribe it with at least two model sizes. Report the real-time factor for each. At what point does the accuracy improvement stop being worth the delay, for a system that has to answer you?**\*\*
-
-\*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
 
 ### Comparing Whisper Model Sizes
 
@@ -180,6 +63,9 @@ For my recording, both models recognized the spoken content correctly. `base.en`
 
 For a conversational system that needs to answer quickly, I would not automatically choose the larger model. In my tests, `small.en` introduced a substantial delay compared with `base.en` without improving the transcription of `lookdave.wav`. For my own simple recording, even `tiny.en` captured all the spoken words correctly. This suggests that the best model depends on whether the additional accuracy of a larger model is noticeable enough to justify the extra response time.
 
+
+\*\***Write your own script that verbally asks for a numerical input (a phone number, zipcode, number of pets) and records the answer the respondent provides.**\*\* Numbers are a good stress test — transcription systems make characteristic errors on digit strings, and you will want to know what they are before you design around them.
+
 ### Numerical Input Interaction
 
 I created a shell script that verbally asks the user for a five-digit ZIP code, records the user's response for five seconds, and transcribes the response using the `base.en` Whisper model.
@@ -199,22 +85,6 @@ The transcription was correct. The 5-second recording took 1.92 seconds to trans
 
 ## C. Turn-taking: knowing when someone has stopped talking
 
-Everything so far has worked on fixed audio files. A real conversational device does not get told when to start and stop recording — it has to decide. This is the problem that makes speech interfaces hard, and it is mostly not a speech recognition problem.
-
-We use a **voice activity detector** (VAD) to segment the microphone stream into utterances. `listen.py` runs Silero VAD continuously and hands each detected utterance to faster-whisper:
-
-```
-(.venv) $ cd speech-scripts
-(.venv) $ python listen.py
-```
-
-Speak, pause, and watch it transcribe. Now change the endpointing threshold — the amount of silence the system requires before it decides your turn is over:
-
-```
-(.venv) $ python listen.py --min-silence 0.2
-(.venv) $ python listen.py --min-silence 1.5
-```
-
 \*\***Try both extremes, and something in between. Describe what each one feels like to talk to. Note specifically: at 0.2s, what kinds of normal speech get cut off? At 1.5s, what does the delay make the system seem like?**\*\*
 
 I tested `listen.py` with three different silence thresholds to understand how the system decides when I have finished speaking.
@@ -233,12 +103,6 @@ There is no correct value. A system that takes drink orders and a system that li
 
 ### The complete loop
 
-`echo_bot.py` puts the pieces together: it listens, endpoints, transcribes, and speaks a reply through Piper. The dialogue policy is deliberately trivial — it repeats what you said — so that everything you notice is a property of the timing rather than the content.
-
-```
-(.venv) $ python echo_bot.py
-```
-
 I also tested the complete speech interaction using `echo_bot.py`, which combines endpoint detection, speech recognition, and text-to-speech.
 
 | Test | ASR Time | TTS First Audio | Total Gap |
@@ -253,8 +117,6 @@ This experiment showed me that conversational latency is not caused by only one 
 
 
 ## D. Storyboard
-
-Storyboard and/or use a Verplank diagram to design a speech-enabled device. (Stuck? Make a device that talks for dogs. If that is too stupid, find an application that is better than that.)
 
 \*\***Post your storyboard and diagram here.**\*\*
 
@@ -280,7 +142,7 @@ At this stage, the interaction is intentionally still open-ended. Questions such
 
 ### Initial Interaction Flow
 
-For the first version of the concept, I imagined the interaction as:
+For the first version of the concept, we imagined the interaction as:
 
 **Speak → Listen → Store → Time passes → Recall → Listen again**
 
@@ -342,42 +204,37 @@ For the first version of the concept, I imagined the interaction as:
 
 The timing of the interaction is especially important for EchoShell because users may pause while recalling an experience or thinking about how to describe an emotion.
 
-In Part C, I found that a short silence threshold such as 0.2 seconds could easily cut off natural pauses, while a much longer threshold such as 1.5 seconds gave the speaker more room to think but made the interaction feel slower. For EchoShell, I currently prefer a relatively longer endpoint threshold of around **1.5 seconds** when the user is leaving a memory.
+In Part C, we found that a short silence threshold such as 0.2 seconds could easily cut off natural pauses, while a much longer threshold such as 1.5 seconds gave the speaker more room to think but made the interaction feel slower. For EchoShell, we currently prefer a relatively longer endpoint threshold of around 1.5 seconds when the user is leaving a memory.
 
 Unlike a system designed for short commands, EchoShell is intended to listen to reflective and potentially fragmented speech. A pause may therefore indicate that the user is thinking rather than that they have finished speaking.
 
-This timing is still an initial design decision. I plan to observe how people naturally pause and signal the end of their turn during the acted-out dialogue in Part E and adjust the interaction accordingly.
-  
-
-Your script should include the pauses. Where does your device wait, and for how long? You now know from Part C that this is a parameter you have to choose, not something that happens for free.
+This timing is still an initial design decision. we plan to observe how people naturally pause and signal the end of their turn during the acted-out dialogue in Part E and adjust the interaction accordingly.
+ 
 
 ## E. Acting out the dialogue
 
-Find a partner, and *without sharing the script with your partner* try out the dialogue you've designed, where you (as the device designer) act as the device you are designing. Please record this interaction (for example, using Zoom's record feature).
 
 \*\***Describe if the dialogue seemed different than what you imagined when it was acted out, and how.**\*\*
 
+Video: Part 1 acted-out interaction using the early physical prototype.
+！！！！！！！！！！！！！！！！！！！！！！视频！！！！！！！！！！！！！！！！
 
-This initial storyboard and dialogue acting also raised several questions that I want to explore in the next iteration:
+Acting out the interaction revealed that the conversational flow was less self-explanatory than it appeared in the storyboard. In particular, the user did not always know when EchoShell had finished listening, when it was processing a memory, or when it was ready to respond. The original design depended too heavily on speech and pauses to communicate these state transitions.
 
-- How should the user indicate that they want to leave a memory versus hear one?
-- Should memories return automatically based on the current conversation, or should the user explicitly ask for them?
-- How much of the original recording should be preserved versus reconstructed?
-- What kind of feedback should tell the user that a memory has been successfully stored?
-- How should EchoShell handle very long pauses, interruptions, or a user changing their mind?
-- Should recalled memories be selected based on emotional similarity, time, topic, or some degree of randomness?
+The role-play also made us reconsider the timing of the interaction. Because EchoShell is intended for reflective speech rather than short commands, natural hesitation and thinking pauses need to be preserved rather than immediately interpreted as the end of a turn.
+
+Finally, the physical form of the shell suggested an opportunity that was not fully represented in our first storyboard. Picking up a shell and bringing it close to the face or ear are already familiar physical behaviors. This led us to explore physical sensing and ambient audio as additional interaction cues in Part 2.
+
 
 ---
 
 # Lab 3 Part 2
 
-For Part 2, you will redesign the interaction with the speech-enabled device using the data collected, as well as feedback from part 1.
-
 ## Prep for Part 2
 
 **1. What are concrete things that could use improvement in the design of your device? For example: wording, timing, anticipation of misunderstandings.**
 
-Our initial storyboard established the basic idea of speaking to EchoShell and later hearing a past memory, but several parts of the interaction needed to be made more explicit.
+Our initial storyboard established the basic idea of speaking to EchoShell and later hearing a past memory, but several parts of the interaction needed to be made more explicit. 
 
 First, the original design relied heavily on speech and did not clearly communicate when EchoShell was awake, listening, remembering, or finished. We therefore introduced the sound of ocean waves as a continuous ambient feedback mechanism. The waves appear when the shell wakes up, remain quietly in the background while the interaction continues, briefly swell when a memory is stored or retrieved, and gradually fade when the interaction ends.
 
@@ -387,20 +244,19 @@ Finally, we added a clearer way to end the overall interaction. After a recalled
 
 These timings are design hypotheses rather than fixed optimal values, and we plan to evaluate them through the Wizard-of-Oz interactions.
 
+We also simplified the physical initiation of the interaction. Earlier iterations considered an additional rubbing gesture, but we ultimately removed it because the shell's physical form already provides strong interaction cues. Instead, the final prototype uses two sequential physical signals: picking up the shell and bringing it close to the user. The IMU first detects that the shell has been picked up, waking the system, while the proximity sensor detects that it has been brought close enough for a more intentional interaction. This reduces the number of gestures the user has to learn while still preventing incidental movement from immediately starting a recording.
+
+
 **2. What are other modes of interaction *beyond speech* that you might also use to clarify how to interact? In particular: how does someone know when the device is listening, and when it is thinking? You have a screen and an LED.**
 
-We wanted EchoShell to communicate its state without requiring explicit spoken instructions or a conventional graphical interface. We therefore designed the interaction around a combination of **physical movement, ambient sound, and subtle visual feedback**.
+We wanted EchoShell to communicate its state without requiring explicit spoken instructions or a conventional graphical interface. We therefore designed the interaction around a combination of **physical movement, proximity, and ambient sound**.
 
-In the intended interaction, gently rubbing the shell wakes it and brings up the sound of the ocean. Because our current sensing setup cannot reliably distinguish rubbing from other hand movements, the prototype uses an **IMU to detect when the shell is picked up** as a proxy for this gesture. During the demonstration, the user can still perform the rubbing gesture while picking up the shell to communicate the intended interaction.
+In an earlier iteration, we considered asking the user to rub the shell as an explicit wake-up gesture. However, we eventually removed this interaction. The seashell itself already has strong physical affordances: when people encounter it, they naturally tend to pick it up, bring it closer to their face or ear, listen to it, or speak into it. Adding a separate rubbing gesture therefore introduced an unnecessary learned action.
 
-The ocean sound acts as the primary continuous feedback channel:
+The final prototype instead uses **two physical cues in sequence**. First, an IMU detects when the shell is picked up, indicating initial engagement and waking EchoShell. Second, an APDS9960 proximity sensor detects when the shell has been brought close to the user, indicating stronger intent to interact. Only then does the system transition toward the listening interaction. This allows the physical behavior of the user to communicate intent without requiring a button, wake word, or explicit instruction.
 
-- **Silence:** EchoShell is asleep.
-- **Soft continuous waves:** EchoShell is awake and available to listen.
-- **A brief swell in the waves:** EchoShell has stored or retrieved something.
-- **Fading waves:** The interaction is ending and EchoShell is returning to sleep.
+We intentionally used changes in the ocean sound rather than conventional beeps so that feedback would remain consistent with the metaphor of the shell. However, this also created a potential ambiguity: because the background and transition signals share the same sound source, the difference between system states may not always be perceptually obvious. We later evaluated this during user testing.
 
-The Mini PiTFT provides an additional visual representation of system state during prototyping. For example, a subtle animated ripple can indicate listening or remembering. In a more refined physical prototype, we would explore replacing the visible screen with a more integrated light source inside the shell so that the feedback feels like part of the object rather than a separate display.
 
 **3. Make a new storyboard, diagram and/or script based on these reflections.**
 
@@ -408,65 +264,111 @@ The redesigned interaction follows seven main stages:
 
 **Sleep → Wake → Confide → Remember → Recall → Reflect → Sleep**
 
+<img width="686" height="601" alt="截屏2026-10-04 11 52 06" src="https://github.com/user-attachments/assets/194164e4-a00a-4c37-b860-4d707035b57e" />
+
 1. **Sleep:** EchoShell rests silently on the table.
-2. **Wake:** The user picks up and gently rubs the shell. The IMU detects the pickup, and soft ocean waves begin to play.
+2. **Wake:** The user picks up the shell. The IMU detects the movement and wakes EchoShell, causing the soft ocean ambience to begin. When the user brings the shell close, the proximity sensor confirms stronger interaction intent and the system becomes ready to listen.
 3. **Confide:** The user speaks naturally about a current experience or feeling. EchoShell records the voice while the ocean remains quietly in the background.
 4. **Remember:** After approximately 3 seconds of silence, EchoShell interprets the current turn as complete. The waves briefly swell to acknowledge that the memory has been heard and stored.
-5. **Recall:** A related past memory is selected. EchoShell gently introduces it — for example, "I remember an echo like this... You left it with me last week." The waves swell briefly before the original past recording is played with a subtle echo effect.
+5. **Recall:** A related past memory is selected. EchoShell gently introduces it — for example, "I see. Remember last week, you had a similar feeling?" The waves swell briefly before the original past recording is played with a subtle echo effect.
 6. **Reflect:** After the memory ends, the waves swell and then return to the quiet background level. EchoShell waits for up to 10 seconds, allowing the user to reflect and optionally continue speaking. New speech returns the system to the Confide state.
 7. **Sleep:** If no speech is detected during the waiting window, the waves gradually fade. Putting the shell down at any point also ends the interaction and returns EchoShell to sleep.
 
 
-## Prototype your system
-
-The system should:
-* use the Raspberry Pi
-* use one or more sensors
-* require participants to speak to it
-
-*Document how the system works.*
+## Prototype our system
 
 EchoShell behaves like the sea: receptive, gentle, and slightly distant. It does not judge, advise, or tell the user what their memories mean. It listens, holds fragments of the past, and occasionally lets an old echo return—leaving the interpretation to the user.
+
+Our final prototype implements EchoShell as a state-based interactive system running on a Raspberry Pi 5. Rather than treating speech as the only input, the system combines physical sensing, proximity, voice activity, audio feedback, and Wizard-of-Oz memory retrieval.
+
+The interaction begins when the IMU detects that the shell has been picked up. This wakes EchoShell and starts the continuous ocean ambience. The proximity sensor then detects when the user brings the shell close, providing a second indication that the user intends to interact rather than having simply moved the object.
+
+Once the shell is active and close to the user, the microphone captures the user's speech. EchoShell allows reflective pauses and treats approximately three seconds of silence as the end of a speaking turn. The recording is then archived as a new memory.
+
+For the current Wizard-of-Oz prototype, memory retrieval is intentionally not automated. A separate controller allows the researcher to select a previously prepared memory that is appropriate to the participant's current emotional context. This isolates the interaction question we are interested in—how it feels to receive a past memory from the shell—without requiring us to first build a reliable semantic and emotional retrieval model.
+
+EchoShell then says, "I see. Remember last week, you had a similar feeling?" and plays the selected past recording with a subtle echo effect. The continuous ocean ambience remains underneath both the system voice and the recalled recording so that the interaction feels like one continuous experience rather than several disconnected audio clips.
+
+After the recalled memory finishes, EchoShell waits for approximately 10 seconds. If the user begins speaking again, the system returns to the listening state. Otherwise, the interaction ends and the shell returns to sleep.
 
 Our prototype uses a Raspberry Pi 5 as the central controller for EchoShell.
 
 ### Components
 
-- **Raspberry Pi 5:** controls the interaction state, audio recording, playback, and feedback.
-- **LSM6DS3TR-C IMU:** detects when the shell is picked up, moved, or returned to its resting position.
-- **Bluetooth microphone:** captures the participant's speech.
-- **Bluetooth speaker:** plays the ambient ocean sound, EchoShell's voice, and recalled recordings.
-- **Mini PiTFT:** provides additional visual state feedback during the prototype.
-- **3D-printed shell enclosure:** gives the interaction its intended physical form.
+- **Raspberry Pi 5:** runs the interaction state machine and coordinates sensing, recording, memory storage, and audio playback.
+- **LSM6DS3TR-C IMU:** detects when EchoShell is picked up and moved.
+- **APDS9960 proximity sensor:** detects when the user brings the shell close for intentional interaction.
+- **USB microphone:** captures the participant's speech.
+- **Speaker:** plays the ocean ambience, EchoShell's voice, and recalled recordings.
+- **3D-printed shell enclosure:** integrates the sensing and audio hardware into a physical form that naturally suggests speaking and listening.
+- **Laptop / SSH interface:** serves as the Wizard-of-Oz controller through which the researcher selects a past memory.
 
 The system therefore satisfies the prototype requirements by using the Raspberry Pi, sensor input, and spoken participant interaction.
 
-*Include videos or screencaptures of both the system and the controller.*
+
+### Prototype Development
+
+<img width="1707" height="1280" alt="2935bdc7eb2f481e53e0500d0509fbca" src="https://github.com/user-attachments/assets/c81b646d-46d7-43e0-8699-35f7479d3bac" />
+<img width="1707" height="1280" alt="87bbc0c170c2ae89f860cd694bab99f2" src="https://github.com/user-attachments/assets/c0592254-28ce-4736-a165-26079ee70dd0" />
+<img width="1707" height="1280" alt="e4a7a4c05e2cd2f95b0dbc3452a124d7" src="https://github.com/user-attachments/assets/05bd62c3-6a12-4196-8040-31beff362775" />
+<img width="960" height="1280" alt="917683e70cceee0c3d6e0fd71cb67be8" src="https://github.com/user-attachments/assets/ead56039-b0a3-4914-a5ae-f5611740c91b" />
+<img width="1707" height="1280" alt="a91a7aaab7f087430062510167d974ed" src="https://github.com/user-attachments/assets/3ed97309-7a9b-4656-aa14-1472d8658d60" />
+<img width="1702" height="1276" alt="2be709a170c875ca1fdb895408c2344d" src="https://github.com/user-attachments/assets/7d557089-fb96-45e2-9f50-c76b70bab0df" />
+<img width="1707" height="1280" alt="dc1a692dd6212e054396c679afa82da1" src="https://github.com/user-attachments/assets/12be3464-a1e8-4b4a-bfb9-c511800d3c96" />
+
+
+Video: Final interactive EchoShell prototype and Wizard-of-Oz controller.
+!!!!!!!!!!!!!!!!!!视频！！！！！！！！！！！！！！！
+
+
 
 ## Test the system
 
-Try to get at least two people to interact with your system. (Ideally, you would inform them that there is a wizard *after* the interaction, but we recognize that can be hard.)
+<img width="1707" height="1280" alt="af85b5ad773566ae8caf1c0275e66803" src="https://github.com/user-attachments/assets/ca63ab7b-7087-4ea3-9e93-0fe7a5387e19" />
 
-Answer the following:
 
 ### What worked well about the system and what didn't?
-\*\**your answer here*\*\*
+
+Overall, participants responded positively to the physical and emotional qualities of EchoShell. Several users described the idea of a physical "memory recorder" as compelling and felt that the seashell form made the interaction unusually intuitive. The shape itself provided a strong affordance: when participants saw the shell, they naturally wanted to pick it up, bring it close, listen to it, or speak into it. This supported our decision to remove the previously considered rubbing gesture and rely instead on pickup and proximity as the primary physical signals.
+
+The ocean ambience was also received positively. Participants felt that the continuous wave sound matched the physical form of the shell and helped create a calm atmosphere in which they could pay attention to their current emotional state. The ambience therefore worked not only as system feedback but also as part of the emotional experience of the product.
+
+However, the tests revealed ambiguity in turn-taking and system state. Participants were sometimes unsure when they should speak and when EchoShell was preparing to respond. We attempted to communicate transitions by increasing the volume of the waves, but because both the background ambience and transition signal were variations of the same sound, the difference was sometimes too subtle. A future version should create a larger contrast between the background and transition sounds and potentially add another modality—such as a subtle internal light, haptic pulse, or more distinctive audio cue—to differentiate listening, retrieving, and speaking states.
+
+The tests also challenged our assumption that recalling a similar emotional memory is always helpful. For anxiety or nervousness, participants could imagine a previous similar experience being useful: it might redirect attention or remind them that an earlier stressful situation ultimately turned out well. For anger, however, participants did not necessarily want to revisit another angry memory. They sometimes preferred the device to remain quietly present rather than retrieve another emotionally similar experience.
+
+Finally, participants felt that hearing their own previous voice would make the experience more personally resonant than hearing a generic or simulated recording. This reinforces the core idea of EchoShell as a medium through which the past self communicates with the present self, rather than as an AI agent that gives advice.
+
 
 ### What worked well about the controller and what didn't?
-\*\**your answer here*\*\*
+
+The Wizard-of-Oz controller worked well as a lightweight way to separate memory retrieval intelligence from the rest of the functioning prototype. The physical sensing, speech recording, turn-taking, ambient audio, and memory playback were handled by the Raspberry Pi, while the wizard only selected which past memory should be returned. This allowed us to test the central experience without pretending that we had already solved automatic emotional or semantic memory retrieval.
+
+The simple numbered memory menu also allowed the wizard to make selections quickly. However, operating it during a live interaction required significant attention. The wizard had to listen to the participant, interpret the emotional context, remember the available recordings, and select one before the delay became noticeable. The current memory labels were useful for a small prototype but would not scale to a large personal memory archive.
+
+The test also showed that the wizard's decision cannot be reduced to simply choosing the memory with the most similar emotion. For example, retrieving an earlier nervous memory could be comforting, while retrieving an earlier angry memory could reinforce rather than relieve the user's emotional state. This means that a future retrieval system would need to consider not only similarity, but also the likely function or consequence of recalling that memory.
+
 
 ### What lessons can you take away from the WoZ interactions for designing a more autonomous version of the system?
-\*\**your answer here*\*\*
+
+The most important lesson is that autonomous retrieval should not simply perform emotion-to-emotion matching. Our original concept assumed that if the user currently felt nervous, angry, or homesick, EchoShell could retrieve a past memory with a similar emotional state. The user tests showed that the usefulness of such a memory depends strongly on context and on what happened afterward.
+
+A more autonomous EchoShell should therefore represent memories using multiple dimensions, such as emotion, topic, intensity, time, outcome, and the user's later interpretation of the event. For example, when a user is nervous, a useful memory might not merely contain nervousness; it might contain nervousness followed by a positive outcome or successful coping.
+
+The system should also be capable of deciding not to retrieve a memory. In some situations, such as anger, quiet companionship may be more appropriate than resurfacing another emotionally intense experience. This suggests that future autonomy should include a retrieval policy rather than only a similarity model.
+
+Finally, the interaction should expose system states more clearly. An autonomous version would need distinguishable cues for listening, processing/retrieving, speaking, and returning to rest, rather than relying primarily on subtle changes in the same ocean ambience.
+
 
 ### How could you use your system to create a dataset of interaction? What other sensing modalities would make sense to capture?
-\*\**your answer here*\*\*
 
-<details>
-  <summary><strong>Submission Cleanup Reminder (Click to Expand)</strong></summary>
+EchoShell itself could become a longitudinal data collection system. With informed participant consent, each interaction could store the user's voice recording together with interaction metadata such as timestamp, speaking duration, pause patterns, proximity, device movement, which memory was retrieved, and whether the user continued speaking afterward.
 
-  **Before submitting your README.md:**
-  - This readme.md file has a lot of extra text for guidance.
-  - Remove all instructional text and example prompts from this file.
-  - You may either delete these sections or use the toggle/hide feature in VS Code to collapse them for a cleaner look.
-  - Your final submission should be neat, focused on your own work, and easy to read for grading.
-</details>
+During Wizard-of-Oz studies, we could additionally record which memory the wizard selected and why, as well as the participant's response to that retrieval. Over time, these interactions could form a dataset for learning not only which memories are semantically or emotionally related, but which types of retrieval participants actually find helpful in different contexts.
+
+Additional sensing modalities could capture aspects of the interaction that audio alone misses. For example, touch or capacitive sensing could detect how the user holds the shell; pressure sensing could capture squeezing or gripping; IMU data could capture movement patterns; and optional physiological signals could help study changes in arousal. A camera could also capture posture or facial behavior in a controlled research setting, although this would introduce substantially greater privacy concerns and would be less consistent with EchoShell's intimate, low-observation design.
+
+Because EchoShell stores highly personal speech and emotional memories, any future dataset would require explicit consent, careful access control, and clear choices about what is stored or deleted. For this product, privacy is part of the interaction design rather than only a technical implementation detail.
+
+
+
