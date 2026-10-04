@@ -1,6 +1,6 @@
 # Chatterboxes
 
-**Collaborators: Jianing Li (jl4837), Aurora Jiaxin Shen (js3996)
+**Collaborators: Jianing Li (jl4837), Aurora Jiaxin Shen (js3996)**
 
 
 # Part 1
