@@ -1,3 +1,4 @@
+<img width="1156" height="782" alt="b070ba47cb382bf2b52541eb7ec9f2e2" src="https://github.com/user-attachments/assets/ff31ae8d-bbba-47bd-ac37-d4c92eb5f706" />
 # Chatterboxes
 
 **Collaborators: Jianing Li (jl4837), Aurora Jiaxin Shen (js3996)**
@@ -286,6 +287,8 @@ The redesigned interaction follows seven main stages:
 ## Prototype our system
 
 EchoShell behaves like the sea: receptive, gentle, and slightly distant. It does not judge, advise, or tell the user what their memories mean. It listens, holds fragments of the past, and occasionally lets an old echo return—leaving the interpretation to the user.
+
+<img width="1156" height="782" alt="b070ba47cb382bf2b52541eb7ec9f2e2" src="https://github.com/user-attachments/assets/e1937328-14ff-40d3-bcba-942ff407f2cc" />
 
 Our final prototype implements EchoShell as a state-based interactive system running on a Raspberry Pi 5. It combines physical sensing, proximity, voice activity, audio feedback, and Wizard-of-Oz memory retrieval.
 
