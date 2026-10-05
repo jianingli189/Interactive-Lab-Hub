@@ -1,4 +1,3 @@
-<img width="1156" height="782" alt="b070ba47cb382bf2b52541eb7ec9f2e2" src="https://github.com/user-attachments/assets/ff31ae8d-bbba-47bd-ac37-d4c92eb5f706" />
 # Chatterboxes
 
 **Collaborators: Jianing Li (jl4837), Aurora Jiaxin Shen (js3996)**
