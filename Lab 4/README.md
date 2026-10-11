@@ -18,8 +18,8 @@
 
 ## Lab Overview
 Team: <canvas group name>  
-Members: Full Name (netid, github-handle), ...  
-Clock name: <name>
+Members: Jianing Li(jl4837), Aurora Jiaxin Shen(js3996), Demi Hu(dh785), Regina (netid, github-handle), ...  
+Clock name: <Etiquette Bloom>
 
 
 For lab this week, we focus on both sensing and actuation, bringing new modes of input and output into your devices, while also prototyping the physical structure and overall look of the device. You will consider how the physical form supports sensing and actuation, and how these elements come together to shape the interaction and aesthetics of the device.
@@ -286,13 +286,107 @@ As you develop your Feast Automata concept, consider where the sensor and actuat
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
+We began by individually brainstorming different ways to transform familiar dining behaviors into playful physical interactions. As a group, we developed five different Feast Automata concepts. Each concept explored a different relationship between a dining behavior, sensing method, and physical actuation.
+
+<img width="1460" height="1042" alt="fd2492cbb96655dc926207231e09dfb2" src="https://github.com/user-attachments/assets/6a001347-e4d3-4f7b-b4cb-1343f91ab847" />
+
+<img width="1600" height="899" alt="beb18a8e29aeba8572a4b40c747efdf8" src="https://github.com/user-attachments/assets/b3309e06-0e9c-4680-90a7-a830b505daf9" />
+
+<img width="1809" height="1280" alt="0eb8faadc4822fdd4165d21e718c2efa" src="https://github.com/user-attachments/assets/84ea3274-c383-487d-a851-8c6a3d263036" />
+
+<img width="1707" height="1280" alt="a3b384916a6fed51b0096f1a4ddf1df7" src="https://github.com/user-attachments/assets/d1aef762-3dfa-4e22-b8c6-f6b905f26376" />
+
+We finally picked this idea: **Etiquette Flower**
+
+This concept is inspired by the conventions of Western dining etiquette, particularly the practice of selecting utensils in a particular order during a multi-course meal. For our prototype scenario, the expected sequence is soup spoon → outer fork and knife → inner fork and knife.
+
+The user selects utensils as they eat. Sensing areas underneath the placemat detect which utensil has been picked up. If the user selects the expected utensil, a small flower gently nods. If the user selects an incorrect utensil, the flower rapidly spins to provide more noticeable corrective feedback.
+
+Sensing & actuation: Capacitive sensing underneath the utensil positions detects utensil selection. Servo-driven movements allow the flower to nod or spin in response.
+
+
 **\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
+
+Comparing our five ideas raised several questions about both the interaction and physical implementation:
+
+- Which dining behavior creates the clearest and most meaningful relationship between sensing and physical feedback?
+- Can the sensing interaction happen naturally without requiring users to perform an additional action just for the sensor?
+- Where should sensors and actuators be placed so that they do not interfere with normal dining behavior?
+- How noticeable should the physical feedback be?
+- Can different servo movements communicate different meanings without additional text or screen feedback?
+- How can the electronics and moving components be integrated into a tabletop object without making the dining setup feel cluttered?
+
+For the Etiquette Flower concept specifically, we wanted to physically prototype several questions:
+- Can we reliably detect when individual metal utensils are removed from the placemat using capacitive sensing?
+- How large and how far apart should the sensing areas underneath the utensils be?
+- Where should the flower be positioned so that its movement is visible without interfering with the meal?
+- Can the flower clearly communicate two different states through a gentle nod and rapid spinning?
+- How can the servos and electronics be housed inside or underneath the flower structure?
+
 
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
 
-Build a cardboard or other low-fidelity physical prototype of your design.
+We selected the Etiquette Flower concept for our physical prototype.
+
+
+
+We chose this concept because it transforms an existing dining convention into a playful interaction without requiring the user to learn a completely new behavior. The user simply selects utensils as they normally would, while the system responds through the movement of the flower.
+
+We were also interested in using physical movement rather than a screen or written instructions as feedback. The contrast between a gentle nod for a correct selection and rapid spinning for an incorrect selection creates two visually distinct responses while keeping the interaction playful.
+
+The concept also gave us a clear way to integrate both sensing and actuation into the physical table setting: sensing can be embedded underneath the placemat, while the flower serves as the visible actuated object.
+
+Our intended interaction flow is:
+
+User begins the meal
+↓
+User picks up a utensil
+↓
+The system detects which utensil was removed
+↓
+The Raspberry Pi compares it with the expected utensil
+- Correct → Flower gently nods
+- Incorrect → Flower rapidly spins
+↓
+The system waits for the next utensil selection
+
 
 **\*\*\*Document your rough prototype with photos and/or video.\*\*\***
+
+**Prototype Process**
+
+We built a low-fidelity prototype to explore the overall physical arrangement of the selected concept, including the placement of the plate, utensils, sensing areas, and flower.
+
+<img width="1707" height="1280" alt="23f4fb0b861f38c2a287dc92b8787796" src="https://github.com/user-attachments/assets/8db3dce8-6a5e-4fea-bfcc-a78ca51625eb" />
+
+<img width="1280" height="960" alt="67ca3eb1c6449294ed0984af8f9770eb" src="https://github.com/user-attachments/assets/a9c34d14-86ad-4f77-95a1-b976cd1df521" />
+
+Our prototype helped us explore the scale and position of the flower relative to the dining setup and how the sensing areas could be integrated underneath the utensil positions.
+
+**Final Prototype**
+
+<img width="1707" height="1280" alt="f21abee3c6eca146d665b67e4d909ce4" src="https://github.com/user-attachments/assets/5ab2f77c-734a-4291-94c9-97405fecfef6" />
+
+Our planned implementation uses capacitive sensing underneath the placemat. Separate copper-tape electrodes correspond to different utensil positions and connect to an MPR121 capacitive sensing board. The Raspberry Pi uses these signals to identify which utensil has been removed.
+
+The flower provides the physical output. We plan to use servo-driven movement to create two different feedback behaviors:
+
+- Correct utensil → gentle nod
+- Incorrect utensil → rapid spin
+
+We will test the sensing reliability, electrode placement, sensing thresholds, and flower mechanisms during the next stage of implementation.
+
+We also recorded a Wizard-of-Oz demonstration of the intended interaction.
+
+
+https://github.com/user-attachments/assets/50672203-766c-4e02-83a6-3138f499a55a
+
+
+The video demonstrates the complete interaction sequence, including both correct and incorrect utensil selections.
+
+Team
+
+<img width="1707" height="1280" alt="eb35664b3cf3e968faf420e777e68e7d" src="https://github.com/user-attachments/assets/3eff010b-ed37-4e32-afec-29aaf32e91f5" />
 
 ---
 
