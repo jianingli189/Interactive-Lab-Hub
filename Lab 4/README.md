@@ -296,14 +296,6 @@ We began by individually brainstorming different ways to transform familiar dini
 
 <img width="1707" height="1280" alt="a3b384916a6fed51b0096f1a4ddf1df7" src="https://github.com/user-attachments/assets/d1aef762-3dfa-4e22-b8c6-f6b905f26376" />
 
-We finally picked this idea: **Etiquette Flower**
-
-This concept is inspired by the conventions of Western dining etiquette, particularly the practice of selecting utensils in a particular order during a multi-course meal. For our prototype scenario, the expected sequence is soup spoon → outer fork and knife → inner fork and knife.
-
-The user selects utensils as they eat. Sensing areas underneath the placemat detect which utensil has been picked up. If the user selects the expected utensil, a small flower gently nods. If the user selects an incorrect utensil, the flower rapidly spins to provide more noticeable corrective feedback.
-
-Sensing & actuation: Capacitive sensing underneath the utensil positions detects utensil selection. Servo-driven movements allow the flower to nod or spin in response.
-
 
 **\*\*\*What questions do these sketches raise? What do you need to physically prototype to answer them?\*\*\***
 
@@ -326,15 +318,13 @@ For the Etiquette Flower concept specifically, we wanted to physically prototype
 
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
 
-We selected the Etiquette Flower concept for our physical prototype.
+We finally picked this idea: **Etiquette Flower**
 
+This concept is inspired by the conventions of Western dining etiquette, particularly the practice of selecting utensils in a particular order during a multi-course meal. For our prototype scenario, the expected sequence is soup spoon → outer fork and knife → inner fork and knife. The user selects utensils as they eat. Sensing areas underneath the placemat detect which utensil has been picked up. If the user selects the expected utensil, a small flower gently nods. If the user selects an incorrect utensil, the flower rapidly spins to provide more noticeable corrective feedback.
 
+Sensing & actuation: Capacitive sensing underneath the utensil positions detects utensil selection. Servo-driven movements allow the flower to nod or spin in response.
 
-We chose this concept because it transforms an existing dining convention into a playful interaction without requiring the user to learn a completely new behavior. The user simply selects utensils as they normally would, while the system responds through the movement of the flower.
-
-We were also interested in using physical movement rather than a screen or written instructions as feedback. The contrast between a gentle nod for a correct selection and rapid spinning for an incorrect selection creates two visually distinct responses while keeping the interaction playful.
-
-The concept also gave us a clear way to integrate both sensing and actuation into the physical table setting: sensing can be embedded underneath the placemat, while the flower serves as the visible actuated object.
+We chose this concept because it transforms an existing dining convention into a playful interaction without requiring the user to learn a completely new behavior. The user simply selects utensils as they normally would, while the system responds through the movement of the flower. We were also interested in using physical movement rather than a screen or written instructions as feedback. The contrast between a gentle nod for a correct selection and rapid spinning for an incorrect selection creates two visually distinct responses while keeping the interaction playful. The concept also gave us a clear way to integrate both sensing and actuation into the physical table setting: sensing can be embedded underneath the placemat, while the flower serves as the visible actuated object.
 
 Our intended interaction flow is:
 
