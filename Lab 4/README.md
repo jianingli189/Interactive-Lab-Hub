@@ -111,9 +111,9 @@ Team
 
 ### Part E
 
-## Build & Integrate: Etiquette Bloom
+#### Build & Integrate: Etiquette Bloom
 
-### Final Concept
+#### Final Concept
 
 **Etiquette Bloom** is an interactive fine-dining companion that responds to a diner's utensil choices through movement and sound.
 
@@ -127,7 +127,7 @@ The contrast between these two behaviors turns an invisible rule of dining etiqu
 
 ---
 
-### From Capacitive Sensing to Proximity Sensing
+#### From Capacitive Sensing to Proximity Sensing
 
 Our original concept in Part D used capacitive sensing underneath the placemat. During implementation, however, we moved away from this approach and instead used individual proximity sensors to detect whether each utensil was present or removed.
 
@@ -144,7 +144,7 @@ We calibrated a separate detection threshold for each sensor because the reading
 
 ---
 
-### Sensing and Interaction Logic
+#### Sensing and Interaction Logic
 
 Each proximity sensor continuously monitors whether its corresponding utensil is resting in its expected position.
 
@@ -162,7 +162,7 @@ To prevent small fluctuations in proximity readings from accidentally triggering
 
 ---
 
-### Physical Output: The Flower
+#### Physical Output: The Flower
 
 The flower is driven by a servo motor connected to the Raspberry Pi through the Servo pHAT.
 
@@ -183,7 +183,7 @@ The difference in movement, rhythm, and sound makes the error noticeable without
 
 ---
 
-### System Architecture
+#### System Architecture
 
 Our final interaction pipeline is:
 
@@ -205,13 +205,13 @@ Our final interaction pipeline is:
 
 ---
 
-### Final Physical Prototype
+#### Final Physical Prototype
 
 <img src="media/final_prototype.jpg" width="700">
 
 The final prototype integrates the dining setup, five utensil sensing positions, the Raspberry Pi and multiplexer, and the servo-actuated flower into one tabletop interaction.
 
-#### Prototype Details
+##### Prototype Details
 
 <p float="left">
   <img src="media/detail_1.jpg" width="45%">
@@ -225,7 +225,7 @@ The final prototype integrates the dining setup, five utensil sensing positions,
 
 ---
 
-### Code
+#### Code
 
 The final interaction is divided into two main Python programs:
 
@@ -236,7 +236,7 @@ This separation allowed us to develop and test the sensing logic and physical ou
 
 ---
 
-### Final Demo
+#### Final Demo
 
 [**Watch the final Etiquette Bloom demo →**](media/final_video.mp4)
 
@@ -249,7 +249,7 @@ It also introduces a possible extension of the concept: using the flower as a fo
 
 ---
 
-### Reflection
+#### Reflection
 
 The most challenging part of this prototype was making sensing, physical form, and movement work together as one interaction rather than as separate technical components.
 
@@ -263,13 +263,12 @@ What was most fun was seeing the flower develop a kind of personality. Instead o
 
 ---
 
-### Part F
 
 ### Part F
 
-# Final Documentation
+#### Final Documentation
 
-## Looks Like
+##### Looks Like
 
 Etiquette Bloom is designed as a small tabletop flower that sits beside a formal dining setting.
 
@@ -281,7 +280,7 @@ The flower serves both as a decorative centerpiece and as the primary physical o
 
 ---
 
-## Works Like
+##### Works Like
 
 Etiquette Bloom senses which utensil the diner removes from the table and compares that action with the expected sequence of a multi-course meal.
 
@@ -303,7 +302,7 @@ This creates a closed interaction loop:
 
 ---
 
-## Acts Like
+##### Acts Like
 
 We wanted the flower to feel less like an error indicator and more like a small dining companion with its own behavior.
 
@@ -315,7 +314,7 @@ This behavioral contrast allows the diner to understand that something has gone 
 
 ---
 
-## Concept Extension: Dining Together, Apart
+##### Concept Extension: Dining Together, Apart
 
 While building Etiquette Bloom, we began to think about the flower not only as an etiquette guide, but also as an **ambient social companion**.
 
