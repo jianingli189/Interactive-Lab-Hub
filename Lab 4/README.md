@@ -1,10 +1,12 @@
-## Lab Overview
-Members: Jianing Li(jl4837), Aurora Jiaxin Shen(js3996), Demi Hu(dh785), Tzu-Yao Chang(tc845)
-Clock name: <Etiquette Bonquet>
+# Ph-UI!!!
 
----
-### Part D
-### Physical Interaction Design: Feast Automata
+
+## Lab Overview
+Team: <Etiquette Bouquet>  
+Members: Jianing Li(jl4837), Aurora Jiaxin Shen(js3996), Demi Hu(dh785), Tzu-Yao Chang(tc845), ...  
+Clock name: <Etiquette Bouquet>
+
+
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
@@ -104,209 +106,225 @@ Team
 
 ## Part 2
 
-Following exploration and reflection from Part 1, complete the "looks like," "works like" and "acts like" prototypes for your design, reiterated below.
 
 ---
 
 ### Part E
 
-#### Build & Integrate: Sensing + Actuation
+## Build & Integrate: Etiquette Bloom
 
-For Part 2, build the Feast Automata interaction you developed in Part D by connecting sensing/input to physical actuation.
+### Final Concept
 
-**Your prototype should:**
-- Use at least one sensing or input device.
-- Use servo-based physical actuation.
-- Connect sensing and actuation into a meaningful interaction around eating, drinking, cooking, serving, or sharing food.
-- Additional inputs, displays, LEDs, buttons, or other outputs are optional extensions.
+**Etiquette Bloom** is an interactive fine-dining companion that responds to a diner's utensil choices through movement and sound.
 
-**Document your system with:**
-- Code for your sensing + actuation prototype
-- Photos and/or video of the working prototype in action
-- A simple interaction diagram or sketch showing how sensing and actuation are connected
-- Written reflection: What did you learn about connecting sensing, movement, and physical form? What was fun, surprising, or challenging?
+The system follows a simplified multi-course fine-dining sequence:
 
-**Questions to consider:**
-- How does your chosen sensor or input shape the physical response?
-- How does the physical arrangement of the sensor and actuator change the interaction?
-- What thresholds, timing, or movement patterns make the interaction feel clear or playful?
-- What changes when you adjust the sensor placement or servo motion?
+**Soup spoon → outer fork & knife for salad → inner fork & knife for the main course**
 
-Iterate on the sensing, movement, and physical form, and document what you discover.
+During the meal, the flower gently sways while elegant music plays, creating the atmosphere of a fine-dining table. When the diner follows the expected utensil sequence, the flower continues its graceful movement. If the diner selects the wrong utensils, the flower suddenly breaks its composure: it shakes rapidly and the elegant music is interrupted by an error sound.
 
-See encoder_accel_servo_dashboard.py in the Lab 4 folder for an optional example of chaining together three devices.
+The contrast between these two behaviors turns an invisible rule of dining etiquette into playful physical feedback.
 
-**`Lab 4/encoder_accel_servo_dashboard.py`**
+---
 
-#### Example Application: Windmill Coaster
+### From Capacitive Sensing to Proximity Sensing
 
-Now that you have explored both sensing and actuation, here is a simple example that combines the two.
+Our original concept in Part D used capacitive sensing underneath the placemat. During implementation, however, we moved away from this approach and instead used individual proximity sensors to detect whether each utensil was present or removed.
 
-The **Windmill Coaster** uses a Qwiic distance/proximity sensor to detect when a cup is placed on a coaster. When the cup is detected, a servo motor animates a small windmill by sweeping it back and forth, turning an ordinary action during drinking into a playful physical interaction.
+This gave us a more direct mapping between each physical utensil position and its sensing input.
 
-<p align="center">
-    <img src="windmill_coaster11.gif" alt="Windmill Coaster Demo" width="400"/>
+Our final system uses **five proximity sensors**, one for each utensil position:
+
+- 3 × VCNL4040 proximity sensors
+- 2 × APDS-9960 proximity sensors
+
+Because multiple sensors of the same type share the same I²C address, we connected them through a **Qwiic TCA9548A I²C multiplexer**. Each sensor is assigned to a separate multiplexer channel, allowing the Raspberry Pi to read all five sensors independently.
+
+We calibrated a separate detection threshold for each sensor because the readings varied depending on the sensor type, utensil position, distance, and physical arrangement.
+
+---
+
+### Sensing and Interaction Logic
+
+Each proximity sensor continuously monitors whether its corresponding utensil is resting in its expected position.
+
+When a utensil changes from **present → absent**, the system interprets this as the diner picking it up.
+
+The Raspberry Pi then compares the detected utensil with the expected stage of the meal:
+
+1. **Soup:** use the soup spoon first.
+2. **Salad:** use the outer fork and knife.
+3. **Main course:** use the inner fork and knife.
+
+For the fork-and-knife pairs, either utensil can be picked up first within the course. The system tracks the pair before moving on to the next stage.
+
+To prevent small fluctuations in proximity readings from accidentally triggering an interaction, we require several consecutive sensor readings to confirm a state change.
+
+---
+
+### Physical Output: The Flower
+
+The flower is driven by a servo motor connected to the Raspberry Pi through the Servo pHAT.
+
+Rather than using a screen or written warning, we designed the flower itself to communicate the state of the interaction.
+
+**Normal / correct behavior**
+- Elegant background music plays.
+- The flower moves with graceful sweeping motions.
+- The movement creates a calm, formal dining atmosphere.
+
+**Incorrect utensil selection**
+- The elegant behavior is interrupted.
+- The flower rapidly shakes from side to side.
+- An error sound replaces the elegant music.
+- After the reaction, the flower returns to its normal dining behavior.
+
+The difference in movement, rhythm, and sound makes the error noticeable without requiring the diner to look at a display.
+
+---
+
+### System Architecture
+
+Our final interaction pipeline is:
+
+**Utensil movement**  
+↓  
+**5 proximity sensors**  
+↓  
+**Qwiic TCA9548A multiplexer**  
+↓  
+**Raspberry Pi**  
+↓  
+**Dining-sequence logic**  
+↓  
+**Correct / Incorrect**  
+↓  
+**Servo movement + audio feedback**
+
+<img src="chaining.png" width="700">
+
+---
+
+### Final Physical Prototype
+
+<img src="media/final_prototype.jpg" width="700">
+
+The final prototype integrates the dining setup, five utensil sensing positions, the Raspberry Pi and multiplexer, and the servo-actuated flower into one tabletop interaction.
+
+#### Prototype Details
+
+<p float="left">
+  <img src="media/detail_1.jpg" width="45%">
+  <img src="media/detail_2.jpg" width="45%">
 </p>
 
-
-This example demonstrates a simple interaction pipeline:
-
-**cup placed → distance sensor detects cup → servo actuates windmill**
-
-Connect the Qwiic distance sensor to the Pi and connect the servo to Channel 0 of the Servo pHAT. Make sure the Servo pHAT is powered through its USB-C connection.
-
-Run the example script:
-
-```bash
-python windmill_coaster.py
-```
-
-The script continuously reads the proximity value from the distance sensor. When the value passes a threshold, the servo begins animating the windmill. When the cup is removed, the servo stops and returns to its resting position.
-
-You may need to adjust `CUP_THRESHOLD` in [`windmill_coaster.py`](windmill_coaster.py) depending on the size of your cup and the physical placement of the sensor. You can run `qwiic_distance.py` first to compare readings with and without a cup.
-
-Use this example as a starting point. Change the sensor, movement, physical form, or dining interaction to create your own Feast Automata variation.
-
-#### Optional Extensions
-
-The following examples are optional resources if you want to add more inputs or outputs to your prototype.
-
-##### Using Multiple Qwiic Buttons: Changing I2C Address (Physically & Digitally)
-
-If you want to use more than one Qwiic Button in your project, you must give each button a unique I2C address. There are two ways to do this:
-
-##### 1. Physically: Soldering Address Jumpers
-
-On the back of the Qwiic Button, you'll find four solder jumpers labeled A0, A1, A2, and A3. By bridging these with solder, you change the I2C address. Only one button on the chain can use the default address (0x6F).
-
-**Address Table:**
-
-| A3 | A2 | A1 | A0 | Address (hex) |
-|----|----|----|----|---------------|
-|  0 |  0 |  0 |  0 |    0x6F       |
-|  0 |  0 |  0 |  1 |    0x6E       |
-|  0 |  0 |  1 |  0 |    0x6D       |
-|  0 |  0 |  1 |  1 |    0x6C       |
-|  0 |  1 |  0 |  0 |    0x6B       |
-|  0 |  1 |  0 |  1 |    0x6A       |
-|  0 |  1 |  1 |  0 |    0x69       |
-|  0 |  1 |  1 |  1 |    0x68       |
-|  1 |  0 |  0 |  0 |    0x67       |
-| ...| ...| ...| ... |     ...      |
-
-For example, if you solder A0 closed (leave A1, A2, A3 open), the address becomes 0x6E.
-
-**Soldering Tips:**
-- Use a small amount of solder to bridge the pads for the jumper you want to close.
-- Only one jumper needs to be closed for each address change (see table above).
-- Power cycle the button after changing the jumper.
-
-##### 2. Digitally: Using Software to Change Address
-
-You can also change the address in software (temporarily or permanently) using the example script `qwiic_button_ex6_changeI2CAddress.py` in the Lab 4 folder. This is useful if you want to reassign addresses without soldering.
-
-Run the script and follow the prompts:
-```bash
-python qwiic_button_ex6_changeI2CAddress.py
-```
-Enter the new address (e.g., 5B for 0x5B) when prompted. Power cycle the button after changing the address.
-
-**Note:** The software method is less foolproof and you need to make sure to keep track of which button has which address!
-
-
-##### Using Multiple Buttons in Code
-
-After setting unique addresses, you can use multiple buttons in your script. See these example scripts in the Lab 4 folder:
-
-- **`qwiic_1_button.py`**: Basic example for reading a single Qwiic Button (default address 0x6F). Run with:
-	```bash
-	python qwiic_1_button.py
-	```
-
-- **`qwiic_button_led_demo.py`**: Demonstrates using two Qwiic Buttons at different addresses (e.g., 0x6F and 0x6E) and controlling their LEDs. Button 1 toggles its own LED; Button 2 toggles both LEDs. Run with:
-	```bash
-	python qwiic_button_led_demo.py
-	```
-
-Here is a minimal code example for two buttons:
-```python
-import qwiic_button
-
-# Default button (0x6F)
-button1 = qwiic_button.QwiicButton()
-# Button with A0 soldered (0x6E)
-button2 = qwiic_button.QwiicButton(0x6E)
-
-button1.begin()
-button2.begin()
-
-while True:
-		if button1.is_button_pressed():
-				print("Button 1 pressed!")
-		if button2.is_button_pressed():
-				print("Button 2 pressed!")
-```
-
-For more details, see the [Qwiic Button Hookup Guide](https://learn.sparkfun.com/tutorials/qwiic-button-hookup-guide/all#i2c-address).
-
----
-
-##### PCF8574 GPIO Expander: Add More Pins Over I²C
-
-Sometimes your Pi’s header GPIO pins are already full (e.g., with a display or HAT). That’s where an I²C GPIO expander comes in handy.
-
-We use the Adafruit PCF8574 I²C GPIO Expander, which gives you 8 extra digital pins over I²C. It’s a great way to prototype with LEDs, buttons, or other components on the breadboard without worrying about pin conflicts—similar to how Arduino users often expand their pinouts when prototyping physical interactions.
-
-**Why is this useful?**
-- You only need two wires (I²C: SDA + SCL) to unlock 8 extra GPIOs.
-- It integrates smoothly with CircuitPython and Blinka.
-- It allows a clean prototyping workflow when the Pi’s 40-pin header is already occupied by displays, HATs, or sensors.
-- Makes breadboard setups feel more like an Arduino-style prototyping environment where it’s easy to wire up interaction elements.
-
-**Demo Script:** `Lab 4/gpio_expander.py`
-
-<p align="center">
-    <img src="gpio_leds.gif" alt="GPIO Expander LED Demo" width="400"/>
+<p float="left">
+  <img src="media/detail_3.jpg" width="45%">
+  <img src="media/detail_4.jpg" width="45%">
 </p>
 
-We connected 8 LEDs (through 220 Ω resistors) to the expander and ran a little light show. The script cycles through three patterns:
-- Chase (one LED at a time, left to right)
-- Knight Rider (back-and-forth sweep)
-- Disco (random blink chaos)
+---
 
-Every few runs, the script swaps to the next pattern automatically:
-```bash
-python gpio_expander.py
-```
+### Code
 
-This is a playful way to visualize how the expander works, but the same technique applies if you wanted to prototype buttons, switches, or other interaction elements. It’s a lightweight, flexible addition to your prototyping toolkit.
+The final interaction is divided into two main Python programs:
+
+- [`etiquette.py`](etiquette.py) — reads the five proximity sensors through the I²C multiplexer, tracks utensil state changes, and determines whether each action follows the expected dining sequence.
+- [`flower.py`](flower.py) — controls the servo movement and audio feedback of the flower for correct and incorrect interactions.
+
+This separation allowed us to develop and test the sensing logic and physical output independently before integrating them into the final interaction.
 
 ---
 
+### Final Demo
+
+[**Watch the final Etiquette Bloom demo →**](media/final_video.mp4)
+
+The demo shows both correct and incorrect dining sequences:
+
+- Correct: soup spoon → outer fork & knife for salad → inner fork & knife for the main course.
+- Incorrect: using the inner utensils for the salad, or using the outer utensils for the main course.
+
+It also introduces a possible extension of the concept: using the flower as a form of ambient presence for remote dining.
 
 ---
+
+### Reflection
+
+The most challenging part of this prototype was making sensing, physical form, and movement work together as one interaction rather than as separate technical components.
+
+One important lesson was that **sensor placement is part of interaction design**. Even when a proximity sensor worked reliably by itself, its readings changed when we placed it underneath a real utensil and integrated it into the table setting. We therefore had to adjust the placement and threshold of each sensor individually.
+
+We also learned that timing and movement strongly affect how users interpret physical feedback. A slow, smooth movement felt calm and elegant, while a short and rapid side-to-side movement immediately felt like something had gone wrong. Adding sound made this contrast even clearer.
+
+The I²C multiplexer was another important part of the implementation. Since several of our sensors shared the same I²C address, the multiplexer allowed us to treat five physical sensing locations independently without changing the natural arrangement of the utensils.
+
+What was most fun was seeing the flower develop a kind of personality. Instead of simply displaying “correct” or “incorrect,” its movement and sound communicate the state of the interaction. The final prototype made us interested in exploring how the same physical object could communicate not only etiquette feedback, but also social presence.
 
 ---
 
 ### Part F
 
-### Final Documentation
+### Part F
 
-Document all the prototypes and iterations you have designed and worked on! Again, deliverables for this lab are writings, sketches, photos, and videos that show what your prototype:
-* "Looks like": shows how the device should look, feel, sit, weigh, etc.
-* "Works like": shows what the device can do
-* "Acts like": shows how a person would interact with the device
+# Final Documentation
+
+## Looks Like
+
+Etiquette Bloom is designed as a small tabletop flower that sits beside a formal dining setting.
+
+The flower and table arrangement intentionally contrast the visible technology underneath the prototype. From the diner's perspective, the main interaction remains familiar: a plate, utensils, and a decorative flower. The sensors are positioned around the utensil locations so that the diner does not need to perform a separate action to interact with the system.
+
+<img src="media/final_prototype.jpg" width="700">
+
+The flower serves both as a decorative centerpiece and as the primary physical output of the system.
 
 ---
 
-## Deliverables \& Submission for Lab 4
+## Works Like
 
-The deliverables for this lab are, writings, sketches, photos, and videos that show what your prototype:
-* "Looks like": shows how the device should look, feel, sit, weigh, etc.
-* "Works like": shows what the device can do.
-* "Acts like": shows how a person would interact with the device.
+Etiquette Bloom senses which utensil the diner removes from the table and compares that action with the expected sequence of a multi-course meal.
 
-For submission, the readme.md page for this lab should be edited to include the work you have done:
-* Upload any materials that explain what you did, into your lab 4 repository, and link them in your lab 4 readme.md.
-* Link your Lab 4 readme.md in your main Interactive-Lab-Hub readme.md. 
-* Labs are due on Mondays, make sure to submit your Lab 4 readme.md to Canvas.
+Five proximity sensors monitor the five utensil positions. A Qwiic I²C multiplexer allows the Raspberry Pi to communicate with multiple sensors that share the same I²C address.
+
+The system then maps sensing to physical and auditory feedback:
+
+**Correct utensil**
+→ elegant music + graceful flower movement
+
+**Incorrect utensil**
+→ rapid shaking + error sound
+
+This creates a closed interaction loop:
+
+**Diner → Utensil → Sensor → Raspberry Pi → Flower → Diner**
+
+<img src="chaining.png" width="700">
+
+---
+
+## Acts Like
+
+We wanted the flower to feel less like an error indicator and more like a small dining companion with its own behavior.
+
+Normally, it maintains the atmosphere of the meal through elegant music and gentle movement. When the diner breaks the expected utensil sequence, the flower suddenly “loses its composure”: its movement becomes rapid and uneasy, and the music changes with it.
+
+This behavioral contrast allows the diner to understand that something has gone wrong without reading instructions or checking a screen.
+
+[**Watch Etiquette Bloom in action →**](media/final_video.mp4)
+
+---
+
+## Concept Extension: Dining Together, Apart
+
+While building Etiquette Bloom, we began to think about the flower not only as an etiquette guide, but also as an **ambient social companion**.
+
+What if two flowers at two distant dining tables could be connected?
+
+When a distant friend sits down to eat, the flower at the other person's table could come alive with gentle movement and music, quietly signaling:
+
+**someone is dining with you.**
+
+Instead of recreating a video call, this extension uses physical movement and ambient sound to represent another person's presence in a subtle way.
+
+Our final video illustrates this concept as an extension of the current prototype. It suggests how the same language of movement and sound could move beyond etiquette feedback toward remote companionship and shared dining experiences.
