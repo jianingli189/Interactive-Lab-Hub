@@ -295,7 +295,8 @@ This creates a closed interaction loop:
 
 **Diner → Utensil → Sensor → Raspberry Pi → Flower → Diner**
 
-<img src="chaining.png" width="700">
+<img width="2055" height="1206" alt="5980ec5a089f4d84f3a5594a00c4bad5" src="https://github.com/user-attachments/assets/da556433-bb0c-484f-83fb-0b10633ecdc0" />
+
 
 ---
 
