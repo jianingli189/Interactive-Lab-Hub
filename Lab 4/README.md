@@ -5,7 +5,7 @@
 Team: Etiquette Bouquet  
 Members: Jianing Li(jl4837), Aurora Jiaxin Shen(js3996), Demi Hu(dh785), Tzu-Yao Chang(tc845), ...  
 Clock name: Etiquette Bouquet
-
+<img width="1707" height="1280" alt="eb35664b3cf3e968faf420e777e68e7d" src="https://github.com/user-attachments/assets/3eff010b-ed37-4e32-afec-29aaf32e91f5" />
 
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
@@ -97,10 +97,6 @@ https://github.com/user-attachments/assets/50672203-766c-4e02-83a6-3138f499a55a
 
 
 The video demonstrates the complete interaction sequence, including both correct and incorrect utensil selections.
-
-Team
-
-<img width="1707" height="1280" alt="eb35664b3cf3e968faf420e777e68e7d" src="https://github.com/user-attachments/assets/3eff010b-ed37-4e32-afec-29aaf32e91f5" />
 
 ---
 
