@@ -197,8 +197,6 @@ Our final interaction pipeline is:
 ↓  
 **Servo movement + audio feedback**
 
-<img src="chaining.png" width="700">
-
 ---
 
 ### Final Physical Prototype
