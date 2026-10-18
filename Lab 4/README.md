@@ -2,9 +2,9 @@
 
 
 # Lab Overview
-Team: <Etiquette Bouquet>  
+Team: Etiquette Bouquet  
 Members: Jianing Li(jl4837), Aurora Jiaxin Shen(js3996), Demi Hu(dh785), Tzu-Yao Chang(tc845), ...  
-Clock name: <Etiquette Bouquet>
+Clock name: Etiquette Bouquet
 
 
 
@@ -239,6 +239,8 @@ This separation allowed us to develop and test the sensing logic and physical ou
 ### Final Demo
 
 [**Watch the final Etiquette Bloom demo →**](media/final_video.mp4)
+
+https://github.com/user-attachments/assets/8cf8b440-7d38-4163-a596-c4daf0b51ef8
 
 The demo shows both correct and incorrect dining sequences:
 
