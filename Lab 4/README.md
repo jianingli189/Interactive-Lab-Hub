@@ -270,7 +270,8 @@ Etiquette Bloom is designed as a small tabletop flower that sits beside a formal
 
 The flower and table arrangement intentionally contrast the visible technology underneath the prototype. From the diner's perspective, the main interaction remains familiar: a plate, utensils, and a decorative flower. The sensors are positioned around the utensil locations so that the diner does not need to perform a separate action to interact with the system.
 
-<img src="media/final_prototype.jpg" width="700">
+<img width="1707" height="1280" alt="0467b2d0c7cb2d338c0a93ec14e07f4e" src="https://github.com/user-attachments/assets/e454ec6b-a8b1-4208-abfe-dc18a22334ab" />
+
 
 The flower serves both as a decorative centerpiece and as the primary physical output of the system.
 
