@@ -11,6 +11,9 @@
 
 <img width="1707" height="1280" alt="eb35664b3cf3e968faf420e777e68e7d" src="https://github.com/user-attachments/assets/3eff010b-ed37-4e32-afec-29aaf32e91f5" />
 
+# Part 1
+
+## Part D
 
 **\*\*\*Draw 5 sketches that explore different physical arrangements for your sensing and actuation.\*\*\***
 
@@ -46,7 +49,7 @@ For the Etiquette Flower concept specifically, we wanted to physically prototype
 
 **\*\*\*Pick one design to prototype and explain why.\*\*\***
 
-We finally picked this idea: **Etiquette Flower**
+We finally picked this idea: **Etiquette Bouquet**
 
 This concept is inspired by the conventions of Western dining etiquette, particularly the practice of selecting utensils in a particular order during a multi-course meal. For our prototype scenario, the expected sequence is soup spoon → outer fork and knife → inner fork and knife. The user selects utensils as they eat. Sensing areas underneath the placemat detect which utensil has been picked up. If the user selects the expected utensil, a small flower gently nods. If the user selects an incorrect utensil, the flower rapidly spins to provide more noticeable corrective feedback.
 
@@ -102,6 +105,8 @@ https://github.com/user-attachments/assets/50672203-766c-4e02-83a6-3138f499a55a
 
 The video demonstrates the complete interaction sequence, including both correct and incorrect utensil selections.
 
+> **Iteration note:** During Part E, we moved from this planned capacitive-sensing approach to individual proximity sensors. See [Part E](#part-e) for our final implementation.
+
 ---
 
 # Part 2
@@ -111,11 +116,11 @@ The video demonstrates the complete interaction sequence, including both correct
 
 ## Part E
 
-### Build & Integrate: Etiquette Bloom
+### Build & Integrate: Etiquette Bouquet
 
 ### Final Concept
 
-**Etiquette Bloom** is an interactive fine-dining companion that responds to a diner's utensil choices through movement and sound.
+**Etiquette Bouquet** is an interactive fine-dining companion that responds to a diner's utensil choices through movement and sound.
 
 The system follows a simplified multi-course fine-dining sequence:
 
@@ -162,22 +167,22 @@ To prevent small fluctuations in proximity readings from accidentally triggering
 
 ---
 
-### Physical Output: The Flower
+### Physical Output: The Bouquet
 
-The flower is driven by a servo motor connected to the Raspberry Pi through the Servo pHAT.
+The bouquet is driven by a servo motor connected to the Raspberry Pi through the Servo pHAT.
 
-Rather than using a screen or written warning, we designed the flower itself to communicate the state of the interaction.
+Rather than using a screen or written warning, we designed the bouquet itself to communicate the state of the interaction.
 
 **Normal / correct behavior**
 - Elegant background music plays.
-- The flower moves with graceful sweeping motions.
+- The bouquet moves with graceful sweeping motions.
 - The movement creates a calm, formal dining atmosphere.
 
 **Incorrect utensil selection**
 - The elegant behavior is interrupted.
-- The flower rapidly shakes from side to side.
+- The bouquet rapidly shakes from side to side.
 - An error sound replaces the elegant music.
-- After the reaction, the flower returns to its normal dining behavior.
+- After the reaction, the bouquet returns to its normal dining behavior.
 
 The difference in movement, rhythm, and sound makes the error noticeable without requiring the diner to look at a display.
 
@@ -207,7 +212,7 @@ Our final interaction pipeline is:
 
 <img src="media/final_prototype.jpg" width="700">
 
-The final prototype integrates the dining setup, five utensil sensing positions, the Raspberry Pi and multiplexer, and the servo-actuated flower into one tabletop interaction.
+The final prototype integrates the dining setup, five utensil sensing positions, the Raspberry Pi and multiplexer, and the servo-actuated bouquet into one tabletop interaction.
 
 ### Prototype Details
 
