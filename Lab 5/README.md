@@ -108,6 +108,11 @@ pi@raspberrypi:~ $ ollama list
 
 \*\*\***Include a screenshot of `ollama list` showing your models, and the `bus.jpg` result and your own photo with their boxes.**\*\*\*
 
+![Ollama list showing the installed Qwen models](ollama_list.png)
+
+![YOLO detection result on bus.jpg](bus_detected.jpg)
+
+![YOLO detection result on my own photo](snap_detected.jpg)
 
 ## Part B. 
 ### See: recognize people in real time with YOLO
@@ -132,6 +137,8 @@ Then press q to quit and run it again with a flag. Each one changes a single thi
 ```
 
 \*\*\***Include a short video or screenshots of the person detection. Write down three situations where it did not see you, or saw a person who was not there, and what you think the cause was.**\*\*\*
+
+
 
 
 ## Part C. 
