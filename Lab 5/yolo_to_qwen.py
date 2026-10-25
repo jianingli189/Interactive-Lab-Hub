@@ -45,9 +45,10 @@ def interpret(r):
             continue
         x1, y1, x2, y2 = box.xyxy[0].tolist()
         cx = (x1 + x2) / 2
-        side = "left" if cx < w / 3 else "right" if cx > 2 * w / 3 else "center"   # which third of the frame
-        dist = "close" if (y2 - y1) > 0.6 * h else "far"                           # how tall the box is
-        people.append(f"{side}/{dist}")
+        side = "left" if cx < w / 3 else "right" if cx > 2 * w / 3 else "center"
+        dist = "close" if (y2 - y1) > 0.6 * h else "far"
+        conf = float(box.conf)
+        people.append(f"{side}/{dist} (confidence {conf:.2f})")
     reading = f"{len(people)} person(s) at {', '.join(people)}" if people else "nobody"
     if others:
         reading += "; also " + ", ".join(sorted(others))
