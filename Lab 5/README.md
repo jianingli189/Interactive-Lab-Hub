@@ -75,9 +75,9 @@ I tested YOLO under different poses, distances, and framing conditions. It was s
 
 | Test | Result | Example |
 |---|---|---|
-| Back facing the camera at a distance | Person detected with **0.87 confidence** | <img src="test_back.png" width="180"> |
-| Only part of my hand/body visible | Person detected with **0.71 confidence** | <img src="test_hand.png" width="180"> |
-| Only a small part of my face and upper body visible | Person detected with **0.46 confidence** | <img src="test_partial.png" width="180"> |
+| Back facing the camera at a distance | Person detected with **0.87 confidence** | <img src="my_image/test_back.png" width="180"> |
+| Only part of my hand/body visible | Person detected with **0.71 confidence** | <img src="my_image/test_hand.png" width="180"> |
+| Only a small part of my face and upper body visible | Person detected with **0.46 confidence** | <img src="my_image/test_partial.png" width="180"> |
 
 
 #### Failure Cases
@@ -86,10 +86,10 @@ I also found several cases where the detector missed a person or produced an inc
 
 | Situation | Observation | Possible Cause | Example |
 |---|---|---|---|
-| **Partially outside the frame** | When I faced away from the camera with about half of my body outside the frame, YOLO did not detect a person. | The model had too little information about the overall human body shape, especially with both an unusual orientation and partial occlusion. | <img src="failure_partial.png" width="180"> |
-| **Shadow on a glass door** | YOLO detected both me and my shadow reflected on the glass door as separate people. | The shadow preserved enough human-like visual features and silhouette for YOLO to classify it as another person. | <img src="failure_shadow.png" width="180"> |
-| **Person shown on a phone** | A person displayed in a photo on my phone was detected as a person. | YOLO recognizes visual patterns associated with people but does not determine whether the detected person is physically present or shown in an image. | <img src="failure_picture.png" width="180"> |
-| **Partial or less common objects** | Part of my laptop was detected as a **remote**, while the power bank in my hand was detected as a **cell phone**. | Partial views provide fewer visual features for classification, and objects with similar shapes or less typical appearances can be confused with more familiar categories. | <img src="object.png" width="180"> |
+| **Partially outside the frame** | When I faced away from the camera with about half of my body outside the frame, YOLO did not detect a person. | The model had too little information about the overall human body shape, especially with both an unusual orientation and partial occlusion. | <img src="my_image/failure_partial.png" width="180"> |
+| **Shadow on a glass door** | YOLO detected both me and my shadow reflected on the glass door as separate people. | The shadow preserved enough human-like visual features and silhouette for YOLO to classify it as another person. | <img src="my_image/failure_shadow.png" width="180"> |
+| **Person shown on a phone** | A person displayed in a photo on my phone was detected as a person. | YOLO recognizes visual patterns associated with people but does not determine whether the detected person is physically present or shown in an image. | <img src="my_image/failure_picture.png" width="180"> |
+| **Partial or less common objects** | Part of my laptop was detected as a **remote**, while the power bank in my hand was detected as a **cell phone**. | Partial views provide fewer visual features for classification, and objects with similar shapes or less typical appearances can be confused with more familiar categories. | <img src="my_image/object.png" width="180"> |
 
 
 
@@ -98,7 +98,7 @@ I also found several cases where the detector missed a person or produced an inc
 
 \*\*\***Include a screenshot or short video of the hand pose demo, and write how you might use face, hand or body pose tracking in your observant system.**\*\*\*
 
-<img src="hand_pose.png" width="400">
+<img src="my_image/hand_pose.png" width="400">
 
 #### Idea for Interaction
 I could use hand pose tracking as a simple way to control a night-time observant system without touching the device. For example, a Quiet Coyote gesture before bed could start the overnight monitoring process, while a wave in the morning could stop monitoring and trigger the system to present its summary of the night.
