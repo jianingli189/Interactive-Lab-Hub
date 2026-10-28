@@ -2,7 +2,7 @@
 
 **NAMES OF COLLABORATORS HERE**
 
-Jianing Li(jl4837), Aurora Jiaxin Shen(js3996), Demi Hu(dh785), Tzu-Yao Chang(tc845) 
+Jianing Li(jl4837)
 
 For lab this week, we focus on creating interactive systems that can detect and respond to events or stimuli in the environment of the Pi, like the Boat Detector we mentioned in lecture. 
 Your **observant device** could, for example, count items, find objects, recognize an event or continuously monitor a room.
