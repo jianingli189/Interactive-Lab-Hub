@@ -267,27 +267,106 @@ Two house rules. Sample rather than stream: one look every 5 to 30 seconds is pl
 ## Part F. 
 ### Read Part 2 and storyboard your night-time interaction
 
-Storyboard a night-time interaction built on your observant system, in three panels:
-
-1. **Before bed.** How does the person hand the night over, and how does the device acknowledge it?
-2. **While asleep.** What does the device watch or work through?
-3. **When awake.** What is the one thing the person learns, and in what medium?
-
-Stuck? A kitchen that tells you who raided the fridge. A desk that reports whether you actually went to bed. A window that names the quietest hour. A plant that describes its night. Find something better.
-
-Use storyboards and/or [Verplank diagrams](https://ccrma.stanford.edu/courses/250a-fall-2004/IDSketchbok.pdf).
-
 \*\*\***Insert ideas, sketches, Verplank diagrams and storyboards for your night-time interaction here.**\*\*\*
+
+**Initial Concept: Phone Sleep Check-in**
+
+My night-time interaction is designed to help users reflect on whether they pick up their phone again after deciding to go to sleep. Instead of continuously recording the user, the system treats a designated phone dock as a place where the user intentionally leaves their phone for the night.
+
+<img src="my_image/storyboard.jpg" width="700">
+
+1. Before bed — Handing over the phone.
+
+When the user decides to sleep, they place their phone in a designated phone dock in front of the camera. Once the camera detects the phone in the dock, the system interprets this as the user's intention to stop using their phone and begins the night-time interaction.
+
+
+2. During the night — Monitoring phone presence.
+
+The camera periodically samples the phone dock. If the phone disappears from the dock, the system records the beginning of a possible phone-use period. When the phone is detected in the dock again, the system records the end of that period.
+
+
+3. In the morning — Reviewing the night.
+
+When the user wakes up, they make an OK/three-finger gesture toward the camera to end monitoring. The system then summarizes the night, including when the phone was initially put away, when it may have been picked up and returned, and when the user ended the sleep period. These events are presented as a timeline of the night.
+
+The goal is not to determine exactly what the user did on their phone, but to make the gap between “I decided to stop using my phone” and their actual overnight phone behavior visible the next morning.
+
 
 ## Prep for Part 2
 
 1. Look at and give feedback on the Part F storyboards.
    **Put the feedback for your ideas here.**
+
+    - Sampling could miss the exact moment when the phone is picked up. Because the camera only samples approximately every 10 seconds, the user could remove the phone between two observations.
+    
+    - The start of monitoring could be misinterpreted. The user's hand or body will naturally appear when they first place the phone in the dock, so immediately treating a person detection as overnight activity could create a false event.
+    
+    - The system needs clearer feedback. The initial storyboard did not clearly communicate when monitoring had successfully started or ended.
+    
+    - The physical placement of the phone could feel more intentional. A dedicated object for leaving the phone could turn the interaction into a stronger bedtime ritual rather than simply placing a phone in front of a camera.
+
 2. [Update your Lab Hub](prep.md#get-the-latest-content) to get the latest content for Part 2.
 3. Decide where the device will spend the night and who else lives there. Get their OK before the first run.
 4. Revise your storyboard with the feedback and with what you learned in Part E about where the pipeline breaks.
 
 \*\*\***Post your revised storyboard here.**\*\*\*
+
+<img src="my_image/storyboard_revised.jpg" width="700">
+
+(1) Phone presence becomes the primary signal: Instead of relying on a person detection to determine whether the user is using their phone, the system primarily tracks whether the phone remains in its designated dock. Once the phone has been detected and monitoring has started:
+
+  - Phone present: the phone is considered checked in.
+  - Phone disappears: begin a possible phone-use period.
+  - Phone appears again: end that period and record it as a possible phone-use event.
+  - Phone remains absent: continue the same possible phone-use period rather than creating a new event.
+
+This makes the interaction more robust to the 10-second sampling interval. The system does not need to capture the exact frame in which the user picks up the phone; it can infer that the phone was removed when it is absent from subsequent samples.
+
+Because object detection is imperfect, the system describes these periods as possible phone use rather than claiming that the user was definitely using the phone.
+
+(2) Add a five-second grace period
+
+When the user first places the phone in the dock, their hand or body will naturally appear in the camera view. To avoid interpreting this setup action as overnight activity, the system waits five seconds after the initial phone detection before beginning the actual monitoring period.
+
+The interaction therefore becomes:
+
+Phone detected → 5-second grace period → overnight monitoring begins.
+
+(3) Add spoken acknowledgement
+
+I added audio feedback so that the user knows when the system changes state.
+
+After the phone is placed in the dock and detected, the device says:
+
+“Your sleep check starts in five seconds. I’ll keep an eye on whether your phone stays put tonight. Good night!”
+
+In the morning, after the user performs the ending gesture, the device gives a spoken summary such as:
+
+“Good morning! You checked in your phone at 11:48 PM and ended your night at 7:32 AM. I noticed possible phone use from 12:36 to 12:48 AM and from 1:17 to 1:24 AM.”
+
+The morning report can also present these events visually as a timeline, making it easy to see which portions of the intended sleep period contained possible phone use.
+
+(4) Create a physical “phone check-in” dock
+
+Instead of placing the phone arbitrarily in front of the camera, I plan to create a dedicated physical dock that gives the interaction a stronger sense of ritual. Putting the phone into this object represents deliberately checking the phone in for the night, while removing it represents breaking that commitment.
+
+This physical interaction connects the user's intention (“I am done with my phone”) with a visible action that the observant system can detect.
+
+Revised Interaction Flow
+
+Phone placed in dock
+→ phone detected
+→ spoken acknowledgement
+→ 5-second grace period
+→ overnight monitoring
+→ phone disappears
+→ possible phone-use period begins
+→ phone returns
+→ possible phone-use period ends
+→ morning gesture
+→ monitoring ends
+→ spoken summary + overnight phone-use timeline
+
 
 ## Part G. 
 ### Design the interaction before bed
