@@ -451,7 +451,3 @@ In the completed demonstration, the generated report correctly lists two possibl
 [▶ Watch the complete compressed demonstration](my_video/overnight_demo.mp4)
 
 [▶ Watch the bedtime hand-off](my_video/hand_off.mp4)
-
-- **Looks like:** The [setup photo](my_image/setup.jpg) shows the camera aimed at the phone placement area, the Raspberry Pi, and the connected Qwiic button.
-- **Works like:** Camera → YOLO → five-frame temporal vote → interval state machine → JSONL → deterministic report. Part E documents the earlier YOLO-to-Qwen exploration; the final version computes timing directly from recorded events to avoid invented durations.
-- **Acts like:** The first button press arms phone check-in; the second ends monitoring and generates the morning reveal. The [original](my_image/storyboard.jpg) and [revised storyboard](my_image/storyboard_revised.jpg) document the earlier gesture concept, followed by the implemented Qwiic boundary.
