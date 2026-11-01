@@ -1,0 +1,47 @@
+(.venv) pi@jeniejianingli:~/Interactive-Lab-Hub/Lab 5 $ cp /home/pi/my_overnight_updated.py ./my_overnight.py
+python my_overnight.py --run-kind compressed_demo
+Qwiic button ready at 0x6f
+Press and release the Qwiic button when ready for bed.
+{'time': '2026-11-01T17:39:47.907-05:00', 'monotonic': 2104.299832689, 'event': 'bedtime_button', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo'}
+Place your phone in the Phone Bed. Waiting for stable detection.
+Loading /home/pi/Interactive-Lab-Hub/Lab 5/yolo26n_ncnn_model for NCNN inference...
+Phone vote: 5/5; valid frames: 5
+{'time': '2026-11-01T17:39:50.979-05:00', 'monotonic': 2107.371747668, 'event': 'phone_checked_in', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'detections': 5, 'valid_frames': 5, 'confidence': 0.71044921875}
+
+SPEAKER: Your sleep check starts in five seconds. I\u2019ll keep an eye on whether your phone stays put tonight. Good night!
+Grace period: 5 seconds...
+{'time': '2026-11-01T17:40:03.968-05:00', 'monotonic': 2120.361181622, 'event': 'monitoring_started', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo'}
+Phone vote: 5/5; valid frames: 5
+{'time': '2026-11-01T17:40:05.151-05:00', 'monotonic': 2121.544073071, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': None, 'detections': 5, 'valid_frames': 5, 'confidence': 0.75537109375}
+Phone vote: 5/5; valid frames: 5
+{'time': '2026-11-01T17:40:09.335-05:00', 'monotonic': 2125.727432031, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': None, 'detections': 5, 'valid_frames': 5, 'confidence': 0.6611328125}
+Phone vote: 4/5; valid frames: 5
+{'time': '2026-11-01T17:40:13.512-05:00', 'monotonic': 2129.904977668, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': None, 'detections': 4, 'valid_frames': 5, 'confidence': 0.6611328125}
+Phone vote: 5/5; valid frames: 5
+{'time': '2026-11-01T17:40:17.701-05:00', 'monotonic': 2134.09365153, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': None, 'detections': 5, 'valid_frames': 5, 'confidence': 0.62841796875}
+Phone vote: 5/5; valid frames: 5
+{'time': '2026-11-01T17:40:21.926-05:00', 'monotonic': 2138.318480928, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': None, 'detections': 5, 'valid_frames': 5, 'confidence': 0.77685546875}
+Phone vote: 4/5; valid frames: 5
+{'time': '2026-11-01T17:40:26.103-05:00', 'monotonic': 2142.496043082, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': None, 'detections': 4, 'valid_frames': 5, 'confidence': 0.75537109375}
+Phone vote: 2/5; valid frames: 5
+{'time': '2026-11-01T17:40:30.321-05:00', 'monotonic': 2146.713923097, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': None, 'detections': 2, 'valid_frames': 5, 'confidence': 0.60009765625}
+Phone vote: 0/5; valid frames: 5
+{'time': '2026-11-01T17:40:34.510-05:00', 'monotonic': 2150.903053858, 'event': 'phone_missing', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': False, 'interval': None, 'detections': 0, 'valid_frames': 5, 'confidence': None}
+Phone vote: 0/5; valid frames: 5
+{'time': '2026-11-01T17:40:38.675-05:00', 'monotonic': 2155.067736807, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': False, 'interval': None, 'detections': 0, 'valid_frames': 5, 'confidence': None}
+Phone vote: 0/5; valid frames: 5
+{'time': '2026-11-01T17:40:42.858-05:00', 'monotonic': 2159.250501872, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': False, 'interval': None, 'detections': 0, 'valid_frames': 5, 'confidence': None}
+Phone vote: 1/5; valid frames: 5
+{'time': '2026-11-01T17:40:47.055-05:00', 'monotonic': 2163.448042081, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': False, 'interval': None, 'detections': 1, 'valid_frames': 5, 'confidence': 0.59765625}
+Phone vote: 3/5; valid frames: 5
+{'time': '2026-11-01T17:40:51.231-05:00', 'monotonic': 2167.624240156, 'event': 'phone_returned', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': {'start': '2026-11-01T17:40:34.510-05:00', 'end': '2026-11-01T17:40:51.231-05:00', 'duration_seconds': 16.721, 'end_reason': 'phone_returned'}, 'detections': 3, 'valid_frames': 5, 'confidence': 0.73046875}
+Phone vote: 0/5; valid frames: 5
+{'time': '2026-11-01T17:40:55.419-05:00', 'monotonic': 2171.811997545, 'event': 'phone_missing', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': False, 'interval': None, 'detections': 0, 'valid_frames': 5, 'confidence': None}
+Phone vote: 2/5; valid frames: 5
+{'time': '2026-11-01T17:40:59.611-05:00', 'monotonic': 2176.003930208, 'event': 'phone_returned', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': {'start': '2026-11-01T17:40:55.419-05:00', 'end': '2026-11-01T17:40:59.611-05:00', 'duration_seconds': 4.192, 'end_reason': 'phone_returned'}, 'detections': 2, 'valid_frames': 5, 'confidence': 0.5458984375}
+Phone vote: 4/5; valid frames: 5
+{'time': '2026-11-01T17:41:03.797-05:00', 'monotonic': 2180.190048437, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': None, 'detections': 4, 'valid_frames': 5, 'confidence': 0.5224609375}
+Phone vote: 2/5; valid frames: 5
+{'time': '2026-11-01T17:41:07.993-05:00', 'monotonic': 2184.386248926, 'event': 'observation', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'phone_detected': True, 'interval': None, 'detections': 2, 'valid_frames': 5, 'confidence': 0.449951171875}
+^C{'time': '2026-11-01T17:41:08.321-05:00', 'monotonic': 2184.714299921, 'event': 'session_aborted', 'run_id': 'b6b99661-9978-494d-95db-83b7748c7bc6', 'run_kind': 'compressed_demo', 'reason': 'KeyboardInterrupt', 'error': '', 'possible_phone_use_periods': [{'start': '2026-11-01T17:40:34.510-05:00', 'end': '2026-11-01T17:40:51.231-05:00', 'duration_seconds': 16.721, 'end_reason': 'phone_returned'}, {'start': '2026-11-01T17:40:55.419-05:00', 'end': '2026-11-01T17:40:59.611-05:00', 'duration_seconds': 4.192, 'end_reason': 'phone_returned'}]}
+Log saved to night_log.jsonl
