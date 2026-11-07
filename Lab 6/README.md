@@ -2,14 +2,11 @@
 
 **NAMES OF COLLABORATORS HERE**
 
-For submission, replace this section with your documentation!
+Jianing Li (jl4837)
+Aurora Jiaxin Shen ()
+Regina Chang ()
 
 ---
-
-## Prep
-
-1. Pull the new changes
-2. Read: [The Presence Table](https://dl.acm.org/doi/10.1145/1935701.1935800) ([video](https://vimeo.com/15932020))
 
 ## Overview
 
@@ -24,108 +21,38 @@ Build interactive systems where **multiple devices communicate over a network** 
 
 ## Part A: MQTT Messaging
 
-MQTT = lightweight messaging for IoT. Publish/subscribe model with central broker.
-
-**Concepts:**
-- **Broker**: `farlab.infosci.cornell.edu:1883`
-- **Topic**: Like `IDD/bedroom/temperature` (use `#` wildcard)
-- **Publish/Subscribe**: Send and receive messages
-
-**Install MQTT tools on your Pi:**
-```bash
-sudo apt-get update
-sudo apt-get install -y mosquitto-clients
-```
-
-**Test it:**
-
-**Subscribe to messages (listener):**
-```bash
-mosquitto_sub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/#' -u idd -P 'device@theFarm'
-```
-
-**Publish a message (sender):**
-```bash
-mosquitto_pub -h farlab.infosci.cornell.edu -p 1883 -t 'IDD/test/yourname' -m 'Hello!' -u idd -P 'device@theFarm'
-```
-
-> **💡 Tips:**
-> - Replace `yourname` with your actual name in the topic
-> - Use single quotes around the password: `'device@theFarm'`
-> - For your own projects, publish under your team's topic space: `IDD/<yourteam>/...` (for example `IDD/team3/bedroom/light`). Everyone shares one broker login, so anything you publish can reach everyone's projects.
-
-**🔧 Debug Tool:** View all MQTT messages in real-time at `http://farlab.infosci.cornell.edu:5001`
-
-![MQTT Explorer showing messages](imgs/MQTT-explorer.png)
-
 **💡 Brainstorm 5 ideas for messaging between devices**
 
 MQTT agrees on almost nothing in advance: you invent the topics and what the messages mean. Smart-home standards like Matter fix the vocabulary instead (every "light" behaves the same). Keep this trade-off in mind when you design your topics in Part C.
+
+- 1. Distant Dining Companion
+Inspired by our previous *Distant Dining Companion* concept, this system connects two people dining in different locations. When a sensor detects someone sitting down at one dining table, the other person's device responds by lighting up LEDs, rotating a flower, or playing music, creating a sense of shared presence despite the physical distance.
+
+- 2. Cooperative Trust Game
+Three players collaboratively control a virtual plate suspended by three ropes, each pulled by a character from a different direction. Using joysticks or rotary encoders, players must coordinate their movements to guide a ball on the plate into a cup at a designated location on the screen. Obstacles along the way may break the ropes, requiring careful communication and teamwork.
+
+- 3. Collaborative Music Creation
+Three players use different sensors to create music together. One controls melody and pitch using a joystick, another adjusts volume or sound effects through a gesture sensor, and the third creates rhythms using physical buttons. Their inputs are synchronized through MQTT to produce a shared musical performance.
+
+- 4. Symbiotic Garden
+Three players collaboratively nurture a virtual garden by controlling different environmental elements. One uses a rotary encoder to adjust sunlight intensity, another uses a proximity sensor to control rainfall, and the third uses a joystick to control wind direction and strength. Their combined inputs influence how virtual flowers grow, move, and bloom.
+
+- 5. Collaborative Dancing
+Three players jointly control a dancing virtual character. One selects and adjusts the background music using buttons or a rotary encoder, while the other two control the character's arms and legs through hand and body movements detected by MediaPipe. The system combines their inputs to generate a coordinated dance performance in real time.
+
 
 ---
 
 ## Part B: Collaborative Pixel Grid
 
-Each Pi = one pixel, controlled by RGB sensor, displayed in real-time grid.
-
-**Architecture:** `Pi (sensor) → MQTT → Server → Web Browser`
-
-**Setup:**
-
-1. **Sensor**
-
-#### Light/Proximity/Gesture sensor (APDS-9960)
-We use this sensor [Adafruit APDS-9960](https://www.adafruit.com/product/3595) for this exmaple to detect light (also RGB)
- 
-<img src="https://cdn-shop.adafruit.com/970x728/3595-06.jpg" width=200>
-
-Connect it to your pi with Qwiic connector
-
-
-<img src="imgs/IMG_0270.jpg" height="200" />
-We need to use the screen to display the color detection, so we need to stop the running piscreen.service to make your screen available again
-
-```bash
-# stop the screen service
-sudo systemctl stop piscreen.service
-```
-
-if you want to restart the screen service
-```bash
-# start the screen service
-sudo systemctl start piscreen.service
-```
- 
-2. **Server** (one person on laptop):
-```bash
-cd "Lab 6"
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-server.txt
-python app.py
-```
-
-2. **View in browser:**
-   - Grid: `http://farlab.infosci.cornell.edu:5000`
-   - Controller: `http://farlab.infosci.cornell.edu:5000/controller`
-
-3. **Pi publisher** (everyone on their Pi):
-```bash
-# First time setup - create virtual environment
-cd "Lab 6"
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-pi.txt
-
-# Run the publisher
-python pixel_grid_publisher.py
-```
-
-Hold colored objects near sensor to change your pixel!
-
-![Pixel grid with two devices](imgs/two-devices-grid.png)
-
 **📸 Include: Screenshot of grid + photo of your Pi setup**
+
+![grid screenshop](imgs/grid_screenshot.png)
+
+![pi setup](imgs/pi_setup.jpg)
+
+![pi sensing](imgs/pi_sensing.jpg)
+
 
 ---
 
@@ -162,10 +89,34 @@ Hold colored objects near sensor to change your pixel!
 Replace this README with your documentation:
 
 **1. Project Description**
-- What does it do? Why interesting? User experience?
+
+- What does it do? 
+
+   Dancing Garden is a collaborative interactive installation where three participants work together as a Dancer, Musician, and Gardener to create a playful audiovisual performance in a virtual garden. Each participant controls a different aspect of the experience through physical movements and sensors:
+
+      - Dancer — Movement: Uses a webcam and MediaPipe pose tracking to control an animated flower character. Larger and faster body movements make the flower dance more energetically.
+      - Musician — Sound: Uses a joystick and gesture sensor to control the background music, adjusting tempo, switching instruments, and adding rhythmic or melodic layers.
+      - Gardener — Environment: Uses capacitive touch sensors connected to conductive surfaces to trigger environmental effects such as sunlight, rain, wind, and firefly or insect sounds.
+
+   The system uses three Raspberry Pis and MQTT communication to combine participants' inputs into a shared, real-time audiovisual environment.
+
+- Why interesting? 
+
+   Dancing Garden combines collaborative dancing, music-making, and interactive gardening into one shared performance. The three roles are interconnected: music influences the garden's visual rhythm, weather changes the atmosphere of the dance, and the dancer's movements bring the flowers to life.
+
+   No single participant controls the entire experience. Instead, the performance emerges from their coordination and improvisation. When all three participants synchronize their actions, they can trigger a special Collective Bloom Moment, transforming the garden into a vibrant celebration of music, movement, and nature.
+
+- User experience?
+
+   Three participants gather around the installation, each taking one role. The Dancer moves in front of the camera, the Musician experiments with the joystick and hand gestures, and the Gardener touches conductive pads to change the environment. Their actions immediately influence the same virtual garden.
+
+   As participants explore how their actions affect one another, they can communicate, experiment, and coordinate to create a unique performance together. The goal is to encourage playful collaboration, embodied interaction, and a sense of shared agency through distributed physical interfaces.
 
 **2. Architecture Diagram**
 - Hardware, connections, data flow
+
+
+
 - Label input/computation/output
 
 **3. Build Documentation**
