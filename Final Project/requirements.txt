@@ -1,0 +1,6 @@
+Adafruit-Blinka
+adafruit-circuitpython-busdevice
+adafruit-circuitpython-lsm6ds
+adafruit-circuitpython-msa301
+adafruit-circuitpython-bno055
+adafruit-circuitpython-tca9548a
