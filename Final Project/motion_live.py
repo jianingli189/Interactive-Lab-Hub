@@ -11,6 +11,7 @@ from datetime import datetime, timezone
 
 import board
 import motion_capture as hw
+from sensor_recovery import RecoveryReader
 
 
 HZ = 25
@@ -504,6 +505,13 @@ def main():
         valid = {name: False for name in hw.ORDER}
         errors = {name: "" for name in hw.ORDER}
         last_config = {name: -10.0 for name in hw.ORDER}
+        lsm_attempts = {"LH": 0, "HF": 0}
+        lsm_retry_at = {"LH": 0.0, "HF": 0.0}
+
+        # RH_BOUNDED_RECOVERY
+        rh_recovery_attempts = 0
+        rh_recovery_at = 0.0
+
 
         start = time.monotonic()
         deadline = start
@@ -515,6 +523,11 @@ def main():
         skipped = 0
         io_failures = 0
         interval_max_ms = 0.0
+        event_stdout = sys.stdout
+        def recovery_event(kind, **fields):
+            with contextlib.redirect_stdout(event_stdout):
+                emit(kind, **fields)
+        recovery = RecoveryReader(hw, recovery_event)
 
         while True:
             now = time.monotonic()
@@ -524,39 +537,14 @@ def main():
             cycle_start = time.monotonic()
             readings = {}
 
+            # ADAPTIVE_RECOVERY_V1
             for name in hw.ORDER:
-                item = devices[name]
-                try:
-                    with contextlib.redirect_stdout(sys.stderr):
-                        # Always verify state before accepting data
-                        # after a failure; otherwise once per second.
-                        if (
-                            not valid[name]
-                            or cycle_start - last_config[name] >= 1
-                        ):
-                            config = hw.configuration(item)
-                            if config != item["baseline"]:
-                                raise RuntimeError("Configuration changed")
-                            last_config[name] = time.monotonic()
-
-                        readings[name] = hw.read_one(item, ORIGIN)
-
-                    if errors[name]:
-                        emit("sensor_recovered", sensor=name)
-                    valid[name] = True
-                    errors[name] = ""
-
-                except Exception as exc:
-                    io_failures += 1
-                    message = str(exc)
-                    if message != errors[name]:
-                        emit(
-                            "sensor_fault",
-                            sensor=name,
-                            message=message,
-                        )
-                    valid[name] = False
-                    errors[name] = message
+                with contextlib.redirect_stdout(sys.stderr):
+                    sample = recovery.read(name, devices[name], ORIGIN)
+                valid[name] = sample is not None
+                if sample is not None:
+                    readings[name] = sample
+            io_failures = recovery.failures
 
             now = time.monotonic()
 
@@ -565,7 +553,9 @@ def main():
             elif now >= warmup_until:
                 head.update(*readings["HF"])
 
-            if "LH" not in readings or "RH" not in readings:
+            if hasattr(hands, "update_available"):
+                hands.update_available(readings if now >= warmup_until else {})
+            elif "LH" not in readings or "RH" not in readings:
                 hands.reset()
             elif now >= warmup_until:
                 right_t, right = readings["RH"]
@@ -578,7 +568,7 @@ def main():
                     hands.reset()
 
             if now >= classify_at:
-                if valid["LH"] and valid["RH"]:
+                if hasattr(hands, "update_available") or (valid["LH"] and valid["RH"]):
                     hands.classify()
                 classify_at = now + 0.5
 

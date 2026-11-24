@@ -1,4 +1,15 @@
+node_modules/
+dist/
 .venv/
+.bridge-venv/
 __pycache__/
 *.pyc
-motion_capture_before_*.py
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+logs/
+backups/
+*_before_*.py
+*_backup_*.py
+.DS_Store

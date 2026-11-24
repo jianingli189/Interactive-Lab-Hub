@@ -7,6 +7,8 @@ import board
 import adafruit_bno055
 import adafruit_msa3xx
 import adafruit_tca9548a
+from safe_mux import install as install_safe_mux
+install_safe_mux(adafruit_tca9548a)
 from adafruit_bus_device.i2c_device import I2CDevice
 from adafruit_lsm6ds import AccelRange, GyroRange, Rate
 from adafruit_lsm6ds.lsm6ds3trc import LSM6DS3TRC
@@ -80,11 +82,19 @@ def scan(bus):
         bus.unlock()
 
 
-def read_reg(bus, address, register):
-    result = bytearray(1)
+def read_regs(bus, address, registers):
+    """Keep one mux selection for a small group of register reads."""
+    values = []
     with I2CDevice(bus, address, probe=False) as device:
-        device.write_then_readinto(bytes([register]), result)
-    return result[0]
+        for register in registers:
+            result = bytearray(1)
+            device.write_then_readinto(bytes([register]), result)
+            values.append(result[0])
+    return tuple(values)
+
+
+def read_reg(bus, address, register):
+    return read_regs(bus, address, (register,))[0]
 
 
 def configuration(item):
@@ -93,26 +103,18 @@ def configuration(item):
         sensor = item["sensor"]
         return (sensor.range, sensor.data_rate, sensor.power_mode)
     if item["name"] == "RH":
-        page = read_reg(bus, address, 0x07)
-        identity = read_reg(bus, address, 0x00)
-        mode = read_reg(bus, address, 0x3D)
-        status = read_reg(bus, address, 0x39)
+        page, identity, mode, status, error, units, power = rh_state(item)
         if (page, identity, mode, status) != (0, 0xA0, 8, 5):
-            error = read_reg(bus, address, 0x3A)
             raise RuntimeError(
                 f"RH bad state: page={page}, id={identity}, "
                 f"mode={mode}, status={status}, sys_err={error}"
             )
-        units = read_reg(bus, address, 0x3B)
-        power = read_reg(bus, address, 0x3E)
         if units != 0 or power != 0:
             raise RuntimeError(
                 f"RH units/power changed: units={units:02X} power={power:02X}"
             )
         return (identity, mode)
-    return tuple(
-        read_reg(bus, address, r) for r in (0x0F, 0x10, 0x11, 0x12)
-    )
+    return read_regs(bus, address, (0x0F, 0x10, 0x11, 0x12))
 
 
 
@@ -177,10 +179,7 @@ class DirectBNO055:
 
 def rh_state(item):
     regs = (0x07, 0x00, 0x3D, 0x39, 0x3A, 0x3B, 0x3E)
-    return tuple(
-        read_reg(item["bus"], item["address"], reg)
-        for reg in regs
-    )
+    return read_regs(item["bus"], item["address"], regs)
 
 
 def rh_report(item, label):

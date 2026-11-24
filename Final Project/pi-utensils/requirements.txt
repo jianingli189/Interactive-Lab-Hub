@@ -1,0 +1,5 @@
+Adafruit-Blinka
+adafruit-circuitpython-tca9548a
+adafruit-circuitpython-apds9960
+adafruit-circuitpython-vcnl4040
+paho-mqtt>=2,<3
